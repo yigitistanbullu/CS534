@@ -3,6 +3,8 @@
 
 # Log file
 *.log
+# Ignore Fıle
+./out
 
 # BlueJ files
 *.ctxt
