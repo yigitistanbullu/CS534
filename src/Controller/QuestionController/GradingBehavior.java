@@ -1,17 +1,17 @@
 package Controller.QuestionController;
 
 public interface GradingBehavior {
-    void grade();
+    void setGrade();
 }
 
 class GradeBySystem implements GradingBehavior {
-    public void grade() {
+    public void setGrade() {
         System.out.println("Grade automatically");
     }
 }
 
 class GradeByInstructor implements GradingBehavior {
-    public void grade() {
+    public void setGrade() {
         System.out.println("Grade by inst");
     }
 }
