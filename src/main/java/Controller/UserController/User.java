@@ -7,15 +7,25 @@ public abstract class User {
     protected String lastName;
     protected String e_mail;
     protected Password password;
+    protected int userType;
     protected int id;
 
-    public User(Mediator mediator, String name, String lastName, String e_mail, Password password, int id) {
+    public User(Mediator mediator, String name, String lastName, String e_mail, Password password, int id, int userType) {
         this.mediator = mediator;
         this.name = name;
         this.lastName = lastName;
         this.e_mail = e_mail;
         this.password = password;
         this.id = id;
+        this.userType = userType;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 
     public int getId() {
