@@ -1,6 +1,5 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.Behavior.AnswerMultipleChoice;
 import Controller.QuestionController.Behavior.GradeBySystem;
 
 public class MultipleChoiceQuestion extends Question {
@@ -15,9 +14,5 @@ public class MultipleChoiceQuestion extends Question {
         gradingBehavior = new GradeBySystem();
     }
 
-    @Override
-    public void setAnswerBehavior() {
-        answerBehavior = new AnswerMultipleChoice();
-    }
 
 }

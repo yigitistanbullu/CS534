@@ -1,18 +1,20 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.Behavior.AnswerOptionsBehavior;
 import Controller.QuestionController.Behavior.GradingBehavior;
+
+import java.util.ArrayList;
 
 public abstract class Question {
 
-    AnswerOptionsBehavior answerBehavior;
     GradingBehavior gradingBehavior;
 
+    public int id;
+    public int examId;
+    public double grade;
+    public String question;
+    public ArrayList<String> answers;
+
     public abstract void display();
-
-    public abstract void setAnswerBehavior();
-
     public abstract void setGradingBehavior();
-
 
 }

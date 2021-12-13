@@ -1,6 +1,5 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.Behavior.AnswerText;
 import Controller.QuestionController.Behavior.GradeBySystem;
 
 public class TrueFalseQuestion extends Question {
@@ -15,8 +14,4 @@ public class TrueFalseQuestion extends Question {
         gradingBehavior = new GradeBySystem();
     }
 
-    @Override
-    public void setAnswerBehavior() {
-        answerBehavior = new AnswerText();
-    }
 }
