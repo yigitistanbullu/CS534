@@ -1,6 +1,7 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.AnswerText;
+import Controller.QuestionController.Behavior.AnswerText;
+import Controller.QuestionController.Behavior.GradeByInstructor;
 
 public class TextQuestion extends Question {
 

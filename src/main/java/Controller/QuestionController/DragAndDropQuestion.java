@@ -1,6 +1,7 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.AnswerByDragAndDrop;
+import Controller.QuestionController.Behavior.AnswerByDragAndDrop;
+import Controller.QuestionController.Behavior.GradeBySystem;
 
 public class DragAndDropQuestion extends Question {
 

@@ -1,4 +1,6 @@
-package Controller.QuestionController;
+package Controller.QuestionController.Factory;
+
+import Controller.QuestionController.Question;
 
 public abstract class QuestionFactory {
 

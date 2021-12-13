@@ -1,8 +1,9 @@
 package Controller.QuestionController;
 
-import Controller.QuestionController.AnswerMultipleChoice;
+import Controller.QuestionController.Behavior.AnswerMultipleChoice;
+import Controller.QuestionController.Behavior.GradeBySystem;
 
-public class MultipleChoiceQuestion extends Question{
+public class MultipleChoiceQuestion extends Question {
 
     @Override
     public void display() {

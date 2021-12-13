@@ -1,5 +1,8 @@
 package Controller.QuestionController;
 
+import Controller.QuestionController.Behavior.AnswerOptionsBehavior;
+import Controller.QuestionController.Behavior.GradingBehavior;
+
 public abstract class Question {
 
     AnswerOptionsBehavior answerBehavior;
