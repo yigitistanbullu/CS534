@@ -23,8 +23,9 @@ public class Main {
                 return null;
             }
         };
+        System.out.println(authorizationModel.logIn(user));
+        //authorizationModel.addUser(user);
 
-        authorizationModel.addUser(user);
 
 
     }
