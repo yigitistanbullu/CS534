@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import Controller.UserController.User;
 
@@ -17,7 +18,28 @@ public class AuthorizationModel {
 
             e.printStackTrace();
         }
+    }
 
+    public static boolean logIn(User user) {
+
+        ResultSet result;
+        String username = user.getName();  //txtBox.Text
+        String password = user.getPassword().getKey(); //txtBox2.Text
+        boolean a = false;
+        String Query = "SELECT * FROM User WHERE user_name ='" + username +"' && user_password ='" + password + "';";
+        try {
+
+           result =  DBConnection.connection.createStatement().executeQuery(Query);
+           if(result.getMetaData().getColumnCount() >= 0){
+               a = true;
+           }
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return a;
     }
 
 }

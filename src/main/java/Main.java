@@ -1,12 +1,8 @@
-import Controller.UserController.Mediator;
 import Controller.UserController.MediatorImp;
 import Controller.UserController.Password;
 import Controller.UserController.User;
 import Model.AuthorizationModel;
 import Model.DBConnection;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +19,11 @@ public class Main {
                 return null;
             }
         };
+        System.out.println(authorizationModel.logIn(user));
 
-        authorizationModel.addUser(user);
+
+        //authorizationModel.addUser(user);
+
 
 
     }
