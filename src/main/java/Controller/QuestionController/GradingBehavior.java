@@ -2,6 +2,7 @@ package Controller.QuestionController;
 
 public interface GradingBehavior {
     void setGrade();
+
 }
 
 class GradeBySystem implements GradingBehavior {
