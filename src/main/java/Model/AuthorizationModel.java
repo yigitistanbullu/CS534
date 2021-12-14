@@ -2,6 +2,8 @@ package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Controller.ExamController.Exam;
 import Controller.UserController.User;
 
 public class AuthorizationModel {
@@ -11,6 +13,17 @@ public class AuthorizationModel {
     public static void addUser(User user) {
 
         String Query = "INSERT into User(user_name, user_surname, user_email, user_password, user_type, user_exam_id) VALUES (" +"'" + user.getName()+"'" + ", "+"'" + user.getLastName() +"'" +" ," +"'" + user.getE_mail()+"'" + ", " +"'" + user.getPassword().getKey()+ "'" +", " +"'" + user.getUserType() +"'" +", " +"'" + 0 +"'" + ") ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public void removeUser(User user){
+        String Query = "DELETE FROM User WHERE user_id =' " + user.getId() +"' ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -41,5 +54,6 @@ public class AuthorizationModel {
         }
         return a;
     }
+
 
 }
