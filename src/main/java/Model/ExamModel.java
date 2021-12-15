@@ -97,4 +97,15 @@ public class ExamModel {
         }
     }
 
+    public void setExamGrade(Exam exam){
+        String Query = "UPDATE Exam SET exam_grade = (SELECT SUM(points_earned) FROM Question WHERE exam_id = " + exam.getId() + " ) WHERE exam_id =" + exam.getId() + " ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
 }

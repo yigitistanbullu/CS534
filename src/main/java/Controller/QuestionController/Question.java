@@ -5,8 +5,7 @@ import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import java.util.ArrayList;
 
 public abstract class Question {
-
-    GradingBehavior gradingBehavior;
+    QuestionTypeBehavior questionType;
 
     public int id;
     public String question;
@@ -20,12 +19,6 @@ public abstract class Question {
 
     public abstract void display();
 
-    public GradingBehavior getGradingBehavior() {
-        return gradingBehavior;
-    }
-    public void setGradingBehavior(GradingBehavior gradingBehavior) {
-        this.gradingBehavior = gradingBehavior;
-    }
 
     public int getId() {
         return id;
@@ -101,8 +94,8 @@ public abstract class Question {
 
     public static class TextQuestion extends Question {
         public TextQuestion(){
-            gradingBehavior = new GradeByInstructor();
-            type = "text";
+            questionType = new TextQuestionBehavior();
+            this.type = questionType.setQuestionType();
         }
         @Override
         public void display() {
@@ -112,8 +105,8 @@ public abstract class Question {
 
     public static class TrueFalseQuestion extends Question {
         public TrueFalseQuestion(){
-            gradingBehavior = new GradeBySystem();
-            type = "true_false";
+            questionType = new TrueFalseQuestionBehavior();
+            this.type = questionType.setQuestionType();
         }
         @Override
         public void display() {
@@ -123,8 +116,8 @@ public abstract class Question {
 
     public static class MultipleChoiceQuestion extends Question {
         public MultipleChoiceQuestion(){
-            gradingBehavior = new GradeBySystem();
-            type = "multiple_choice";
+            questionType = new MultipleChoiceQuestionBehavior();
+            this.type = questionType.setQuestionType();
         }
         @Override
         public void display() {

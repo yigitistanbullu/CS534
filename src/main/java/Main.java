@@ -37,13 +37,13 @@ public class Main {
 
         //authorizationModel.addUser(user);
         ArrayList<String> answers = new ArrayList<>(){};
-        answers.add("test1");
+        answers.add("test");
         answers.add("test2");
         answers.add("test3");
-        QuestionFactory factory = new TrueFalseQuestionFactory();
-        //factory.addQuestion(5,"test",5,1,"test",answers);
-        factory.setAnswer(3,"yo");
-
-
+        //QuestionFactory factory = new TextQuestionFactory();
+        //factory.addQuestion(2,"test",5,5,"test",answers);
+        //factory.setSelectedQuestion(5,2,answers.get(0));
+        //factory.setPointsEarnedInstructor(5,2,3);
+        examModel.setExamGrade(exam);
     }
 }

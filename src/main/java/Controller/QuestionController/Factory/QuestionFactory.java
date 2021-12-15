@@ -16,12 +16,23 @@ public abstract class QuestionFactory {
         model.deleteQuestion(id);
     }
 
-    public void setAnswer(int id, String str){
+    public void setSelectedQuestion(int examId, int question_id,String str) {
         QuestionModel model = new QuestionModel();
-        model.setSelectedAnswer(id,str);
+        model.setSelectedAnswer(examId, question_id, str);
+    }
+
+    public void setPointsEarnedSystem(int examId){
+        setPoints(examId,0,0);
+    }
+
+    public void setPointsEarnedInstructor(int examId, int question_id, double points){
+        QuestionModel model = new QuestionModel();
+        setPoints(examId,question_id, points);
     }
 
 
+
     protected abstract void createQuestion(int id, String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers);
+    protected abstract void setPoints(int examId, int question_id, double points);
 
 }

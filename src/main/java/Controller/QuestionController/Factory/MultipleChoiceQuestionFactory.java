@@ -20,4 +20,9 @@ public class MultipleChoiceQuestionFactory extends QuestionFactory {
         QuestionModel model = new QuestionModel();
         model.addMultipleChoiceQuestion(newQuestion);
     }
+
+    protected void setPoints(int examId,int question_id, double points){
+        QuestionModel Model = new QuestionModel();
+        Model.setPointsBySystem(examId);
+    };
 }
