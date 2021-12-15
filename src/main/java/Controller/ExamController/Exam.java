@@ -5,6 +5,12 @@ import Controller.QuestionController.Question;
 import java.util.ArrayList;
 
 public class Exam {
+    public Exam(int id, String name, double grade) {
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        //this.questions = questions;
+    }
 
     public int id;
     public String name;

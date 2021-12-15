@@ -27,7 +27,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="71a47e37-5a58-480b-af6d-bd7c1878d7b1">
+    <connection id="a007932a-1fdc-4ba1-a6a3-fd368e9023ae">
       <console name="cs534" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
@@ -35,10 +35,7 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="71a47e37-5a58-480b-af6d-bd7c1878d7b1" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="71a47e37-5a58-480b-af6d-bd7c1878d7b1" dataset="cs534.Exam" active-filter-id="" />
+    <connection id="a007932a-1fdc-4ba1-a6a3-fd368e9023ae" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -69,20 +66,20 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="71a47e37-5a58-480b-af6d-bd7c1878d7b1" active="true">
+      <connection id="a007932a-1fdc-4ba1-a6a3-fd368e9023ae" active="true">
         <database>
           <name value="cs534" />
-          <description value="Database for exam portal" />
+          <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
           <database-version value="8.0" />
           <driver-source value="BUILTIN" />
-          <driver-library value="" />
+          <driver-library value="$PROJECT_DIR$/C:/Users/yigit/Desktop/Education/2/2.2/CS202/mysql-connector-java-8.0.20.jar" />
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="cs534.c4n2gwkd49fu.eu-west-2.rds.amazonaws.com" />
           <port value="3306" />
-          <database value="mysql" />
+          <database value="cs534" />
           <type value="USER_PASSWORD" />
           <user value="admin" />
           <deprecated-pwd value="YWRtaW4xMjM=" />
