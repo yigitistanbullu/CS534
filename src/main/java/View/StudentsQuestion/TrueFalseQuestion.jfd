@@ -4,19 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:35:p, par l {comp questionLabel:::p::p, par t {comp questionText:::p:595:p, comp submitButton:::p::p}, seq l {space :p:6:p, par t {comp falseCheck:::p:73:p, comp trueCheck:::p:73:p}}}, space ::30:x}}"
-			"$verticalGroup": "par l {seq l {space :p:19:p, comp questionLabel:::p::p, space :::p, comp questionText:::p::p, space u:::p, comp trueCheck:::p::p, par l {seq {space ::13:x, comp submitButton:::p::p, space :::p}, seq l {space :::p, comp falseCheck:::p::p, space ::25:x}}}}"
+			"$horizontalGroup": "par l {seq l {par l {seq {space :p:552:p, comp submitButton:::p::p}, seq l {space :p:41:p, par l {comp questionLabel:::p:589:p, par t {comp falseCheck:::p:73:p, comp trueCheck:::p:73:p}}}}, space ::30:x}}"
+			"$verticalGroup": "par l {seq l {space :p:18:p, comp questionLabel:::p::p, space :p:45:p, comp trueCheck:::p::p, par l {seq {space ::17:x, comp submitButton:::p::p, space :::p}, seq l {space :::p, comp falseCheck:::p::p, space ::29:x}}}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "questionText"
-				"background": new java.awt.Color( 255, 255, 255, 255 )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "questionLabel"
-				"text": "Enter question here"
-			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "submitButton"
 				"text": "Submit"
@@ -31,6 +23,10 @@ new FormModel {
 				name: "falseCheck"
 				"text": "False"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "questionLabel"
+				"text": "question"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

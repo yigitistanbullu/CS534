@@ -27,6 +27,8 @@ public class StudentsHomePage extends JFrame {
         examLabel = new JLabel();
         attendButton = new JButton();
         reviewButton = new JButton();
+        label1 = new JLabel();
+        button1 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -34,12 +36,12 @@ public class StudentsHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
-            EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
-            . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
-            java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
-            { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
-            throw new RuntimeException( ) ;} } );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+            EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing
+            .border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),
+            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))
+            throw new RuntimeException();}});
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");
@@ -114,13 +116,23 @@ public class StudentsHomePage extends JFrame {
                     panel2Layout.setVerticalGroup(
                         panel2Layout.createParallelGroup()
                             .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(15, 15, 15)
                                 .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(220, Short.MAX_VALUE))
+                                .addContainerGap(230, Short.MAX_VALUE))
                     );
                 }
                 scrollPane1.setViewportView(panel2);
             }
+
+            //---- label1 ----
+            label1.setText("Exams");
+            label1.setForeground(Color.white);
+
+            //---- button1 ----
+            button1.setText("Grades");
+            button1.setBackground(new Color(182, 142, 185));
+            button1.setForeground(Color.white);
+            button1.setOpaque(false);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -129,13 +141,18 @@ public class StudentsHomePage extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                                .addContainerGap())
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateLabel)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(label1)
+                                .addGap(18, 18, 18)
+                                .addComponent(button1)
+                                .addContainerGap(469, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
+                                        .addComponent(dateLabel)))
                                 .addGap(26, 26, 26))))
             );
             panel1Layout.setVerticalGroup(
@@ -145,9 +162,13 @@ public class StudentsHomePage extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(nameLabel)
                             .addComponent(dateLabel))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addGap(19, 19, 19)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label1)
+                            .addComponent(button1))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 320, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
             );
         }
 
@@ -177,5 +198,7 @@ public class StudentsHomePage extends JFrame {
     private JLabel examLabel;
     private JButton attendButton;
     private JButton reviewButton;
+    private JLabel label1;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
