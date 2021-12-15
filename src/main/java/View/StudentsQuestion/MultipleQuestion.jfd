@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:36:p, par l {seq l {comp c:::p::p, space :::p, comp bAnswer:::p:481:p}, seq l {comp a:::p::p, space :::p, comp aAnswer:::p:481:p}, seq l {comp b:::p::p, space :::p, comp cAnswer:::p:481:p}}}, seq {space :p:552:p, comp submitButton:::p::p}, seq l {space :p:37:p, comp label1:::p:593:p}}, space ::30:x}}"
+			"$verticalGroup": "par l {seq l {space ::38:x, comp label1:::p:33:p, space u:::p, par b {comp a::b:p::p, comp aAnswer::b:p:33:p}, space :p:6:p, par b {comp c::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp b::b:p::p, comp cAnswer::b:p:33:p}, space s:::p, comp submitButton:::p::p, space :::p}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 255, 255, 255, 255 )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "submitButton"
+				"text": "Submit"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "a"
+				"text": "a."
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "b"
+				"text": "c."
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "c"
+				"text": "b."
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "question"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "aAnswer"
+				"text": "answer"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "bAnswer"
+				"text": "answer"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "cAnswer"
+				"text": "answer"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 660, 245 )
+		} )
+	}
+}

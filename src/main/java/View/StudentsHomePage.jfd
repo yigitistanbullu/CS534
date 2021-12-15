@@ -1,0 +1,70 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {comp panel1::t:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq t {comp scrollPane1::::600:x, space :::p}, seq t {comp nameLabel:::p:179:p, space :::x, comp dateLabel:::p::p, space :p:26:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space ::61:x, comp scrollPane1:::p:298:p, space :p:28:p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 182, 142, 185, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "nameLabel"
+					"text": "Zeliha Aydın S018460"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"horizontalAlignment": 2
+					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "dateLabel"
+					"text": "15.12.2021"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto Light", 0, 18 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::178:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::220:x}}"
+					} ) {
+						name: "panel2"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {space :p:14:p, comp examLabel:::p::p, space ::121:x, comp attendButton:::p:100:p, space :p:31:p, comp reviewButton:::p:100:p, space :p:22:p}}"
+							"$verticalGroup": "par l {seq t {space ::27:x, par b {comp examLabel::b:p::p, comp attendButton::b:p::p, comp reviewButton::b:p::p}, space :p:22:p}}"
+						} ) {
+							name: "panel3"
+							"background": new java.awt.Color( 255, 255, 255, 255 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "examLabel"
+								"text": "cs434 Midterm"
+								"foreground": new java.awt.Color( 177, 184, 202, 255 )
+								"font": new java.awt.Font( "Roboto Light", 1, 25 )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "attendButton"
+								"text": "Attend"
+								"background": new java.awt.Color( 255, 255, 255, 255 )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "reviewButton"
+								"text": "Review"
+								"background": new java.awt.Color( 255, 255, 255, 255 )
+							} )
+						} )
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 630, 460 )
+		} )
+	}
+}
