@@ -52,11 +52,13 @@ new FormModel {
 								name: "attendButton"
 								"text": "Attend"
 								"background": new java.awt.Color( 255, 255, 255, 255 )
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "attendButton", true ) )
 							} )
 							add( new FormComponent( "javax.swing.JButton" ) {
 								name: "reviewButton"
 								"text": "Review"
 								"background": new java.awt.Color( 255, 255, 255, 255 )
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reviewButton", true ) )
 							} )
 						} )
 					} )
@@ -70,8 +72,9 @@ new FormModel {
 					name: "button1"
 					"text": "Grades"
 					"background": new java.awt.Color( 182, 142, 185, 255 )
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": sfield java.awt.Color darkGray
 					"opaque": false
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GradesButton", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

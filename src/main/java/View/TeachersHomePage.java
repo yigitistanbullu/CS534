@@ -1,8 +1,18 @@
 package View;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.EventListener;
+import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+
+import Controller.ExamController.Exam;
+import Model.AuthorizationModel;
+import View.TeachersQuestion.QuestionsPageInstructor;
+import View.TeacherGradingPage;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:40:10 EET 2021
  */
@@ -13,14 +23,47 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class TeachersHomePage extends JFrame {
-    public TeachersHomePage() {
+    AuthorizationModel  model = new AuthorizationModel();
+    public int id;
+    public int studentId;
+
+    public TeachersHomePage(int id) {
         initComponents();
+        this.id = id;
+        nameLabelPropertyChange(id);
+        date();
     }
+
+    private void thisWindowActivated(WindowEvent e) {
+        // TODO add your code here
+    }
+
+    private void reviewButton(ActionEvent e) {
+        this.dispose();
+        TeacherGradingPage review = new TeacherGradingPage(id, model.getName(id));
+        review.setVisible(true);
+        review.setLocationRelativeTo(null);
+    }
+
+    private void createExam(ActionEvent e) {
+        this.dispose();
+        QuestionsPageInstructor exam = new QuestionsPageInstructor();
+        exam.setVisible(true);
+        exam.setLocationRelativeTo(null);
+    }
+
+    private void nameLabelPropertyChange(int userId) {
+        nameLabel.setText(model.getName(id));
+    }
+    public void date() {
+        dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy", new Locale("tr")).format(new Date()));
+    }
+
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -32,17 +75,23 @@ public class TeachersHomePage extends JFrame {
         reviewButton = new JButton();
         createExamButton = new JButton();
 
+        //======== this ========
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowActivated(WindowEvent e) {
+                thisWindowActivated(e);
+            }
+        });
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
+            , 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+            panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Emre Kaplan");
@@ -79,6 +128,7 @@ public class TeachersHomePage extends JFrame {
                         //---- reviewButton ----
                         reviewButton.setText("Review");
                         reviewButton.setBackground(Color.white);
+                        reviewButton.addActionListener(e -> reviewButton(e));
 
                         GroupLayout panel3Layout = new GroupLayout(panel3);
                         panel3.setLayout(panel3Layout);
@@ -127,6 +177,7 @@ public class TeachersHomePage extends JFrame {
 
             //---- createExamButton ----
             createExamButton.setText("Create Exam");
+            createExamButton.addActionListener(e -> createExam(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -140,7 +191,7 @@ public class TeachersHomePage extends JFrame {
                                 .addContainerGap(16, Short.MAX_VALUE))
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(createExamButton)
                                     .addComponent(dateLabel))
@@ -177,7 +228,7 @@ public class TeachersHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;

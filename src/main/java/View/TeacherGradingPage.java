@@ -1,5 +1,11 @@
 package View;
+import Model.AuthorizationModel;
+
 import java.awt.*;
+import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -12,21 +18,51 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class TeacherGradingPage extends JFrame {
-    public TeacherGradingPage() {
+    public int studentId;
+    public String name;
+    AuthorizationModel model = new AuthorizationModel();
+    TeachersHomePage home = new TeachersHomePage(studentId);
+
+    public TeacherGradingPage(int studentId, String name) {
+        this.name = name;
+        this.studentId = studentId;
         initComponents();
+        }
+
+    private void reviewButton(ActionEvent e) {
+        frame1.setVisible(true);
+        frame1.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void setStudentName(){
+        studentName.setText(name);
+    }
+    private void setExamName(){
+    }
+
+    private void backbutton(ActionEvent e) {
+        home.setVisible(true);
+        home.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void exitButton(ActionEvent e) {
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        frame1.dispose();
     }
 
     private void initComponents() {
-        setVisible(true);
+        home.dispose();
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
-        nameLabel = new JLabel();
-        dateLabel = new JLabel();
+        examName = new JLabel();
         scrollPane1 = new JScrollPane();
         panel2 = new JPanel();
         panel3 = new JPanel();
-        examLabel = new JLabel();
+        studentName = new JLabel();
         reviewButton = new JButton();
         exitButton2 = new JButton();
         frame1 = new JFrame();
@@ -50,24 +86,17 @@ public class TeacherGradingPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+            EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
+            .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
+            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
+            throw new RuntimeException();}});
 
-            //---- nameLabel ----
-            nameLabel.setText(" Emre Kaplan");
-            nameLabel.setForeground(Color.white);
-            nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            nameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
-
-            //---- dateLabel ----
-            dateLabel.setText("CS434 Midterm");
-            dateLabel.setForeground(Color.white);
-            dateLabel.setFont(new Font("Roboto Light", Font.PLAIN, 18));
+            //---- examName ----
+            examName.setText("CS434 Midterm");
+            examName.setForeground(Color.white);
+            examName.setFont(new Font("Roboto Light", Font.PLAIN, 18));
 
             //======== scrollPane1 ========
             {
@@ -81,14 +110,15 @@ public class TeacherGradingPage extends JFrame {
                     {
                         panel3.setBackground(Color.white);
 
-                        //---- examLabel ----
-                        examLabel.setText("Zeliha Ayd\u0131n S018460");
-                        examLabel.setForeground(new Color(177, 184, 202));
-                        examLabel.setFont(new Font("Roboto Light", Font.BOLD, 25));
+                        //---- studentName ----
+                        studentName.setText("Zeliha Ayd\u0131n S018460");
+                        studentName.setForeground(new Color(177, 184, 202));
+                        studentName.setFont(new Font("Roboto Light", Font.BOLD, 25));
 
                         //---- reviewButton ----
                         reviewButton.setText("Review");
                         reviewButton.setBackground(Color.white);
+                        reviewButton.addActionListener(e -> reviewButton(e));
 
                         GroupLayout panel3Layout = new GroupLayout(panel3);
                         panel3.setLayout(panel3Layout);
@@ -96,7 +126,7 @@ public class TeacherGradingPage extends JFrame {
                             panel3Layout.createParallelGroup()
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addGap(14, 14, 14)
-                                    .addComponent(examLabel)
+                                    .addComponent(studentName)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                                     .addComponent(reviewButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                                     .addGap(70, 70, 70))
@@ -106,7 +136,7 @@ public class TeacherGradingPage extends JFrame {
                                 .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                                     .addContainerGap(27, Short.MAX_VALUE)
                                     .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(examLabel)
+                                        .addComponent(studentName)
                                         .addComponent(reviewButton))
                                     .addGap(22, 22, 22))
                         );
@@ -134,6 +164,7 @@ public class TeacherGradingPage extends JFrame {
 
             //---- exitButton2 ----
             exitButton2.setText("Back");
+            exitButton2.addActionListener(e -> backbutton(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -149,18 +180,15 @@ public class TeacherGradingPage extends JFrame {
                                 .addGroup(panel1Layout.createParallelGroup()
                                     .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
-                                        .addComponent(dateLabel)))))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(examName)))))
                         .addGap(26, 26, 26))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(dateLabel))
+                        .addComponent(examName)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,12 +217,13 @@ public class TeacherGradingPage extends JFrame {
             //======== panel4 ========
             {
                 panel4.setBackground(new Color(182, 142, 185));
-                panel4.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-                EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-                . border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ),
-                java. awt. Color. red) ,panel4. getBorder( )) ); panel4. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-                { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () ))
-                throw new RuntimeException( ); }} );
+                panel4.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+                . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing
+                .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+                Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+                ) ,panel4. getBorder () ) ); panel4. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+                public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName (
+                ) ) )throw new RuntimeException( ) ;} } );
 
                 //---- nameLabel2 ----
                 nameLabel2.setText("Zeliha Ayd\u0131n S018460");
@@ -299,6 +328,7 @@ public class TeacherGradingPage extends JFrame {
 
                 //---- exitButton ----
                 exitButton.setText("Exit");
+                exitButton.addActionListener(e -> exitButton(e));
 
                 GroupLayout panel4Layout = new GroupLayout(panel4);
                 panel4.setLayout(panel4Layout);
@@ -353,14 +383,13 @@ public class TeacherGradingPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
-    private JLabel nameLabel;
-    private JLabel dateLabel;
+    private JLabel examName;
     private JScrollPane scrollPane1;
     private JPanel panel2;
     private JPanel panel3;
-    private JLabel examLabel;
+    private JLabel studentName;
     private JButton reviewButton;
     private JButton exitButton2;
     private JFrame frame1;

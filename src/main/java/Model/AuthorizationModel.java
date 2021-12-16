@@ -55,5 +55,27 @@ public class AuthorizationModel {
         return a;
     }
 
+    public static String getName(int id){
+        ResultSet result;
+        String name = "";
+        String surname = "";
+        String NameQuery = "SELECT user_name, user_surname FROM User WHERE user_id = '" + id + "';  ";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(NameQuery);
+            if(result.next()){
+                name = result.getString("user_name");
+                surname = result.getString("user_surname");
+
+            }
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return "" + name + " "+ surname;
+    }
+
 
 }

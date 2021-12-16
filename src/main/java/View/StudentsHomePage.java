@@ -1,8 +1,18 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+
+import Controller.ExamController.Exam;
+import Model.AuthorizationModel;
+import Model.ExamModel;
+import View.StudentGradesPage;
+import View.StudentsQuestion.QuestionsPage;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:07:28 EET 2021
  */
@@ -13,14 +23,49 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class StudentsHomePage extends JFrame {
-    public StudentsHomePage() {
+    public int id;
+    public String name = "";
+    AuthorizationModel model = new AuthorizationModel();
+    Exam exam = new Exam(id,name,0.0);
+
+    public StudentsHomePage(int id, String name) {
+        this.id = id;
+        this.name = name;
         initComponents();
+        date();
+        nameLabelPropertyChange();
+    }
+
+    private void nameLabelPropertyChange() {
+        nameLabel.setText(model.getName(id));
+    }
+    public void date(){
+        dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy",new Locale("tr")).format(new Date()));
+    }
+
+    private void GradesButton(ActionEvent e) {
+        StudentGradesPage grades = new StudentGradesPage();
+        grades.setVisible(true);
+        grades.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void attendButton(ActionEvent e) {
+        QuestionsPage examPage = new QuestionsPage(exam, name);
+        examPage.setVisible(true);
+        examPage.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void reviewButton(ActionEvent e) {
+        this.dispose();
     }
 
     private void initComponents() {
+
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -39,11 +84,13 @@ public class StudentsHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder ( 0
-            , 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
-            , new java. awt .Font ( "Dialo\u0067", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,
-            panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-            ) { if( "borde\u0072" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+            . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
+            .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+            Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+            ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+            public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
+            ) ) )throw new RuntimeException( ) ;} } );
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");
@@ -76,10 +123,12 @@ public class StudentsHomePage extends JFrame {
                         //---- attendButton ----
                         attendButton.setText("Attend");
                         attendButton.setBackground(Color.white);
+                        attendButton.addActionListener(e -> attendButton(e));
 
                         //---- reviewButton ----
                         reviewButton.setText("Review");
                         reviewButton.setBackground(Color.white);
+                        reviewButton.addActionListener(e -> reviewButton(e));
 
                         GroupLayout panel3Layout = new GroupLayout(panel3);
                         panel3.setLayout(panel3Layout);
@@ -133,8 +182,9 @@ public class StudentsHomePage extends JFrame {
             //---- button1 ----
             button1.setText("Grades");
             button1.setBackground(new Color(182, 142, 185));
-            button1.setForeground(Color.white);
+            button1.setForeground(Color.darkGray);
             button1.setOpaque(false);
+            button1.addActionListener(e -> GradesButton(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -190,7 +240,7 @@ public class StudentsHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;
