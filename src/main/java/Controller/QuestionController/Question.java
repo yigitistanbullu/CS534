@@ -19,7 +19,6 @@ public abstract class Question {
 
     public abstract void display();
 
-
     public int getId() {
         return id;
     }

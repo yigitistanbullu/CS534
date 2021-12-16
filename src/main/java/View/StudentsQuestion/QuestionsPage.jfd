@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userName:::p:167:p, space :p:60:p, comp examName:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space :::p, par l {comp questionScrollPane::l:::x, seq t {space :0:0:x, comp submitButton:::p::p}}}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp userName::b:p::p, comp examName::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane:::p:348:p, space :::x, comp submitButton:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userName:::p:167:p, space :p:60:p, comp examName:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space ::619:x, comp submitButton:::p::p}, comp questionScrollPane::l:::x}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp userName::b:p::p, comp examName::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane::::380:x, space :::p, comp submitButton:::p::p, space :::p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -33,25 +33,15 @@ new FormModel {
 					name: "questionScrollPane"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp panel3:::::x, space :::p}}"
-						"$verticalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::289:x}}"
-					} ) {
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
 						name: "panel2"
-						addEvent( new FormEvent( "java.awt.event.ComponentListener", "componentShown", "questionsShown", true ) )
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {space :0:615:x}"
-							"$verticalGroup": "par l {space :0:49:x}"
-						} ) {
-							name: "panel3"
-							"background": new java.awt.Color( 255, 255, 255, 255 )
-						} )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "submitButton"
 					"text": "Submit"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "submitButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "time"
@@ -64,7 +54,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 40, 0 )
-			"size": new java.awt.Dimension( 645, 450 )
+			"size": new java.awt.Dimension( 705, 480 )
 		} )
 	}
 }

@@ -1,20 +1,17 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:552:p, comp submitButton:::p::p}, seq l {space :p:37:p, par l {seq {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p}, seq l {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :::p, par l {comp cAnswer:::p:481:p, comp bAnswer:::p:481:p}}, comp label1::l:p:593:p}}}, space ::30:x}}"
-			"$verticalGroup": "par l {seq l {space :p:16:p, comp label1:::p:33:p, space ::34:x, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space s:::p, comp submitButton:::p::p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {comp label1:::p::p, seq {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p}, seq l {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :::p, par l {comp cAnswer:::p:481:p, comp bAnswer:::p:481:p}}, comp question::l:p:593:p}, space ::28:x}, seq t {space ::533:x, comp save:::p::p, space :p:47:p}}"
+			"$verticalGroup": "par l {seq l {space ::10:x, comp label1:::p::p, space :::p, comp question:::p:33:p, space :::p, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space u:::p, comp save:::p::p, space :p:22:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "submitButton"
-				"text": "Submit"
-			} )
+			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "question"
 				"text": "question"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -43,6 +40,15 @@ new FormModel {
 				name: "radioButton3"
 				"text": "c."
 				"background": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "save"
+				"text": "save"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

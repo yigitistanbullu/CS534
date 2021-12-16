@@ -3,6 +3,7 @@ package View.StudentsQuestion;
 import java.awt.event.*;
 import Controller.ExamController.Exam;
 import Model.ExamModel;
+import Model.QuestionModel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,21 +14,19 @@ import javax.swing.GroupLayout;
  * Created by JFormDesigner on Wed Dec 15 20:52:11 EET 2021
  */
 
-
-
 /**
  * @author Zeliha Aydın
  */
 public class QuestionsPage extends JFrame {
 
-    public Exam exam;
-    public String name;
     ArrayList<String> questions = new ArrayList<>();
 
     public QuestionsPage(Exam exam, String name) {
-        this.exam = exam;
-        this.name = name;
+
         initComponents();
+        setExamName(exam.getName());
+        setUserName(name);
+        addQuestion(exam);
 
     }
     public void time(){
@@ -40,18 +39,45 @@ public class QuestionsPage extends JFrame {
         }).start();
     }
     
-    public void setExamName(){
-        examName.setText(this.exam.getName());
+    public void setExamName(String exam){
+        examName.setText(exam);
     }
 
-    public void setUserName(){
-        userName.setText(this.name);
+    public void setUserName(String user){
+        userName.setText(user);
     }
 
-    private void questionsShown(ComponentEvent e) {
+    public void addQuestion(Exam exam){
+        QuestionModel questionModel = new QuestionModel();
 
-        
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(exam.getId());
+        System.out.println(questionID);
+        panel2.setLayout(new GridLayout(questionID.size(), 1));
+        for(int i = 0; i< questionID.size();i++){
+            if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
+                TextQuestion question = new TextQuestion(questionID.get(i), exam.getId());
+                question.setNumber(String.valueOf(i+1));
+                panel2.add(question);
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
+                MultipleQuestion question = new MultipleQuestion(questionID.get(i), exam.getId());
+                question.setNumber(String.valueOf(i+1));
+                panel2.add(question);
+
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
+                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), exam.getId());
+                question.setNumber(String.valueOf(i+1));
+                panel2.add(question);
+            }
+        }
     }
+
+    private void submitButtonMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+
 
     private void initComponents() {
         setVisible(true);
@@ -63,7 +89,6 @@ public class QuestionsPage extends JFrame {
         examName = new JLabel();
         questionScrollPane = new JScrollPane();
         panel2 = new JPanel();
-        panel3 = new JPanel();
         submitButton = new JButton();
         time = new JLabel();
 
@@ -73,11 +98,12 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
-            0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
-            . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
-            red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
-            beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- userName ----
             userName.setText("Zeliha Ayd\u0131n");
@@ -99,45 +125,7 @@ public class QuestionsPage extends JFrame {
 
                 //======== panel2 ========
                 {
-                    panel2.addComponentListener(new ComponentAdapter() {
-                        @Override
-                        public void componentShown(ComponentEvent e) {
-                            questionsShown(e);
-                        }
-                    });
-
-                    //======== panel3 ========
-                    {
-                        panel3.setBackground(Color.white);
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGap(0, 615, Short.MAX_VALUE)
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGap(0, 49, Short.MAX_VALUE)
-                        );
-                    }
-
-                    GroupLayout panel2Layout = new GroupLayout(panel2);
-                    panel2.setLayout(panel2Layout);
-                    panel2Layout.setHorizontalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                    );
-                    panel2Layout.setVerticalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(289, Short.MAX_VALUE))
-                    );
+                    panel2.setLayout(new GridLayout());
                 }
                 questionScrollPane.setViewportView(panel2);
             }
@@ -145,6 +133,12 @@ public class QuestionsPage extends JFrame {
             //---- submitButton ----
             submitButton.setText("Submit");
             submitButton.setBackground(Color.white);
+            submitButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    submitButtonMouseClicked(e);
+                }
+            });
 
             //---- time ----
             time.setText("23:45");
@@ -168,12 +162,9 @@ public class QuestionsPage extends JFrame {
                                 .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(questionScrollPane)
-                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(submitButton)))))
+                                .addContainerGap(619, Short.MAX_VALUE)
+                                .addComponent(submitButton))
+                            .addComponent(questionScrollPane))
                         .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
@@ -185,8 +176,8 @@ public class QuestionsPage extends JFrame {
                             .addComponent(examName)
                             .addComponent(time))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(questionScrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(submitButton)
                         .addContainerGap())
             );
@@ -214,7 +205,6 @@ public class QuestionsPage extends JFrame {
     private JLabel examName;
     private JScrollPane questionScrollPane;
     private JPanel panel2;
-    private JPanel panel3;
     private JButton submitButton;
     private JLabel time;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

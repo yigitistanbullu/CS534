@@ -4,15 +4,12 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {par l {comp enterAnswer:::p::p, comp answer::l:p:602:p, comp questionLabel::l:p:602:p}, comp submitButton:::p::p}, space ::30:x}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp questionLabel:::p::p, space ::26:x, comp enterAnswer:::p::p, space :::p, comp answer:::p::p, space :::p, comp submitButton:::p::p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {comp save:::p::p, par l {comp label1:::p::p, comp enterAnswer::l:p::p, comp answer::l:p:602:p, comp questionLabel::l:p:602:p}}, space ::13:x}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space :::p, comp questionLabel:::::x, space :::p, comp enterAnswer:::p::p, space :::p, comp answer:::p::p, space :::p, comp save:::p::p, space :p:12:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "submitButton"
-				"text": "Submit"
-			} )
+			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "questionLabel"
 				"text": "question"
@@ -25,9 +22,18 @@ new FormModel {
 				name: "enterAnswer"
 				"text": "Enter answer here"
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "save"
+				"text": "save"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 660, 150 )
+			"location": new java.awt.Point( 0, 10 )
+			"size": new java.awt.Dimension( 645, 155 )
 		} )
 	}
 }
