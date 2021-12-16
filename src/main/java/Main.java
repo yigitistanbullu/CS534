@@ -31,7 +31,7 @@ public class Main {
                 return null;
             }
         };
-        System.out.println(authorizationModel.logIn(user));
+
         Exam exam = new Exam(5,"math",100);
         ExamModel examModel = new ExamModel();
         System.out.println(examModel.getGrade(exam));
@@ -48,6 +48,6 @@ public class Main {
         examModel.setExamGrade(exam);
         System.out.println(examModel.listQuestions(5));
         System.out.println(examModel.getExam(5).getName());
-
+        LoginView loginView = new LoginView();
     }
 }
