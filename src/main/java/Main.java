@@ -1,7 +1,6 @@
 import Controller.ExamController.Exam;
 import Controller.QuestionController.Factory.QuestionFactory;
 import Controller.QuestionController.Factory.TextQuestionFactory;
-import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Controller.UserController.MediatorImp;
 import Controller.UserController.Password;
 import Controller.UserController.User;
@@ -35,20 +34,20 @@ public class Main {
         System.out.println(authorizationModel.logIn(user));
         Exam exam = new Exam(5,"math",100);
         ExamModel examModel = new ExamModel();
+        System.out.println(examModel.getGrade(exam));
 
 
         //authorizationModel.addUser(user);
-        ArrayList<String> availableAnswers = new ArrayList<>();
-        availableAnswers.add("nothing");
-        QuestionFactory factory = new TrueFalseQuestionFactory();
-        factory.setSelectedQuestion(5,2,"True");
-        factory.setPointsEarnedInstructor(5,2,3);
+        ArrayList<String> answers = new ArrayList<>(){};
+        answers.add("test");
+        answers.add("test2");
+        answers.add("test3");
+        QuestionFactory factory = new TextQuestionFactory();
+        //factory.setSelectedQuestion(5,2,answers.get(0));
+        //factory.setPointsEarnedInstructor(5,2,3);
         examModel.setExamGrade(exam);
-
-
-
-        QuestionsPage page = new QuestionsPage(exam,"Yaso");
-
+        System.out.println(examModel.listQuestions(5));
+        System.out.println(examModel.getExam(5).getName());
 
     }
 }

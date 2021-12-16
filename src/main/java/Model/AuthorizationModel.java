@@ -33,26 +33,116 @@ public class AuthorizationModel {
         }
     }
 
-    public static boolean logIn(User user) {
+    public static boolean logIn(String email,String password) {
 
         ResultSet result;
-        String username = user.getName();  //txtBox.Text
-        String password = user.getPassword().getKey(); //txtBox2.Text
         boolean a = false;
-        String Query = "SELECT * FROM User WHERE user_name ='" + username +"' && user_password ='" + password + "';";
+        String Query = "SELECT count(*) AS num_records FROM User WHERE user_email ='" + email +"' && user_password ='" + password + "';";
         try {
 
            result =  DBConnection.connection.createStatement().executeQuery(Query);
-           if(result.getMetaData().getColumnCount() >= 0){
-               a = true;
-           }
-
+            if (result.next()) {
+                // If we got 1 or more matches, this means we successfully
+                // authenticated. Otherwise, we failed authentication.
+                return result.getInt("num_records") > 0;
+            }
 
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
         return a;
+    }
+    public static int getUserId(String email, String password){
+        ResultSet result;
+        String a = "";
+        int b = 0;
+        String Query = "SELECT user_id FROM User WHERE  user_email ='" + email +"' && user_password ='" + password + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            if(result.next()) {
+                b = result.getInt("user_id");
+
+            }
+
+        } catch (SQLException e) {
+
+
+            e.printStackTrace();
+        }
+        return b;
+
+    }
+
+
+    public static String getUserName (String email,String password){
+
+        ResultSet result;
+        String a = "";
+
+        String Query = "SELECT user_name FROM User WHERE  user_email ='" + email +"' && user_password ='" + password + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            if(result.next()) {
+                a = result.getString("user_name");
+                System.out.println(a);
+            }
+
+        } catch (SQLException e) {
+
+
+            e.printStackTrace();
+        }
+        return a;
+
+    }
+
+    public static int getUserType(String email,String password){
+
+        ResultSet result;
+        String a = "";
+        int b =0;
+
+        String Query = "SELECT user_type FROM User WHERE  user_email ='" + email +"' && user_password ='" + password + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            if(result.next()) {
+                b = result.getInt("user_type");
+
+
+            }
+
+        } catch (SQLException e) {
+
+
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    public static String getName(int id){
+        ResultSet result;
+        String name = "";
+        String surname = "";
+        String NameQuery = "SELECT user_name, user_surname FROM User WHERE user_id = '" + id + "';  ";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(NameQuery);
+            if(result.next()){
+                name = result.getString("user_name");
+                surname = result.getString("user_surname");
+
+            }
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return "" + name + " "+ surname;
     }
 
 

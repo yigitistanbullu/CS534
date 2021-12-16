@@ -1,5 +1,10 @@
 package View;
+import Controller.UserController.Password;
+import Controller.UserController.User;
+import Model.AuthorizationModel;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 /*
  * Created by JFormDesigner on Wed Dec 15 18:36:24 EET 2021
@@ -14,11 +19,47 @@ public class RegisterView extends JFrame {
     public RegisterView() {
         initComponents();
     }
+    private void register(ActionEvent e) {
+        int usertype = 0;
+        if(teacherCheckbox.isSelected()){
+            usertype = 1;
+        }
+        else{
+            usertype = 0;
+        }
+        Password password = new Password(passwordField.getText());
+        User user = new User(nameField.getText(), surnameFiled.getText(), emailFiled.getText(),password,Integer.parseInt(studentIDField.getText()), usertype) {
+            @Override
+            public String writeName(String name, String surname) {
+                return name + surname;
+            }
+        };
+        AuthorizationModel.addUser(user);
+        JOptionPane.showMessageDialog(new JFrame(),"User Created Successfully","Dialog",JOptionPane.WARNING_MESSAGE);
+        LoginView loginView = new LoginView();
+        loginView.setLocationRelativeTo(null);
+        loginView.setVisible(true);
+        this.dispose();
+    }
+
+
+    private void teacher(ActionEvent e) {
+        if (teacherCheckbox.isSelected()){
+            studentCheckbox.setSelected(false);
+        }
+    }
+
+    private void chk_Student(ActionEvent e) {
+        if (studentCheckbox.isSelected()){
+            teacherCheckbox.setSelected(false);
+        }
+    }
+
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - yigit
         registerText = new JLabel();
         nameField = new JTextField();
         surnameFiled = new JTextField();
@@ -53,6 +94,7 @@ public class RegisterView extends JFrame {
 
         //---- registerButton ----
         registerButton.setText("Register");
+        registerButton.addActionListener(e -> register(e));
 
         //---- label1 ----
         label1.setText("CS434 Exam Portal");
@@ -77,7 +119,7 @@ public class RegisterView extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(319, Short.MAX_VALUE)
+                    .addContainerGap(328, Short.MAX_VALUE)
                     .addComponent(registerButton)
                     .addGap(312, 312, 312))
                 .addGroup(contentPaneLayout.createSequentialGroup()
@@ -152,7 +194,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - yigit
     private JLabel registerText;
     private JTextField nameField;
     private JTextField surnameFiled;

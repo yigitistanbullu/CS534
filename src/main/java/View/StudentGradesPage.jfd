@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq t {comp scrollPane1::::600:x, space :::p}, seq t {comp nameLabel:::p:179:p, space :::x, comp dateLabel:::p::p, space :p:26:p}, seq l {space :p:5:p, comp button1:::p::p, space s:::p, comp label1:::p::p, space ::460:x}}}}"
-				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space ::27:x, par b {comp label1::b:p:16:p, comp button1::b:p::p}, space :::p, comp scrollPane1:::p:298:p, space :p:28:p}}"
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq t {comp scrollPane1::::600:x, space :::p}, seq t {comp nameLabel:::p:179:p, space :::x, comp dateLabel:::p::p, space :p:26:p}, seq l {space :p:5:p, comp examButton:::p::p, space s:::p, comp gradesLabel:::p::p, space ::460:x}}}}"
+				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space ::25:x, par b {comp gradesLabel::b:p:16:p, comp examButton::b:p::p}, space :::p, comp scrollPane1:::p:298:p, space :p:28:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 182, 142, 185, 255 )
@@ -56,15 +56,17 @@ new FormModel {
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
+					name: "gradesLabel"
 					"text": "Grades"
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button1"
+					name: "examButton"
 					"text": "Exam"
 					"background": new java.awt.Color( 182, 142, 185, 255 )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "examButton", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "examButton", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

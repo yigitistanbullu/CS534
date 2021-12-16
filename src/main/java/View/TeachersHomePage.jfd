@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -10,7 +10,7 @@ new FormModel {
 			name: "this"
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowActivated", "thisWindowActivated", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp scrollPane1:::p:600:p, space ::16:x}, seq t {comp nameLabel:::p:179:p, space ::297:x, par t {comp createExamButton:::p::p, comp dateLabel:::p::p}, space :p:28:p}}}}"
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp scrollPane1:::p:600:p, space ::16:x}, seq t {comp nameLabel:::p:179:p, space ::296:x, par t {comp createExamButton:::p::p, comp dateLabel:::p::p}, space :p:28:p}}}}"
 				"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space u:::p, comp createExamButton:::p::p, space :::x, comp scrollPane1:::p:298:p, space :p:35:p}}"
 			} ) {
 				name: "panel1"
@@ -21,12 +21,14 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"horizontalAlignment": 2
 					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
+					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "nameLabelPropertyChange", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "dateLabel"
 					"text": "15.12.2021"
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"font": new java.awt.Font( "Roboto Light", 0, 18 )
+					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "dateLabelPropertyChange", true ) )
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
@@ -58,6 +60,7 @@ new FormModel {
 								name: "reviewButton"
 								"text": "Review"
 								"background": new java.awt.Color( 255, 255, 255, 255 )
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reviewButton", true ) )
 							} )
 						} )
 					} )
@@ -65,6 +68,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "createExamButton"
 					"text": "Create Exam"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "createExam", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
