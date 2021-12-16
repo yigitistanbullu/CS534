@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,20 +9,20 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp nameLabel:::p:167:p, space :p:60:p, comp nameLabel2:::p:162:p, space :::x, comp nameLabel3:::p:162:p, space :p:10:p}, seq {space :::p, par l {comp scrollPane1::l:::x, seq t {space :0:0:x, comp submitButton:::p::p}}}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp nameLabel::b:p::p, comp nameLabel2::b:p::p, comp nameLabel3::b:p::p}, space :::p, comp scrollPane1:::p:348:p, space :::x, comp submitButton:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userName:::p:167:p, space :p:60:p, comp examName:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space :::p, par l {comp questionScrollPane::l:::x, seq t {space :0:0:x, comp submitButton:::p::p}}}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp userName::b:p::p, comp examName::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane:::p:348:p, space :::x, comp submitButton:::p::p, space :::p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "nameLabel"
+					name: "userName"
 					"text": "Zeliha Aydın"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 2
 					"font": &Font0 new java.awt.Font( "Roboto Thin", 0, 18 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "nameLabel2"
+					name: "examName"
 					"text": "CS434 Midterm 1"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 0
@@ -30,26 +30,21 @@ new FormModel {
 					"horizontalTextPosition": 4
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-					name: "scrollPane1"
+					name: "questionScrollPane"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {seq l {space :::p, comp panel3:::::x, space :::p}}"
-						"$verticalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::285:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::289:x}}"
 					} ) {
 						name: "panel2"
+						addEvent( new FormEvent( "java.awt.event.ComponentListener", "componentShown", "questionsShown", true ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq l {space :p:14:p, comp examLabel:::p::p, space ::505:x}}"
-							"$verticalGroup": "par l {seq t {space ::24:x, comp examLabel:::p::p, space :p:25:p}}"
+							"$horizontalGroup": "par l {space :0:615:x}"
+							"$verticalGroup": "par l {space :0:49:x}"
 						} ) {
 							name: "panel3"
 							"background": new java.awt.Color( 255, 255, 255, 255 )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "examLabel"
-								"text": "question"
-								"foreground": new java.awt.Color( 177, 184, 202, 255 )
-								"font": new java.awt.Font( "Roboto Light", 1, 25 )
-							} )
 						} )
 					} )
 				} )
@@ -59,7 +54,7 @@ new FormModel {
 					"background": new java.awt.Color( 255, 255, 255, 255 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "nameLabel3"
+					name: "time"
 					"text": "23:45"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 4

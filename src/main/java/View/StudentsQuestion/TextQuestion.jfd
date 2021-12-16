@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {par l {comp enterLabel:::p::p, comp asnwerField::l:p:602:p, comp questionLabel::l:p:602:p}, comp submitButton:::p::p}, space ::30:x}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp questionLabel:::p::p, space ::26:x, comp enterLabel:::p::p, space :::p, comp asnwerField:::p::p, space :::p, comp submitButton:::p::p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {par l {comp enterAnswer:::p::p, comp answer::l:p:602:p, comp questionLabel::l:p:602:p}, comp submitButton:::p::p}, space ::30:x}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp questionLabel:::p::p, space ::26:x, comp enterAnswer:::p::p, space :::p, comp answer:::p::p, space :::p, comp submitButton:::p::p, space :::p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -18,11 +18,11 @@ new FormModel {
 				"text": "question"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "asnwerField"
+				name: "answer"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "enterLabel"
+				name: "enterAnswer"
 				"text": "Enter answer here"
 			} )
 		}, new FormLayoutConstraints( null ) {

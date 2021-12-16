@@ -1,6 +1,11 @@
 package View.StudentsQuestion;
 
+import Controller.ExamController.Exam;
+import Model.ExamModel;
+import Model.QuestionModel;
+
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -13,56 +18,69 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class TextQuestion extends JPanel {
-    public TextQuestion() {
+    public TextQuestion(String id) {
         initComponents();
     }
 
+    public ExamModel examModel = new ExamModel();
+
+    public void setQuestion(Exam exam){
+
+    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
-        questionText = new JTextField();
-        questionLabel = new JLabel();
+        // Generated using JFormDesigner Evaluation license - yasemin
         submitButton = new JButton();
+        questionLabel = new JLabel();
+        answer = new JTextField();
+        enterAnswer = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
-
-        //---- questionText ----
-        questionText.setBackground(Color.white);
-
-        //---- questionLabel ----
-        questionLabel.setText("Enter question here");
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+        swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border
+        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog"
+        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
+        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+        .beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException
+        ();}});
 
         //---- submitButton ----
         submitButton.setText("Submit");
+
+        //---- questionLabel ----
+        questionLabel.setText("question");
+
+        //---- answer ----
+        answer.setBackground(Color.white);
+
+        //---- enterAnswer ----
+        enterAnswer.setText("Enter answer here");
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(35, 35, 35)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(questionLabel)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(questionText, GroupLayout.PREFERRED_SIZE, 595, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(submitButton)))
+                    .addGap(28, 28, 28)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup()
+                            .addComponent(enterAnswer)
+                            .addComponent(answer, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(submitButton))
                     .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(19, 19, 19)
+                    .addGap(14, 14, 14)
                     .addComponent(questionLabel)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(enterAnswer)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(questionText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(answer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(submitButton)
                     .addContainerGap())
         );
@@ -70,10 +88,11 @@ public class TextQuestion extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
-    private JTextField questionText;
-    private JLabel questionLabel;
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JButton submitButton;
+    private JLabel questionLabel;
+    private JTextField answer;
+    private JLabel enterAnswer;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

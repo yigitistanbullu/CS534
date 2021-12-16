@@ -59,11 +59,11 @@ public class ExamModel {
     }
 
 
-    public ArrayList<String> listQuestions(Exam exam){
+    public ArrayList<String> listQuestions(int exam){
         ResultSet result;
         ArrayList<String> questions = new ArrayList<>();
 
-        String Query = "SELECT  question_id , user_answer1 , user_answer2 , user_answer3 , question FROM Question Where exam_id ='" + exam.getId() + "';";
+        String Query = "SELECT  question_id , user_answer1 , user_answer2 , user_answer3 , question FROM Question Where exam_id ='" + exam + "';";
         try {
 
 
@@ -106,6 +106,31 @@ public class ExamModel {
 
             e.printStackTrace();
         }
+    }
+
+    public Exam getExam(int examId){
+        ResultSet result;
+        ArrayList<String> exam = new ArrayList<>();
+
+        String Query = "SELECT  exam_id , exam_name , exam_grade FROM Exam Where exam_id ='" + examId + "';";
+        try {
+
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            int sira = result.getMetaData().getColumnCount();
+
+            while(result.next()){
+                for(int i = 1 ; i<= sira; i++){
+                    exam.add(result.getString(i));
+                }
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)));
+        return newExam;
     }
 
 }

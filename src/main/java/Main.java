@@ -1,12 +1,16 @@
 import Controller.ExamController.Exam;
+import Controller.QuestionController.Factory.QuestionFactory;
+import Controller.QuestionController.Factory.TextQuestionFactory;
 import Controller.UserController.MediatorImp;
 import Controller.UserController.Password;
 import Controller.UserController.User;
 import Model.AuthorizationModel;
 import Model.DBConnection;
 import Model.ExamModel;
+import Model.QuestionModel;
 import View.LoginView;
 import View.RegisterView;
+import View.StudentsQuestion.QuestionsPage;
 import View.TeachersHomePage;
 
 import javax.swing.*;
@@ -30,7 +34,6 @@ public class Main {
         System.out.println(authorizationModel.logIn(user));
         Exam exam = new Exam(5,"math",100);
         ExamModel examModel = new ExamModel();
-        System.out.println(examModel.listQuestions(exam));
         System.out.println(examModel.getGrade(exam));
 
 
@@ -39,13 +42,12 @@ public class Main {
         answers.add("test");
         answers.add("test2");
         answers.add("test3");
-        //QuestionFactory factory = new TextQuestionFactory();
-        //factory.addQuestion(2,"test",5,5,"test",answers);
+        QuestionFactory factory = new TextQuestionFactory();
         //factory.setSelectedQuestion(5,2,answers.get(0));
         //factory.setPointsEarnedInstructor(5,2,3);
         examModel.setExamGrade(exam);
-
-        LoginView application = new LoginView();
+        System.out.println(examModel.listQuestions(5));
+        System.out.println(examModel.getExam(5).getName());
 
     }
 }
