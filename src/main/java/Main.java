@@ -1,9 +1,4 @@
 import Controller.ExamController.Exam;
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
-import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
-import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
-import Controller.QuestionController.Question;
 import Controller.UserController.MediatorImp;
 import Controller.UserController.Password;
 import Controller.UserController.User;

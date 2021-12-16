@@ -1,3 +1,4 @@
+package View;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -10,8 +11,8 @@ import javax.swing.GroupLayout;
 /**
  * @author Zeliha Aydın
  */
-public class GradesPage extends JFrame {
-    public GradesPage() {
+public class StudentGradesPage extends JFrame {
+    public StudentGradesPage() {
         initComponents();
     }
 

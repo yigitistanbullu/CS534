@@ -1,3 +1,5 @@
+package View.TeachersQuestion;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -10,8 +12,8 @@ import javax.swing.GroupLayout;
 /**
  * @author Zeliha Aydın
  */
-public class QuestionsPage extends JFrame {
-    public QuestionsPage() {
+public class QuestionsPageInstructor extends JFrame {
+    public QuestionsPageInstructor() {
         initComponents();
     }
 
