@@ -5,7 +5,11 @@ import Controller.UserController.User;
 import Model.AuthorizationModel;
 import Model.DBConnection;
 import Model.ExamModel;
+import View.LoginView;
+import View.RegisterView;
+import View.TeachersHomePage;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -40,5 +44,8 @@ public class Main {
         //factory.setSelectedQuestion(5,2,answers.get(0));
         //factory.setPointsEarnedInstructor(5,2,3);
         examModel.setExamGrade(exam);
+
+        LoginView application = new LoginView();
+
     }
 }

@@ -1,5 +1,6 @@
 package View;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -17,8 +18,9 @@ public class TeachersHomePage extends JFrame {
     }
 
     private void initComponents() {
+        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -30,18 +32,17 @@ public class TeachersHomePage extends JFrame {
         reviewButton = new JButton();
         createExamButton = new JButton();
 
-        //======== this ========
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
-            EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
-            . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
-            java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
-            { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
-            throw new RuntimeException( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Emre Kaplan");
@@ -139,7 +140,7 @@ public class TeachersHomePage extends JFrame {
                                 .addContainerGap(16, Short.MAX_VALUE))
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(createExamButton)
                                     .addComponent(dateLabel))
@@ -176,7 +177,7 @@ public class TeachersHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;

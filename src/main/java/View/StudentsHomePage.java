@@ -18,6 +18,7 @@ public class StudentsHomePage extends JFrame {
     }
 
     private void initComponents() {
+        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();

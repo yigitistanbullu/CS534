@@ -17,8 +17,9 @@ public class LoginView extends JFrame {
     }
 
     private void initComponents() {
+        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         loginText = new JLabel();
         emailField = new JTextField();
@@ -27,6 +28,7 @@ public class LoginView extends JFrame {
         passLabel = new JLabel();
         label2 = new JLabel();
         passwordField = new JPasswordField();
+        registerButton = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -34,14 +36,12 @@ public class LoginView extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn"
-            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-            , java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+            EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing
+            .border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),
+            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))
+            throw new RuntimeException();}});
 
             //---- loginText ----
             loginText.setText("Login");
@@ -72,6 +72,12 @@ public class LoginView extends JFrame {
             //---- passwordField ----
             passwordField.setBackground(Color.white);
 
+            //---- registerButton ----
+            registerButton.setText("Register");
+            registerButton.setBackground(new Color(182, 142, 185));
+            registerButton.setForeground(Color.white);
+            registerButton.setFont(new Font("Roboto Light", Font.BOLD, 16));
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -79,20 +85,23 @@ public class LoginView extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label2)
-                        .addContainerGap(509, Short.MAX_VALUE))
+                        .addContainerGap(507, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addContainerGap(226, Short.MAX_VALUE)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(loginText))
-                            .addComponent(emailField, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(emailLabel)
                             .addComponent(passLabel)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(emailField, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(loginButton))
-                            .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(registerButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(loginButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(207, 207, 207))
             );
             panel1Layout.setVerticalGroup(
@@ -111,8 +120,10 @@ public class LoginView extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(loginButton)
-                        .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registerButton)
+                        .addContainerGap(30, Short.MAX_VALUE))
             );
         }
 
@@ -132,7 +143,7 @@ public class LoginView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel loginText;
     private JTextField emailField;
@@ -141,5 +152,6 @@ public class LoginView extends JFrame {
     private JLabel passLabel;
     private JLabel label2;
     private JPasswordField passwordField;
+    private JButton registerButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

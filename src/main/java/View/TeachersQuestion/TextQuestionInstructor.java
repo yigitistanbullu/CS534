@@ -18,6 +18,7 @@ public class TextQuestionInstructor extends JPanel {
     }
 
     private void initComponents() {
+        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         questionText = new JTextField();
