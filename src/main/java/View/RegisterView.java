@@ -59,7 +59,7 @@ public class RegisterView extends JFrame {
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yigit
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         registerText = new JLabel();
         nameField = new JTextField();
         surnameFiled = new JTextField();
@@ -78,6 +78,7 @@ public class RegisterView extends JFrame {
 
         //======== this ========
         setBackground(new Color(182, 142, 185));
+        setForeground(new Color(182, 142, 185));
         var contentPane = getContentPane();
 
         //---- registerText ----
@@ -119,7 +120,7 @@ public class RegisterView extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(328, Short.MAX_VALUE)
+                    .addContainerGap(319, Short.MAX_VALUE)
                     .addComponent(registerButton)
                     .addGap(312, 312, 312))
                 .addGroup(contentPaneLayout.createSequentialGroup()
@@ -194,7 +195,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yigit
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JLabel registerText;
     private JTextField nameField;
     private JTextField surnameFiled;

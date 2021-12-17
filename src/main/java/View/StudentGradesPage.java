@@ -1,9 +1,16 @@
 package View;
+import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
+import Model.ExamModel;
+import Model.QuestionModel;
+import View.StudentsQuestion.MultipleQuestion;
+import View.StudentsQuestion.TextQuestion;
+import View.StudentsQuestion.TrueFalseQuestion;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
@@ -18,17 +25,37 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class StudentGradesPage extends JFrame {
-    String name = "";
-    int id;
-    StudentsHomePage home = new StudentsHomePage(id,name);
+    // exam, user_id,name
+    String name = ""; // student name
+    int id; //student Id
     AuthorizationModel model = new AuthorizationModel();
+    ExamModel examModel = new ExamModel();
 
-    public StudentGradesPage() {
+    public StudentGradesPage(int id, String name) {
         this.id = id;
         this.name = name;
         initComponents();
         nameLabelPropertyChange();
+        addExam(examModel.getExam(model.getExamId(id))); //send examid examname
         date();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     private void examButton(ActionEvent e) {
@@ -47,11 +74,22 @@ public class StudentGradesPage extends JFrame {
     private void button1(ActionEvent e) {
         // TODO add your code here
     }
+    public void addExam(Exam exam){
+        QuestionModel questionModel = new QuestionModel();
+        ExamModel examModel = new ExamModel();
 
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(exam.getId());
+        System.out.println(questionID);
+        panel2.setLayout(new GridLayout(questionID.size(), 1));
+        for(int i = 0; i< questionID.size();i++){
+                StudentGradePanel question = new StudentGradePanel(exam.getId());
+                panel2.add(question);
+        }
+    }
 
 
     private void initComponents() {
-        home.dispose();
+        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
@@ -59,9 +97,6 @@ public class StudentGradesPage extends JFrame {
         dateLabel = new JLabel();
         scrollPane1 = new JScrollPane();
         panel2 = new JPanel();
-        panel3 = new JPanel();
-        examLabel = new JLabel();
-        label2 = new JLabel();
         gradesLabel = new JLabel();
         examButton = new JButton();
 
@@ -71,13 +106,13 @@ public class StudentGradesPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-            .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing
-            .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-            Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
-            ),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-            public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName(
-            )))throw new RuntimeException();}});
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+            .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
+            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
+            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ;
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");
@@ -97,57 +132,7 @@ public class StudentGradesPage extends JFrame {
 
                 //======== panel2 ========
                 {
-
-                    //======== panel3 ========
-                    {
-                        panel3.setBackground(Color.white);
-
-                        //---- examLabel ----
-                        examLabel.setText("cs434 Midterm");
-                        examLabel.setForeground(new Color(177, 184, 202));
-                        examLabel.setFont(new Font("Roboto Light", Font.BOLD, 25));
-
-                        //---- label2 ----
-                        label2.setText("93/100");
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(examLabel)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
-                                    .addComponent(label2)
-                                    .addGap(60, 60, 60))
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                                    .addContainerGap(24, Short.MAX_VALUE)
-                                    .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(examLabel)
-                                        .addComponent(label2))
-                                    .addGap(25, 25, 25))
-                        );
-                    }
-
-                    GroupLayout panel2Layout = new GroupLayout(panel2);
-                    panel2.setLayout(panel2Layout);
-                    panel2Layout.setHorizontalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                    );
-                    panel2Layout.setVerticalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(220, Short.MAX_VALUE))
-                    );
+                    panel2.setLayout(new GridLayout());
                 }
                 scrollPane1.setViewportView(panel2);
             }
@@ -226,9 +211,6 @@ public class StudentGradesPage extends JFrame {
     private JLabel dateLabel;
     private JScrollPane scrollPane1;
     private JPanel panel2;
-    private JPanel panel3;
-    private JLabel examLabel;
-    private JLabel label2;
     private JLabel gradesLabel;
     private JButton examButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

@@ -3,6 +3,7 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
@@ -11,8 +12,12 @@ import javax.swing.GroupLayout;
 import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
 import Model.ExamModel;
+import Model.QuestionModel;
 import View.StudentGradesPage;
+import View.StudentsQuestion.MultipleQuestion;
 import View.StudentsQuestion.QuestionsPage;
+import View.StudentsQuestion.TextQuestion;
+import View.StudentsQuestion.TrueFalseQuestion;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:07:28 EET 2021
  */
@@ -34,6 +39,7 @@ public class StudentsHomePage extends JFrame {
         initComponents();
         date();
         nameLabelPropertyChange();
+        addQuestion(exam);
     }
 
     private void nameLabelPropertyChange() {
@@ -44,7 +50,7 @@ public class StudentsHomePage extends JFrame {
     }
 
     private void GradesButton(ActionEvent e) {
-        StudentGradesPage grades = new StudentGradesPage();
+        StudentGradesPage grades = new StudentGradesPage(id,name);
         grades.setVisible(true);
         grades.setLocationRelativeTo(null);
         this.dispose();
@@ -58,8 +64,23 @@ public class StudentsHomePage extends JFrame {
     }
 
     private void reviewButton(ActionEvent e) {
+        StudentsReviewPage reviewPage = new StudentsReviewPage(id,name);
+        reviewPage.setVisible(true);
+        reviewPage.setLocationRelativeTo(null);
         this.dispose();
     }
+    public void addQuestion(Exam exam){
+        ExamModel questionModel = new ExamModel();
+
+        ArrayList<Integer> questionID = questionModel.getExamIds(exam.getId());
+        System.out.println(questionID);
+        panel2.setLayout(new GridLayout(questionID.size(), 1));
+        for(int i = 0; i< questionID.size();i++){
+                StudentGradePanel question = new StudentGradePanel(questionID.get(i));
+                panel2.add(question);
+        }
+    }
+
 
     private void initComponents() {
 
@@ -84,13 +105,13 @@ public class StudentsHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-            . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
-            .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-            Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-            ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-            public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
-            ) ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");

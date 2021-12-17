@@ -8,10 +8,8 @@ import Model.AuthorizationModel;
 import Model.DBConnection;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.LoginView;
-import View.RegisterView;
+import View.*;
 import View.StudentsQuestion.QuestionsPage;
-import View.TeachersHomePage;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class Main {
                 return null;
             }
         };
-        System.out.println(authorizationModel.logIn(user));
+
         Exam exam = new Exam(5,"math",100);
         ExamModel examModel = new ExamModel();
         System.out.println(examModel.getGrade(exam));
@@ -45,9 +43,7 @@ public class Main {
         QuestionFactory factory = new TextQuestionFactory();
         //factory.setSelectedQuestion(5,2,answers.get(0));
         //factory.setPointsEarnedInstructor(5,2,3);
-        examModel.setExamGrade(exam);
-        System.out.println(examModel.listQuestions(5));
-        System.out.println(examModel.getExam(5).getName());
+        LoginView login = new LoginView();
 
     }
 }

@@ -83,7 +83,7 @@ public class QuestionsPage extends JFrame {
         setVisible(true);
         time();
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         userName = new JLabel();
         examName = new JLabel();
@@ -98,12 +98,13 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+            ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+            ;
 
             //---- userName ----
             userName.setText("Zeliha Ayd\u0131n");
@@ -199,7 +200,7 @@ public class QuestionsPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel userName;
     private JLabel examName;

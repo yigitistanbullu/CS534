@@ -1,14 +1,15 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::328:x, comp registerButton:::p::p, space :p:312:p}, seq l {space :::p, comp label1:::p:137:p, space :p:97:p, par l:::p {comp label6:::p::p, comp label5:::p::p, comp label4:::p::p, seq l {comp teacherCheckbox:::p::p, space :::x, comp studentCheckbox:::p::p}, comp registerText::l:::x, comp emailFiled::l:::x, comp studentIDField::l:::x, seq l {par l {seq l {comp nameField:::p:109:p, space :p:26:p}, seq t {comp label2:::p::p, space :p:99:p}}, par l {comp label3:::p::p, comp surnameFiled:::p:110:p}}, comp passwordField::l:::x}, space ::233:x}}"
+			"$horizontalGroup": "par l {seq t {space ::319:x, comp registerButton:::p::p, space :p:312:p}, seq l {space :::p, comp label1:::p:137:p, space :p:97:p, par l:::p {comp label6:::p::p, comp label5:::p::p, comp label4:::p::p, seq l {comp teacherCheckbox:::p::p, space :::x, comp studentCheckbox:::p::p}, comp registerText::l:::x, comp emailFiled::l:::x, comp studentIDField::l:::x, seq l {par l {seq l {comp nameField:::p:109:p, space :p:26:p}, seq t {comp label2:::p::p, space :p:99:p}}, par l {comp label3:::p::p, comp surnameFiled:::p:110:p}}, comp passwordField::l:::x}, space ::233:x}}"
 			"$verticalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p::p}, seq l {comp registerText:::p::p, space :::p, par b {comp label2::b:p::p, comp label3::b:p::p}, space :::p, par b {comp surnameFiled::b:p::p, comp nameField::b:p::p}, space :::p, comp label4:::p::p, space :::p, comp emailFiled:::p::p, space :::p, comp label5:::p::p, space :p:10:p, comp passwordField:::p::p, space u:::p, comp label6:::p::p, space :::p, comp studentIDField:::p::p, space s:::p, par b {comp teacherCheckbox::b:p::p, comp studentCheckbox::b:p::p}}}, space s:::p, comp registerButton:::p::p, space :::p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 182, 142, 185, 255 )
+			"foreground": new java.awt.Color( 182, 142, 185, 255 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "registerText"
 				"text": "Register"
