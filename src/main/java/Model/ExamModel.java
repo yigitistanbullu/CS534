@@ -132,5 +132,33 @@ public class ExamModel {
         Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)));
         return newExam;
     }
+    public ArrayList<Integer> getExamIds(int user_Id){
+        ResultSet result;
+        ArrayList<Integer> exams = new ArrayList<>();
+        int sira;
+
+        String Query = "SELECT  user_exam_id  FROM User Where user_id =" + user_Id + ";";
+        try {
+
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            sira = result.getMetaData().getColumnCount();
+
+            while(result.next()){
+                for(int i = 1 ; i<= sira; i++){
+                    exams.add(i);
+                }
+            }
+
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return exams;
+    }
+
 
 }

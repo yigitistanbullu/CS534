@@ -144,6 +144,26 @@ public class AuthorizationModel {
         }
         return "" + name + " "+ surname;
     }
+    public static int getExamId(int id){
+        ResultSet result;
+        int examId = 0;
+        String Query = "SELECT user_exam_id FROM User WHERE user_id = '" + id + "';  ";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            if(result.next()){
+                examId = result.getInt("user_exam_id");
+
+            }
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return  examId;
+    }
+
 
     public static int getUserExamId(String email, String password){
         int examId = 0;
