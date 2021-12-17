@@ -28,6 +28,23 @@ public class StudentsReviewPage extends JFrame {
         nameLabelPropertyChange();
         setExamName();
     }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
     private void nameLabelPropertyChange() {
         nameLabel.setText(model.getName(studentId));
     }
@@ -37,7 +54,7 @@ public class StudentsReviewPage extends JFrame {
     }
 
     private void doneButtonOnClicked(ActionEvent e) {
-        StudentsHomePage homePage = new StudentsHomePage(studentId,studentName);
+        StudentsHomePage homePage = new StudentsHomePage(getStudentId(),getStudentName(),5);
         homePage.setVisible(true);
         homePage.setLocationRelativeTo(null);
         this.dispose();

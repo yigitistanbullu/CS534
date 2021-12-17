@@ -30,8 +30,6 @@ public abstract class QuestionFactory {
         setPoints(examId,question_id, points);
     }
 
-
-
     protected abstract void createQuestion(int id, String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers);
     protected abstract void setPoints(int examId, int question_id, double points);
 

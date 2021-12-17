@@ -26,10 +26,9 @@ public class QuestionsPage extends JFrame {
     public int exam_id;
 
     public QuestionsPage(Exam exam, String name) {
-
+        this.user_name = name;
         initComponents();
         setExamName(exam.getName());
-        setUserName(name);
         addQuestion(exam);
         setUserName(name);
         setExam_id(exam.getId());
@@ -104,9 +103,8 @@ public class QuestionsPage extends JFrame {
         StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(getUser_name()),getUser_name(),getExam_id());
         studentsHomePage.setLocationRelativeTo(null);
         studentsHomePage.setVisible(true);
-        this.dispose();
+        dispose();
     }
-
 
 
     private void initComponents() {

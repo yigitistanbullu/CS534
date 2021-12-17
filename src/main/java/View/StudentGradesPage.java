@@ -26,8 +26,8 @@ import javax.swing.GroupLayout;
  */
 public class StudentGradesPage extends JFrame {
     // exam, user_id,name
-    String name = ""; // student name
-    int id; //student Id
+    public String name = ""; // student name
+    public int id; //student Id
     AuthorizationModel model = new AuthorizationModel();
     ExamModel examModel = new ExamModel();
 
@@ -59,13 +59,11 @@ public class StudentGradesPage extends JFrame {
     }
 
     private void examButton(ActionEvent e) {
-        StudentsHomePage home = new StudentsHomePage(id,name);
-        home.setVisible(true);
-        home.setLocationRelativeTo(null);
-        this.dispose();
+        StudentsHomePage home = new StudentsHomePage(getId(),getName(),5);
+        dispose();
     }
     private void nameLabelPropertyChange() {
-        nameLabel.setText(model.getName(id));
+        nameLabel.setText(getName());
     }
     public void date(){
         dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy",new Locale("tr")).format(new Date()));
@@ -79,7 +77,6 @@ public class StudentGradesPage extends JFrame {
         ExamModel examModel = new ExamModel();
 
         ArrayList<Integer> questionID = questionModel.getQuestionIds(exam.getId());
-        System.out.println(questionID);
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
                 StudentGradePanel question = new StudentGradePanel(exam.getId());
@@ -91,7 +88,7 @@ public class StudentGradesPage extends JFrame {
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -106,13 +103,12 @@ public class StudentGradesPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
-            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
-            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+            border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER
+            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
+            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r"
+            .equals(e.getPropertyName()))throw new RuntimeException();}});
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");
@@ -205,7 +201,7 @@ public class StudentGradesPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;

@@ -39,14 +39,14 @@ public class TeachersHomePage extends JFrame {
     }
 
     private void reviewButton(ActionEvent e) {
-        this.dispose();
+        dispose();
         TeacherGradingPage review = new TeacherGradingPage(id, model.getName(id));
         review.setVisible(true);
         review.setLocationRelativeTo(null);
     }
 
     private void createExam(ActionEvent e) {
-        this.dispose();
+        dispose();
         QuestionsPageInstructor exam = new QuestionsPageInstructor();
         exam.setVisible(true);
         exam.setLocationRelativeTo(null);
@@ -67,11 +67,18 @@ public class TeachersHomePage extends JFrame {
         // TODO add your code here
     }
 
+    private void Logout(ActionEvent e) {
+        LoginView view = new LoginView();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
+        dispose();
+    }
+
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -82,6 +89,7 @@ public class TeachersHomePage extends JFrame {
         attendButton = new JButton();
         reviewButton = new JButton();
         createExamButton = new JButton();
+        Logout = new JButton();
 
         //======== this ========
         addWindowListener(new WindowAdapter() {
@@ -95,14 +103,12 @@ public class TeachersHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder (
-            new javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-            , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
-            , new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 )
-            ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
-            new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-            ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-            ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //---- nameLabel ----
             nameLabel.setText("Emre Kaplan");
@@ -192,6 +198,10 @@ public class TeachersHomePage extends JFrame {
             createExamButton.setText("Create Exam");
             createExamButton.addActionListener(e -> createExam(e));
 
+            //---- Logout ----
+            Logout.setText("Logout");
+            Logout.addActionListener(e -> Logout(e));
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -202,9 +212,11 @@ public class TeachersHomePage extends JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(16, Short.MAX_VALUE))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Logout))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(createExamButton)
                                     .addComponent(dateLabel))
@@ -218,7 +230,9 @@ public class TeachersHomePage extends JFrame {
                             .addComponent(nameLabel)
                             .addComponent(dateLabel))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(createExamButton)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(createExamButton)
+                            .addComponent(Logout))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))
@@ -241,7 +255,7 @@ public class TeachersHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;
@@ -252,5 +266,6 @@ public class TeachersHomePage extends JFrame {
     private JButton attendButton;
     private JButton reviewButton;
     private JButton createExamButton;
+    private JButton Logout;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

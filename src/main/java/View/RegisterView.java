@@ -38,7 +38,6 @@ public class RegisterView extends JFrame {
         JOptionPane.showMessageDialog(new JFrame(),"User Created Successfully","Dialog",JOptionPane.WARNING_MESSAGE);
         LoginView loginView = new LoginView();
         loginView.setLocationRelativeTo(null);
-        loginView.setVisible(true);
         this.dispose();
     }
 
@@ -49,17 +48,24 @@ public class RegisterView extends JFrame {
         }
     }
 
-    private void chk_Student(ActionEvent e) {
+
+    private void chkstudent(ActionEvent e) {
         if (studentCheckbox.isSelected()){
             teacherCheckbox.setSelected(false);
         }
     }
 
+    private void student(ActionEvent e) {
+        // TODO add your code here
+    }
+
+
+
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yigit
+        // Generated using JFormDesigner Evaluation license - yasemin
         registerText = new JLabel();
         nameField = new JTextField();
         surnameFiled = new JTextField();
@@ -78,23 +84,31 @@ public class RegisterView extends JFrame {
 
         //======== this ========
         setBackground(new Color(182, 142, 185));
+        setForeground(new Color(182, 142, 185));
         var contentPane = getContentPane();
 
         //---- registerText ----
         registerText.setText("Register");
-        registerText.setForeground(Color.white);
+        registerText.setForeground(Color.black);
         registerText.setFont(new Font("Roboto Light", Font.PLAIN, 48));
         registerText.setHorizontalAlignment(SwingConstants.CENTER);
 
         //---- teacherCheckbox ----
         teacherCheckbox.setText("Teacher");
+        teacherCheckbox.addActionListener(e -> teacher(e));
 
         //---- studentCheckbox ----
         studentCheckbox.setText("Student");
+        studentCheckbox.addActionListener(e -> {
+			chkstudent(e);
+		});
 
         //---- registerButton ----
         registerButton.setText("Register");
-        registerButton.addActionListener(e -> register(e));
+        registerButton.addActionListener(e -> {
+			register(e);
+			register(e);
+		});
 
         //---- label1 ----
         label1.setText("CS434 Exam Portal");
@@ -119,7 +133,7 @@ public class RegisterView extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(328, Short.MAX_VALUE)
+                    .addContainerGap(320, Short.MAX_VALUE)
                     .addComponent(registerButton)
                     .addGap(312, 312, 312))
                 .addGroup(contentPaneLayout.createSequentialGroup()
@@ -194,7 +208,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yigit
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JLabel registerText;
     private JTextField nameField;
     private JTextField surnameFiled;

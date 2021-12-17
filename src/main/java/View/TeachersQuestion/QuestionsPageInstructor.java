@@ -1,6 +1,12 @@
 package View.TeachersQuestion;
 
+import Model.AuthorizationModel;
+import View.StudentsHomePage;
+import View.TeacherGradingPage;
+import View.TeachersHomePage;
+
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -17,10 +23,18 @@ public class QuestionsPageInstructor extends JFrame {
         initComponents();
     }
 
+    private void submit(ActionEvent e) {
+        AuthorizationModel model = new AuthorizationModel();
+        TeachersHomePage teacherHomePage = new TeachersHomePage(2);
+        teacherHomePage.setLocationRelativeTo(null);
+        teacherHomePage.setVisible(true);
+        dispose();
+    }
+
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         nameLabel2 = new JLabel();
@@ -37,12 +51,13 @@ public class QuestionsPageInstructor extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-            EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
-            .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
-            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
-            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
-            throw new RuntimeException();}});
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+            ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+            ;
 
             //---- nameLabel ----
             nameLabel.setText("Emre Kaplan");
@@ -119,6 +134,7 @@ public class QuestionsPageInstructor extends JFrame {
             //---- submitButton ----
             submitButton.setText("Submit");
             submitButton.setBackground(Color.white);
+            submitButton.addActionListener(e -> submit(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -173,7 +189,7 @@ public class QuestionsPageInstructor extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel nameLabel2;

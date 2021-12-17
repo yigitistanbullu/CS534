@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -62,6 +62,7 @@ new FormModel {
 					name: "submitButton"
 					"text": "Submit"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

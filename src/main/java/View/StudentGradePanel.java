@@ -21,7 +21,6 @@ public class StudentGradePanel extends JPanel {
     public StudentGradePanel(int id) {
         this.examId = id;
         initComponents();
-        System.out.println(1);
         setExamLabel(id);
     }
 
@@ -35,9 +34,7 @@ public class StudentGradePanel extends JPanel {
     public void setExamLabel(int examId){
         ExamModel examModel = new ExamModel();
         examLabel.setText(examModel.getExam(examId).getName());
-        System.out.println(examModel.getExam(examId).getName());
         gradeLabel.setText(""+examModel.getExam(examId).getGrade());
-        System.out.println(""+examModel.getExam(examId).getGrade());
     }
 
     private void initComponents() {

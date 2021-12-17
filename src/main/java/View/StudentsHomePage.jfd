@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp label1:::p::p, space s:::p, comp button1:::p::p, space ::469:x}, seq {par l {comp scrollPane1::::580:x, seq {comp nameLabel:::p:179:p, space ::313:x, comp dateLabel:::p::p}}, space :p:26:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space :p:19:p, par b {comp label1::b:p::p, comp button1::b:p::p}, space :::p, comp scrollPane1:::p:320:p, space ::12:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp label1:::p::p, space s:::p, comp button1:::p::p, space ::365:x, comp Logout:::p::p}, comp scrollPane1::::580:x, seq {comp nameLabel:::p:179:p, space ::313:x, comp dateLabel:::p::p}}, space :p:26:p}}"
+				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, par l {seq {space :p:19:p, par b {comp label1::b:p::p, comp button1::b:p::p}}, seq l {space u:::p, comp Logout:::p::p}}, space :::p, comp scrollPane1:::p:320:p, space ::14:x}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 182, 142, 185, 255 )
@@ -76,6 +76,11 @@ new FormModel {
 					"foreground": sfield java.awt.Color darkGray
 					"opaque": false
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GradesButton", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "Logout"
+					"text": "Logout"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Logout", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
