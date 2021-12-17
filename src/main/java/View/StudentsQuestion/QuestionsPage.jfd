@@ -42,6 +42,7 @@ new FormModel {
 					"text": "Submit"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "submitButtonMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "time"

@@ -26,19 +26,34 @@ public class StudentsHomePage extends JFrame {
     public int id;
     public String name = "";
     AuthorizationModel model = new AuthorizationModel();
-    Exam exam = new Exam(id,name,0.0);
+    public int examId;
 
-    public StudentsHomePage(int id, String name) {
+
+    public StudentsHomePage(int id, String name, int examId) {
+        this.examId = examId;
         this.id = id;
         this.name = name;
         initComponents();
+        setExamName();
         date();
         nameLabelPropertyChange();
+    }
+
+    public int getExamId() {
+        return examId;
+    }
+
+
+    public void setExamName(){
+        ExamModel examModel = new ExamModel();
+        Exam exam = examModel.getExam(getExamId());
+        examLabel.setText(exam.getName());
     }
 
     private void nameLabelPropertyChange() {
         nameLabel.setText(model.getName(id));
     }
+
     public void date(){
         dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy",new Locale("tr")).format(new Date()));
     }
@@ -51,7 +66,9 @@ public class StudentsHomePage extends JFrame {
     }
 
     private void attendButton(ActionEvent e) {
-        QuestionsPage examPage = new QuestionsPage(exam, name);
+        ExamModel examModel = new ExamModel();
+        Exam newExam =  examModel.getExam(getExamId());
+        QuestionsPage examPage = new QuestionsPage(newExam, name);
         examPage.setVisible(true);
         examPage.setLocationRelativeTo(null);
         this.dispose();

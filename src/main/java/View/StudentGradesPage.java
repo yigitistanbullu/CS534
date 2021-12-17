@@ -20,7 +20,7 @@ import javax.swing.GroupLayout;
 public class StudentGradesPage extends JFrame {
     String name = "";
     int id;
-    StudentsHomePage home = new StudentsHomePage(id,name);
+    StudentsHomePage home = new StudentsHomePage(1,"Yasemin",5);
     AuthorizationModel model = new AuthorizationModel();
 
     public StudentGradesPage() {
@@ -32,7 +32,7 @@ public class StudentGradesPage extends JFrame {
     }
 
     private void examButton(ActionEvent e) {
-        StudentsHomePage home = new StudentsHomePage(id,name);
+      StudentsHomePage home = new StudentsHomePage(1,"Yasemin",5);
         home.setVisible(true);
         home.setLocationRelativeTo(null);
         this.dispose();

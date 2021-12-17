@@ -2,8 +2,9 @@ package View.StudentsQuestion;
 
 import java.awt.event.*;
 import Controller.ExamController.Exam;
-import Model.ExamModel;
+import Model.AuthorizationModel;
 import Model.QuestionModel;
+import View.StudentsHomePage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ import javax.swing.GroupLayout;
 public class QuestionsPage extends JFrame {
 
     ArrayList<String> questions = new ArrayList<>();
+    
+    public String user_name;
+    public int exam_id;
 
     public QuestionsPage(Exam exam, String name) {
 
@@ -27,6 +31,8 @@ public class QuestionsPage extends JFrame {
         setExamName(exam.getName());
         setUserName(name);
         addQuestion(exam);
+        setUserName(name);
+        setExam_id(exam.getId());
 
     }
     public void time(){
@@ -38,7 +44,23 @@ public class QuestionsPage extends JFrame {
             }
         }).start();
     }
-    
+
+    public int getExam_id() {
+        return exam_id;
+    }
+
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
     public void setExamName(String exam){
         examName.setText(exam);
     }
@@ -77,6 +99,14 @@ public class QuestionsPage extends JFrame {
         // TODO add your code here
     }
 
+    private void submit(ActionEvent e) {
+        AuthorizationModel model = new AuthorizationModel();
+        StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(getUser_name()),getUser_name(),getExam_id());
+        studentsHomePage.setLocationRelativeTo(null);
+        studentsHomePage.setVisible(true);
+        this.dispose();
+    }
+
 
 
     private void initComponents() {
@@ -98,12 +128,13 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+            swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border
+            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog"
+            ,java.awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder
+            ()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+            .beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException
+            ();}});
 
             //---- userName ----
             userName.setText("Zeliha Ayd\u0131n");
@@ -139,6 +170,7 @@ public class QuestionsPage extends JFrame {
                     submitButtonMouseClicked(e);
                 }
             });
+            submitButton.addActionListener(e -> submit(e));
 
             //---- time ----
             time.setText("23:45");

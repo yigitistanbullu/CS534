@@ -28,8 +28,9 @@ new FormModel {
 					name: "loginButton"
 					"text": "Login"
 					"background": &Color0 new java.awt.Color( 182, 142, 185, 255 )
-					"foreground": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": sfield java.awt.Color black
 					"font": &Font0 new java.awt.Font( "Roboto Light", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "emailLabel"
@@ -54,8 +55,9 @@ new FormModel {
 					name: "registerButton"
 					"text": "Register"
 					"background": #Color0
-					"foreground": #Color1
+					"foreground": sfield java.awt.Color black
 					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "register", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

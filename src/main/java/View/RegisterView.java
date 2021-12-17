@@ -59,7 +59,7 @@ public class RegisterView extends JFrame {
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yigit
+        // Generated using JFormDesigner Evaluation license - yasemin
         registerText = new JLabel();
         nameField = new JTextField();
         surnameFiled = new JTextField();
@@ -194,7 +194,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yigit
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JLabel registerText;
     private JTextField nameField;
     private JTextField surnameFiled;
