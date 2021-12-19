@@ -25,7 +25,7 @@ public class QuestionsPageInstructor extends JFrame {
 
     private void submit(ActionEvent e) {
         AuthorizationModel model = new AuthorizationModel();
-        TeachersHomePage teacherHomePage = new TeachersHomePage(2);
+        TeachersHomePage teacherHomePage = new TeachersHomePage(2,"UserName",5);
         teacherHomePage.setLocationRelativeTo(null);
         teacherHomePage.setVisible(true);
         dispose();

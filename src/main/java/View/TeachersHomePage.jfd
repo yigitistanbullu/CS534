@@ -5,13 +5,12 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {comp panel1::l::411:x}"
+			"$verticalGroup": "par l {seq l {comp panel1:::p:423:p, space :0:0:x}}"
 		} ) {
 			name: "this"
-			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowActivated", "thisWindowActivated", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp scrollPane1:::p:600:p, space ::16:x}, seq {par l {comp nameLabel:::p:179:p, comp Logout::l:p::p}, space ::297:x, par t {comp createExamButton:::p::p, comp dateLabel:::p::p}, space :p:28:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, space u:::p, par t {comp createExamButton:::p::p, comp Logout:::p::p}, space :::x, comp scrollPane1:::p:298:p, space :p:35:p}}"
+				"$horizontalGroup": "par l {seq t {space :p:22:p, par t {comp scrollPane1::::583:x, seq {par l {comp nameLabel:::p:179:p, comp Logout::l:p::p}, space :::x, par l {comp createExamButton::t:p::p, par l:t {comp timeLabel:::p::p, comp dateLabel:::p::p}}}}, space :p:28:p}}"
+				"$verticalGroup": "par l {seq l {par l:::p {seq l {space :p:14:p, comp nameLabel:::p::p, space :p:20:p}, seq l {space :::p, comp dateLabel:::p::p, space :::x, comp timeLabel:::p::p, space u:::p}}, par t {comp createExamButton:::p::p, comp Logout:::p::p}, space :::x, comp scrollPane1:::p:312:p, space :p:211:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 182, 142, 185, 255 )
@@ -21,48 +20,13 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"horizontalAlignment": 2
 					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
-					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "nameLabelPropertyChange", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "dateLabel"
-					"text": "15.12.2021"
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					"font": new java.awt.Font( "Roboto Light", 0, 18 )
-					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "dateLabelPropertyChange", true ) )
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::178:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::220:x}}"
-					} ) {
-						name: "panel2"
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq l {space :p:14:p, comp examLabel:::p::p, space ::121:x, comp attendButton:::p:100:p, space :p:31:p, comp reviewButton:::p:100:p, space :p:22:p}}"
-							"$verticalGroup": "par l {seq t {space ::27:x, par b {comp examLabel::b:p::p, comp attendButton::b:p::p, comp reviewButton::b:p::p}, space :p:22:p}}"
-						} ) {
-							name: "panel3"
-							"background": new java.awt.Color( 255, 255, 255, 255 )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "examLabel"
-								"text": "cs434 Midterm"
-								"foreground": new java.awt.Color( 177, 184, 202, 255 )
-								"font": new java.awt.Font( "Roboto Light", 1, 25 )
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "attendButton"
-								"text": "Edit"
-								"background": new java.awt.Color( 255, 255, 255, 255 )
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "reviewButton"
-								"text": "Review"
-								"background": new java.awt.Color( 255, 255, 255, 255 )
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reviewButton", true ) )
-							} )
-						} )
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table1"
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -75,10 +39,22 @@ new FormModel {
 					"text": "Logout"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Logout", true ) )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "dateLabel"
+					"text": "15.12.2021"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "timeLabel"
+					"text": "Time"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 640, 435 )
+			"size": new java.awt.Dimension( 635, 445 )
 		} )
 	}
 }

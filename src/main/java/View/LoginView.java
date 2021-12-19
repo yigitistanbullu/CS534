@@ -28,7 +28,7 @@ public class LoginView extends JFrame {
             }
             else if(AuthorizationModel.getUserType(emailField.getText(),passwordField.getText()) == 1){
                 this.dispose();
-                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()));
+                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())),AuthorizationModel.getUserExamId(emailField.getText(),passwordField.getText()));
                 teachersHomePage.setVisible(true);
             }
         }
@@ -50,7 +50,6 @@ public class LoginView extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
-
 
         panel1 = new JPanel();
         loginText = new JLabel();
