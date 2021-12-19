@@ -60,16 +60,26 @@ public class TextQuestion extends JPanel {
 
     private void save(ActionEvent e) {
         QuestionModel model = new QuestionModel();
-        model.setSelectedAnswer(getExamId(),getQuestionId(),answer.getText());
+        model.setSelectedAnswer(getExamId(),getQuestionId(),answerField.getText());
     }
 
+    public void setAnswerForReview(int questionId){
+        QuestionModel model = new QuestionModel();
+        String answer =  model.getSelectedAnswer(questionId);
+        answerField.setEnabled(false);
+        answerField.setText(answer);
+    }
+
+    public void removeSave(){
+        save.setVisible(false);
+    }
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         questionLabel = new JLabel();
-        answer = new JTextField();
+        answerField = new JTextField();
         enterAnswer = new JLabel();
         label1 = new JLabel();
         save = new JButton();
@@ -77,19 +87,19 @@ public class TextQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder
-        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .
-        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
-        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-        ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing
+        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+        Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName (
+        ) )) throw new RuntimeException( ); }} );
 
         //---- questionLabel ----
         questionLabel.setText("question");
 
-        //---- answer ----
-        answer.setBackground(Color.white);
+        //---- answerField ----
+        answerField.setBackground(Color.white);
 
         //---- enterAnswer ----
         enterAnswer.setText("Enter answer here");
@@ -112,7 +122,7 @@ public class TextQuestion extends JPanel {
                         .addGroup(layout.createParallelGroup()
                             .addComponent(label1)
                             .addComponent(enterAnswer)
-                            .addComponent(answer, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
                             .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -126,7 +136,7 @@ public class TextQuestion extends JPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(enterAnswer)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(answer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(save)
                     .addGap(12, 12, 12))
@@ -137,7 +147,7 @@ public class TextQuestion extends JPanel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - yasemin
     private JLabel questionLabel;
-    private JTextField answer;
+    private JTextField answerField;
     private JLabel enterAnswer;
     private JLabel label1;
     private JButton save;

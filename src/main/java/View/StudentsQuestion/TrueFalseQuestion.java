@@ -65,6 +65,21 @@ public class TrueFalseQuestion extends JPanel {
 
         }
     }
+    public void setAnswerForReview(int questionId){
+        QuestionModel model = new QuestionModel();
+        String answer =  model.getSelectedAnswer(questionId);
+        trueCheck.setEnabled(false);
+        falseCheck.setEnabled(false);
+        if(answer.equals(trueCheck.getText())){
+            trueCheck.setSelected(true);
+        }
+        else if(answer.equals(falseCheck.getText())) {
+            falseCheck.setSelected(true);
+        }
+    }
+    public void removeSave(){
+        save.setVisible(false);
+    }
 
 
     private void initComponents() {

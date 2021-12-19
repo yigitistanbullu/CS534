@@ -19,23 +19,17 @@ public class LoginView extends JFrame {
     public LoginView() {
         initComponents();
     }
-
     private void login(ActionEvent e) {
         if(AuthorizationModel.logIn(emailField.getText(),passwordField.getText())){
-
-            System.out.println(emailField.getText());
-            System.out.println(AuthorizationModel.logIn(emailField.getText(),passwordField.getText()));
             if(AuthorizationModel.getUserType(emailField.getText(),passwordField.getText()) == 0){
-                StudentsHomePage studentsHomePage = new StudentsHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())),AuthorizationModel.getUserExamId(emailField.getText(),passwordField.getText()));
-                studentsHomePage.setLocationRelativeTo(null);
-                studentsHomePage.setVisible(true);
                 this.dispose();
+                StudentsHomePage studentsHomePage = new StudentsHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())),AuthorizationModel.getUserExamId(emailField.getText(),passwordField.getText()));
+                studentsHomePage.setVisible(true);
             }
             else if(AuthorizationModel.getUserType(emailField.getText(),passwordField.getText()) == 1){
-                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()));
-                teachersHomePage.setLocationRelativeTo(null);
-                teachersHomePage.setVisible(true);
                 this.dispose();
+                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()));
+                teachersHomePage.setVisible(true);
             }
         }
         else{
@@ -46,15 +40,14 @@ public class LoginView extends JFrame {
     }
 
     private void register(ActionEvent e) {
+        this.dispose();
         RegisterView registerView = new RegisterView();
         registerView.setLocationRelativeTo(null);
         registerView.setVisible(true);
-        this.dispose();
 
     }
 
     private void initComponents() {
-        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
@@ -73,12 +66,12 @@ public class LoginView extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-            ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-            .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-            propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-            ;} } );
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+            .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER ,javax
+            . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,
+            12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans
+            .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e.
+            getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
             //---- loginText ----
             loginText.setText("Login");
@@ -124,7 +117,7 @@ public class LoginView extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label2)
-                        .addContainerGap(509, Short.MAX_VALUE))
+                        .addContainerGap(507, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addContainerGap(226, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup()
@@ -162,7 +155,7 @@ public class LoginView extends JFrame {
                         .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(registerButton)
-                        .addContainerGap(23, Short.MAX_VALUE))
+                        .addContainerGap(30, Short.MAX_VALUE))
             );
         }
 

@@ -3,21 +3,16 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.table.*;
 
 import Controller.ExamController.Exam;
-import Model.AuthorizationModel;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.StudentGradesPage;
-import View.StudentsQuestion.MultipleQuestion;
 import View.StudentsQuestion.QuestionsPage;
-import View.StudentsQuestion.TextQuestion;
-import View.StudentsQuestion.TrueFalseQuestion;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:07:28 EET 2021
  */
@@ -28,100 +23,105 @@ import View.StudentsQuestion.TrueFalseQuestion;
  * @author Zeliha Aydın
  */
 public class StudentsHomePage extends JFrame {
-    public int id;
-    public String name = "";
-    AuthorizationModel model = new AuthorizationModel();
+    public int userId;
+    public String userName;
     public int examId;
 
-    public StudentsHomePage(int id, String name, int examId) {
+    public StudentsHomePage(int userId, String userName, int examId) {
         this.examId = examId;
-        this.id = id;
-        this.name = name;
+        this.userId = userId;
+        this.userName = userName;
         initComponents();
-        setExamName();
+        setUserNameLabel();
+        setExamData();
         date();
-        nameLabelPropertyChange();
-        ExamModel model =  new ExamModel();
-        addQuestion(model.getExam(examId));
+        time();
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setExamId(int examId) {
+        this.examId = examId;
     }
 
     public int getExamId() {
         return examId;
     }
-
-
-    public void setExamName(){
-        ExamModel examModel = new ExamModel();
-        Exam exam = examModel.getExam(getExamId());
-        examLabel.setText(exam.getName());
-    }
-
-    private void nameLabelPropertyChange() {
-        nameLabel.setText(model.getName(id));
+    
+    public void setUserNameLabel( ){
+        nameLabel.setText(getUserName());
     }
 
     public void date(){
         dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy",new Locale("tr")).format(new Date()));
     }
 
-    private void GradesButton(ActionEvent e) {
-        StudentGradesPage grades = new StudentGradesPage(id,name);
-        grades.setLocationRelativeTo(null);
-        dispose();
+    public void time(){
+        new Timer(0, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
+                timeLabel.setText("Time : " +sdf.format(new Date()));
+            }
+        }).start();
     }
+    
 
-    private void attendButton(ActionEvent e) {
-        ExamModel examModel = new ExamModel();
-        Exam newExam =  examModel.getExam(getExamId());
-        QuestionsPage examPage = new QuestionsPage(newExam, name);
-        examPage.setLocationRelativeTo(null);
-        dispose();
-    }
+    public void setExamData(){
+        ExamModel model = new ExamModel();
+        Exam exam = model.getExam(getExamId());
+        String[][] data = {{exam.getName(),"Attend","Review",Double.toString(exam.getGrade())}};
+        String[] columnNames = {"Exam Name","Status","","Grade"};
+        DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
+        tableModel.setDataVector(data,columnNames);
+        table1.setModel(tableModel);
+        ButtonColumn column = new ButtonColumn(table1, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExamModel examModel = new ExamModel();
+                Exam newExam =  examModel.getExam(getExamId());
+                QuestionsPage examPage = new QuestionsPage(getExamId(), getUserName());
+                examPage.setVisible(true);
+                dispose();
 
-    private void reviewButton(ActionEvent e) {
-        StudentsReviewPage reviewPage = new StudentsReviewPage(id,name);
-        reviewPage.setLocationRelativeTo(null);
-        dispose();
-    }
-    public void addQuestion(Exam exam){
-        ExamModel questionModel = new ExamModel();
+            }
+        }, 1 );
+        ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),getExamId());
+                reviewPage.setVisible(true);
+                dispose();
 
-        ArrayList<Integer> questionID = questionModel.getExamIds(exam.getId());
-        for(int i = 0; i< questionID.size();i++){
-                StudentGradePanel question = new StudentGradePanel(questionID.get(i));
-                panel2.add(question);
-        }
-    }
-
-    private void review(ActionEvent e) {
-        // TODO add your code here
+            }
+        }, 2 );
     }
 
     private void Logout(ActionEvent e) {
         LoginView view = new LoginView();
-        view.setLocationRelativeTo(null);
+        view.setLocationRelativeTo(this);
         view.setVisible(true);
-        dispose();
+        this.dispose();
     }
 
 
     private void initComponents() {
-
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
-        scrollPane1 = new JScrollPane();
-        panel2 = new JPanel();
-        panel3 = new JPanel();
-        examLabel = new JLabel();
-        attendButton = new JButton();
-        reviewButton = new JButton();
-        label1 = new JLabel();
-        button1 = new JButton();
         Logout = new JButton();
+        scrollPane2 = new JScrollPane();
+        table1 = new JTable();
+        timeLabel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -129,11 +129,12 @@ public class StudentsHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
-            0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
-            . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
-            red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
-            beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n S018460");
@@ -144,136 +145,60 @@ public class StudentsHomePage extends JFrame {
             //---- dateLabel ----
             dateLabel.setText("15.12.2021");
             dateLabel.setForeground(Color.white);
-            dateLabel.setFont(new Font("Roboto Light", Font.PLAIN, 18));
-
-            //======== scrollPane1 ========
-            {
-                scrollPane1.setBackground(Color.white);
-                scrollPane1.setForeground(Color.white);
-
-                //======== panel2 ========
-                {
-
-                    //======== panel3 ========
-                    {
-                        panel3.setBackground(Color.white);
-
-                        //---- examLabel ----
-                        examLabel.setText("cs434 Midterm");
-                        examLabel.setForeground(new Color(177, 184, 202));
-                        examLabel.setFont(new Font("Roboto Light", Font.BOLD, 25));
-
-                        //---- attendButton ----
-                        attendButton.setText("Attend");
-                        attendButton.setBackground(Color.white);
-                        attendButton.addActionListener(e -> attendButton(e));
-
-                        //---- reviewButton ----
-                        reviewButton.setText("Review");
-                        reviewButton.setBackground(Color.white);
-                        reviewButton.addActionListener(e -> {
-			reviewButton(e);
-			review(e);
-		});
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(examLabel)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                                    .addComponent(attendButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(reviewButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22))
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                                    .addContainerGap(27, Short.MAX_VALUE)
-                                    .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(examLabel)
-                                        .addComponent(attendButton)
-                                        .addComponent(reviewButton))
-                                    .addGap(22, 22, 22))
-                        );
-                    }
-
-                    GroupLayout panel2Layout = new GroupLayout(panel2);
-                    panel2.setLayout(panel2Layout);
-                    panel2Layout.setHorizontalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(178, Short.MAX_VALUE))
-                    );
-                    panel2Layout.setVerticalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(230, Short.MAX_VALUE))
-                    );
-                }
-                scrollPane1.setViewportView(panel2);
-            }
-
-            //---- label1 ----
-            label1.setText("Exams");
-            label1.setForeground(Color.white);
-
-            //---- button1 ----
-            button1.setText("Grades");
-            button1.setBackground(new Color(182, 142, 185));
-            button1.setForeground(Color.darkGray);
-            button1.setOpaque(false);
-            button1.addActionListener(e -> GradesButton(e));
+            dateLabel.setFont(new Font("Roboto", Font.PLAIN, 13));
 
             //---- Logout ----
             Logout.setText("Logout");
             Logout.addActionListener(e -> Logout(e));
 
+            //======== scrollPane2 ========
+            {
+                scrollPane2.setViewportView(table1);
+            }
+
+            //---- timeLabel ----
+            timeLabel.setText("Time");
+            timeLabel.setForeground(Color.white);
+            timeLabel.setFont(new Font("Roboto", Font.PLAIN, 13));
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(panel1Layout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(label1)
-                                .addGap(18, 18, 18)
-                                .addComponent(button1)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 365, Short.MAX_VALUE)
+                                .addContainerGap(529, Short.MAX_VALUE)
                                 .addComponent(Logout))
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
-                                .addComponent(dateLabel)))
+                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(dateLabel)
+                                            .addComponent(timeLabel))
+                                        .addGap(8, 8, 8)))))
                         .addGap(26, 26, 26))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(dateLabel))
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label1)
-                                    .addComponent(button1)))
+                                .addGap(34, 34, 34)
+                                .addComponent(nameLabel))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Logout)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 320, GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(dateLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(timeLabel)))
+                        .addGap(26, 26, 26)
+                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 319, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Logout)
                         .addContainerGap(14, Short.MAX_VALUE))
             );
         }
@@ -298,14 +223,10 @@ public class StudentsHomePage extends JFrame {
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;
-    private JScrollPane scrollPane1;
-    private JPanel panel2;
-    private JPanel panel3;
-    private JLabel examLabel;
-    private JButton attendButton;
-    private JButton reviewButton;
-    private JLabel label1;
-    private JButton button1;
     private JButton Logout;
+    private JScrollPane scrollPane2;
+    private JTable table1;
+    private JLabel timeLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
+

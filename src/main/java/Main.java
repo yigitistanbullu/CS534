@@ -49,5 +49,6 @@ public class Main {
         //factory.setPointsEarnedInstructor(5,2,3);
         examModel.setExamGrade(exam);
         LoginView app = new LoginView();
+        app.setVisible(true);
     }
 }

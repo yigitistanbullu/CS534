@@ -23,6 +23,8 @@ public class MultipleQuestion extends JPanel {
     public int questionId;
     public int examId;
 
+    QuestionModel model = new QuestionModel();
+
     public MultipleQuestion(int id, int examId) {
         this.questionId =id;
         this.examId =examId;
@@ -60,6 +62,27 @@ public class MultipleQuestion extends JPanel {
         cAnswer.setText(answers.get(2));
     }
 
+    public void setAnswerForReview(int questionId){
+        QuestionModel model = new QuestionModel();
+        String answer =  model.getSelectedAnswer(questionId);
+        radioButton1.setEnabled(false);
+        radioButton2.setEnabled(false);
+        radioButton3.setEnabled(false);
+        if(answer.equals(aAnswer.getText())){
+            radioButton1.setSelected(true);
+        }
+        else if(answer.equals(bAnswer.getText())){
+            radioButton2.setSelected(true);
+        }
+        else if(answer.equals(cAnswer.getText())){
+            radioButton3.setSelected(true);
+        }
+    }
+
+    public void removeSave(){
+        save.setVisible(false);
+    }
+
     public void setNumber(String number){
         label1.setText(number);
     }
@@ -94,13 +117,11 @@ public class MultipleQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
         //---- question ----
         question.setText("question");

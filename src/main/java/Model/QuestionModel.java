@@ -135,8 +135,6 @@ public class QuestionModel {
 
         String Query = "SELECT  user_answer1 , user_answer2 , user_answer3  FROM Question Where question_id ='" + question_id + "';";
         try {
-
-
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             int sira = result.getMetaData().getColumnCount();
 
@@ -145,8 +143,6 @@ public class QuestionModel {
                     questions.add(result.getString(i));
                 }
             }
-
-
 
         } catch (SQLException e) {
 
@@ -181,6 +177,22 @@ public class QuestionModel {
         }
 
         return questions;
+    }
+
+    public String getSelectedAnswer(int questionId){
+        String selectedAnswer = "";
+        ResultSet result;
+        String Query = "SELECT selected_answer FROM Question WHERE question_id ='" + questionId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            selectedAnswer = result.getString(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return selectedAnswer;
     }
 
 }

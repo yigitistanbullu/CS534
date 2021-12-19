@@ -34,10 +34,6 @@ public class TeachersHomePage extends JFrame {
         date();
     }
 
-    private void thisWindowActivated(WindowEvent e) {
-        // TODO add your code here
-    }
-
     private void reviewButton(ActionEvent e) {
         dispose();
         TeacherGradingPage review = new TeacherGradingPage(id, model.getName(id));
@@ -59,14 +55,6 @@ public class TeachersHomePage extends JFrame {
         dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy", new Locale("tr")).format(new Date()));
     }
 
-    private void nameLabelPropertyChange(PropertyChangeEvent e) {
-        // TODO add your code here
-    }
-
-    private void dateLabelPropertyChange(PropertyChangeEvent e) {
-        // TODO add your code here
-    }
-
     private void Logout(ActionEvent e) {
         LoginView view = new LoginView();
         view.setLocationRelativeTo(null);
@@ -76,7 +64,6 @@ public class TeachersHomePage extends JFrame {
 
 
     private void initComponents() {
-        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
@@ -92,12 +79,6 @@ public class TeachersHomePage extends JFrame {
         Logout = new JButton();
 
         //======== this ========
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowActivated(WindowEvent e) {
-                thisWindowActivated(e);
-            }
-        });
         var contentPane = getContentPane();
 
         //======== panel1 ========
@@ -115,13 +96,11 @@ public class TeachersHomePage extends JFrame {
             nameLabel.setForeground(Color.white);
             nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
             nameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
-            nameLabel.addPropertyChangeListener(e -> nameLabelPropertyChange(e));
 
             //---- dateLabel ----
             dateLabel.setText("15.12.2021");
             dateLabel.setForeground(Color.white);
             dateLabel.setFont(new Font("Roboto Light", Font.PLAIN, 18));
-            dateLabel.addPropertyChangeListener(e -> dateLabelPropertyChange(e));
 
             //======== scrollPane1 ========
             {

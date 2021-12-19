@@ -4,11 +4,17 @@
 
 package View;
 
+import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
 import Model.ExamModel;
+import Model.QuestionModel;
+import View.StudentsQuestion.MultipleQuestion;
+import View.StudentsQuestion.TextQuestion;
+import View.StudentsQuestion.TrueFalseQuestion;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -16,41 +22,40 @@ import javax.swing.GroupLayout;
  * @author Zeliha Aydın
  */
 public class StudentsReviewPage extends JFrame {
-    public int studentId;
     public String studentName;
-    AuthorizationModel model = new AuthorizationModel();
-    ExamModel examModel = new ExamModel();
+    public int examId;
+    public int studentId;
 
-    public StudentsReviewPage(int studentId, String studentName) {
-        this.studentId = studentId;
+    public StudentsReviewPage(int studentId, String studentName, int examId) {
         this.studentName = studentName;
+        this.examId = examId;
+        this.studentId = studentId;
         initComponents();
         nameLabelPropertyChange();
         setExamName();
+        addQuestion(examId);
     }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public int getExamId() {
+        return examId;
     }
 
     public String getStudentName() {
         return studentName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public int getStudentId() {
+        return studentId;
     }
 
     private void nameLabelPropertyChange() {
-        nameLabel.setText(model.getName(studentId));
+        nameLabel.setText(getStudentName());
     }
 
     private void setExamName(){
-        nameLabel2.setText(examModel.getExam(model.getExamId(1)).getName());
+        ExamModel model = new ExamModel();
+        Exam exam = model.getExam(getExamId());
+        nameLabel2.setText(exam.getName());
     }
 
     private void doneButtonOnClicked(ActionEvent e) {
@@ -60,17 +65,44 @@ public class StudentsReviewPage extends JFrame {
         this.dispose();
     }
 
+    public void addQuestion(int examId ){
+        QuestionModel questionModel = new QuestionModel();
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(examId);
+        panel2.setLayout(new GridLayout(questionID.size(), 1));
+        for(int i = 0; i< questionID.size();i++){
+            if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
+                TextQuestion question = new TextQuestion(questionID.get(i), examId);
+                question.setNumber(String.valueOf(i+1));
+                question.setAnswerForReview(questionID.get(i));
+                question.removeSave();
+                panel2.add(question);
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
+                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
+                question.setNumber(String.valueOf(i+1));
+                question.setAnswerForReview(questionID.get(i));
+                question.removeSave();
+                panel2.add(question);
+
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
+                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
+                question.setNumber(String.valueOf(i+1));
+                question.setAnswerForReview(questionID.get(i));
+                question.removeSave();
+                panel2.add(question);
+            }
+        }
+    }
+
     private void initComponents() {
-        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
         nameLabel = new JLabel();
         nameLabel2 = new JLabel();
         scrollPane1 = new JScrollPane();
         panel2 = new JPanel();
-        panel3 = new JPanel();
-        examLabel = new JLabel();
         doneButton = new JButton();
 
         //======== this ========
@@ -79,13 +111,13 @@ public class StudentsReviewPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Zeliha Ayd\u0131n");
@@ -107,50 +139,7 @@ public class StudentsReviewPage extends JFrame {
 
                 //======== panel2 ========
                 {
-
-                    //======== panel3 ========
-                    {
-                        panel3.setBackground(Color.white);
-
-                        //---- examLabel ----
-                        examLabel.setText("question");
-                        examLabel.setForeground(new Color(177, 184, 202));
-                        examLabel.setFont(new Font("Roboto Light", Font.BOLD, 25));
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(examLabel)
-                                    .addContainerGap(505, Short.MAX_VALUE))
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                                    .addContainerGap(24, Short.MAX_VALUE)
-                                    .addComponent(examLabel)
-                                    .addGap(25, 25, 25))
-                        );
-                    }
-
-                    GroupLayout panel2Layout = new GroupLayout(panel2);
-                    panel2.setLayout(panel2Layout);
-                    panel2Layout.setHorizontalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                    );
-                    panel2Layout.setVerticalGroup(
-                        panel2Layout.createParallelGroup()
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(285, Short.MAX_VALUE))
-                    );
+                    panel2.setLayout(new GridLayout());
                 }
                 scrollPane1.setViewportView(panel2);
             }
@@ -171,13 +160,15 @@ public class StudentsReviewPage extends JFrame {
                         .addComponent(nameLabel2, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(scrollPane1)
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 662, GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17))
+                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                .addGap(567, 567, 567)
                                 .addComponent(doneButton)))
-                        .addContainerGap())
+                        .addGap(0, 3, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -187,8 +178,8 @@ public class StudentsReviewPage extends JFrame {
                             .addComponent(nameLabel)
                             .addComponent(nameLabel2))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(doneButton)
                         .addContainerGap())
             );
@@ -210,14 +201,12 @@ public class StudentsReviewPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel nameLabel2;
     private JScrollPane scrollPane1;
     private JPanel panel2;
-    private JPanel panel3;
-    private JLabel examLabel;
     private JButton doneButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

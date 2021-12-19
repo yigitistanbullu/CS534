@@ -37,8 +37,16 @@ public class RegisterView extends JFrame {
         AuthorizationModel.addUser(user);
         JOptionPane.showMessageDialog(new JFrame(),"User Created Successfully","Dialog",JOptionPane.WARNING_MESSAGE);
         LoginView loginView = new LoginView();
-        loginView.setLocationRelativeTo(null);
+        loginView.setLocationRelativeTo(this);
+        loginView.setVisible(true);
         this.dispose();
+    }
+
+    private void login(ActionEvent e) {
+        this.dispose();
+        LoginView view = new LoginView();
+        view.setLocationRelativeTo(this);
+        view.setVisible(true);
     }
 
 
@@ -61,9 +69,7 @@ public class RegisterView extends JFrame {
 
 
 
-
     private void initComponents() {
-        setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         registerText = new JLabel();
@@ -81,6 +87,7 @@ public class RegisterView extends JFrame {
         label5 = new JLabel();
         label6 = new JLabel();
         passwordField = new JPasswordField();
+        registerButton2 = new JButton();
 
         //======== this ========
         setBackground(new Color(182, 142, 185));
@@ -101,14 +108,12 @@ public class RegisterView extends JFrame {
         studentCheckbox.setText("Student");
         studentCheckbox.addActionListener(e -> {
 			chkstudent(e);
+			student(e);
 		});
 
         //---- registerButton ----
         registerButton.setText("Register");
-        registerButton.addActionListener(e -> {
-			register(e);
-			register(e);
-		});
+        registerButton.addActionListener(e -> register(e));
 
         //---- label1 ----
         label1.setText("CS434 Exam Portal");
@@ -128,19 +133,23 @@ public class RegisterView extends JFrame {
         //---- label6 ----
         label6.setText("Student ID");
 
+        //---- registerButton2 ----
+        registerButton2.setText("Login");
+        registerButton2.addActionListener(e -> login(e));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(320, Short.MAX_VALUE)
-                    .addComponent(registerButton)
-                    .addGap(312, 312, 312))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(label1, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
                     .addGap(97, 97, 97)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(registerButton)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(registerButton2))
                         .addComponent(label6)
                         .addComponent(label5)
                         .addComponent(label4)
@@ -199,7 +208,9 @@ public class RegisterView extends JFrame {
                                 .addComponent(teacherCheckbox)
                                 .addComponent(studentCheckbox))))
                     .addGap(18, 18, 18)
-                    .addComponent(registerButton)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(registerButton)
+                        .addComponent(registerButton2))
                     .addContainerGap())
         );
         pack();
@@ -224,5 +235,6 @@ public class RegisterView extends JFrame {
     private JLabel label5;
     private JLabel label6;
     private JPasswordField passwordField;
+    private JButton registerButton2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {comp save:::p::p, par l {comp label1:::p::p, comp enterAnswer::l:p::p, comp answer::l:p:602:p, comp questionLabel::l:p:602:p}}, space ::13:x}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space :::p, comp questionLabel:::::x, space :::p, comp enterAnswer:::p::p, space :::p, comp answer:::p::p, space :::p, comp save:::p::p, space :p:12:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {comp save:::p::p, par l {comp label1:::p::p, comp enterAnswer::l:p::p, comp answerField::l:p:602:p, comp questionLabel::l:p:602:p}}, space ::13:x}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space :::p, comp questionLabel:::::x, space :::p, comp enterAnswer:::p::p, space :::p, comp answerField:::p::p, space :::p, comp save:::p::p, space :p:12:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -15,7 +15,7 @@ new FormModel {
 				"text": "question"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "answer"
+				name: "answerField"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

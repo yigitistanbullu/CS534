@@ -9,20 +9,20 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userName:::p:167:p, space :p:60:p, comp examName:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space ::619:x, comp submitButton:::p::p}, comp questionScrollPane::l:::x}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp userName::b:p::p, comp examName::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane::::380:x, space :::p, comp submitButton:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userNameLabel:::p:167:p, space :p:60:p, comp examNameLabel:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space ::619:x, comp submitButton:::p::p}, comp questionScrollPane::l:::x}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp userNameLabel::b:p::p, comp examNameLabel::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane::::380:x, space :::p, comp submitButton:::p::p, space :::p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "userName"
+					name: "userNameLabel"
 					"text": "Zeliha Aydın"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 2
 					"font": &Font0 new java.awt.Font( "Roboto Thin", 0, 18 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "examName"
+					name: "examNameLabel"
 					"text": "CS434 Midterm 1"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 0
@@ -41,7 +41,6 @@ new FormModel {
 					name: "submitButton"
 					"text": "Submit"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "submitButtonMouseClicked", true ) )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

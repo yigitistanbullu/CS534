@@ -3,6 +3,7 @@ package View.StudentsQuestion;
 import java.awt.event.*;
 import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
+import Model.ExamModel;
 import Model.QuestionModel;
 import View.StudentsHomePage;
 
@@ -20,19 +21,15 @@ import javax.swing.GroupLayout;
  */
 public class QuestionsPage extends JFrame {
 
-    ArrayList<String> questions = new ArrayList<>();
-    
-    public String user_name;
-    public int exam_id;
-
-    public QuestionsPage(Exam exam, String name) {
-        this.user_name = name;
+    public String userName;
+    public int examId;
+    public QuestionsPage(int examId, String name) {
+        this.userName = name;
+        this.examId=examId;
         initComponents();
-        setExamName(exam.getName());
-        addQuestion(exam);
-        setUserName(name);
-        setExam_id(exam.getId());
-
+        setExamName();
+        setUserName();
+        addQuestion(examId);
     }
     public void time(){
         new Timer(0, new ActionListener(){
@@ -44,64 +41,52 @@ public class QuestionsPage extends JFrame {
         }).start();
     }
 
-    public int getExam_id() {
-        return exam_id;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setExam_id(int exam_id) {
-        this.exam_id = exam_id;
+    public int getExamId() {
+        return examId;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public void setExamName(){
+        ExamModel model = new ExamModel();
+        Exam exam1 = model.getExam(getExamId());
+        examNameLabel.setText(exam1.getName());
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(){
+        userNameLabel.setText(getUserName());
     }
 
-    public void setExamName(String exam){
-        examName.setText(exam);
-    }
-
-    public void setUserName(String user){
-        userName.setText(user);
-    }
-
-    public void addQuestion(Exam exam){
+    public void addQuestion(int examId ){
         QuestionModel questionModel = new QuestionModel();
-
-        ArrayList<Integer> questionID = questionModel.getQuestionIds(exam.getId());
-        System.out.println(questionID);
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(examId);
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
-                TextQuestion question = new TextQuestion(questionID.get(i), exam.getId());
+                TextQuestion question = new TextQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 panel2.add(question);
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
-                MultipleQuestion question = new MultipleQuestion(questionID.get(i), exam.getId());
+                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 panel2.add(question);
 
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
-                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), exam.getId());
+                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 panel2.add(question);
             }
         }
     }
 
-    private void submitButtonMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
 
     private void submit(ActionEvent e) {
         AuthorizationModel model = new AuthorizationModel();
-        StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(getUser_name()),getUser_name(),getExam_id());
-        studentsHomePage.setLocationRelativeTo(null);
+        StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(getUserName()),getUserName(),getExamId());
         studentsHomePage.setVisible(true);
         dispose();
     }
@@ -113,8 +98,8 @@ public class QuestionsPage extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
         panel1 = new JPanel();
-        userName = new JLabel();
-        examName = new JLabel();
+        userNameLabel = new JLabel();
+        examNameLabel = new JLabel();
         questionScrollPane = new JScrollPane();
         panel2 = new JPanel();
         submitButton = new JButton();
@@ -126,26 +111,26 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-            swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border
-            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog"
-            ,java.awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder
-            ()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-            .beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException
-            ();}});
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+            .border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.
+            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
+            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ;
 
-            //---- userName ----
-            userName.setText("Zeliha Ayd\u0131n");
-            userName.setForeground(Color.darkGray);
-            userName.setHorizontalAlignment(SwingConstants.LEFT);
-            userName.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            //---- userNameLabel ----
+            userNameLabel.setText("Zeliha Ayd\u0131n");
+            userNameLabel.setForeground(Color.darkGray);
+            userNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
+            userNameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
 
-            //---- examName ----
-            examName.setText("CS434 Midterm 1");
-            examName.setForeground(Color.darkGray);
-            examName.setHorizontalAlignment(SwingConstants.CENTER);
-            examName.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
-            examName.setHorizontalTextPosition(SwingConstants.RIGHT);
+            //---- examNameLabel ----
+            examNameLabel.setText("CS434 Midterm 1");
+            examNameLabel.setForeground(Color.darkGray);
+            examNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            examNameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            examNameLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
 
             //======== questionScrollPane ========
             {
@@ -162,12 +147,6 @@ public class QuestionsPage extends JFrame {
             //---- submitButton ----
             submitButton.setText("Submit");
             submitButton.setBackground(Color.white);
-            submitButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    submitButtonMouseClicked(e);
-                }
-            });
             submitButton.addActionListener(e -> submit(e));
 
             //---- time ----
@@ -185,9 +164,9 @@ public class QuestionsPage extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(userName, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(userNameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
-                                .addComponent(examName, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10))
@@ -202,8 +181,8 @@ public class QuestionsPage extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(userName)
-                            .addComponent(examName)
+                            .addComponent(userNameLabel)
+                            .addComponent(examNameLabel)
                             .addComponent(time))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(questionScrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
@@ -231,8 +210,8 @@ public class QuestionsPage extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - yasemin
     private JPanel panel1;
-    private JLabel userName;
-    private JLabel examName;
+    private JLabel userNameLabel;
+    private JLabel examNameLabel;
     private JScrollPane questionScrollPane;
     private JPanel panel2;
     private JButton submitButton;

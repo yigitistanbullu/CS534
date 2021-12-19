@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp label1:::p::p, space s:::p, comp button1:::p::p, space ::365:x, comp Logout:::p::p}, comp scrollPane1::::580:x, seq {comp nameLabel:::p:179:p, space ::313:x, comp dateLabel:::p::p}}, space :p:26:p}}"
-				"$verticalGroup": "par l {seq l {space :p:25:p, par b {comp nameLabel::b:p::p, comp dateLabel::b:p::p}, par l {seq {space :p:19:p, par b {comp label1::b:p::p, comp button1::b:p::p}}, seq l {space u:::p, comp Logout:::p::p}}, space :::p, comp scrollPane1:::p:320:p, space ::14:x}}"
+				"$horizontalGroup": "par l {seq t {par t {seq {space ::529:x, comp Logout:::p::p}, seq l {space :p:22:p, par l {comp scrollPane2::::585:x, seq l {comp nameLabel:::p:179:p, space ::333:x, par l {comp dateLabel:::p::p, comp timeLabel:::p::p}, space :p:8:p}}}}, space :p:26:p}}"
+				"$verticalGroup": "par l {seq l {par l {seq l {space :p:34:p, comp nameLabel:::p::p}, seq l {space :p:19:p, comp dateLabel:::p::p, space :::p, comp timeLabel:::p::p}}, space :p:26:p, comp scrollPane2:::p:319:p, space s:::p, comp Logout:::p::p, space ::14:x}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 182, 142, 185, 255 )
@@ -25,67 +25,29 @@ new FormModel {
 					name: "dateLabel"
 					"text": "15.12.2021"
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					"font": new java.awt.Font( "Roboto Light", 0, 18 )
-				} )
-				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-					name: "scrollPane1"
-					"background": new java.awt.Color( 255, 255, 255, 255 )
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, comp panel3:::p::p, space ::178:x}}"
-						"$verticalGroup": "par l {seq l {space :p:15:p, comp panel3:::p::p, space ::230:x}}"
-					} ) {
-						name: "panel2"
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq l {space :p:14:p, comp examLabel:::p::p, space ::121:x, comp attendButton:::p:100:p, space :p:31:p, comp reviewButton:::p:100:p, space :p:22:p}}"
-							"$verticalGroup": "par l {seq t {space ::27:x, par b {comp examLabel::b:p::p, comp attendButton::b:p::p, comp reviewButton::b:p::p}, space :p:22:p}}"
-						} ) {
-							name: "panel3"
-							"background": new java.awt.Color( 255, 255, 255, 255 )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "examLabel"
-								"text": "cs434 Midterm"
-								"foreground": new java.awt.Color( 177, 184, 202, 255 )
-								"font": new java.awt.Font( "Roboto Light", 1, 25 )
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "attendButton"
-								"text": "Attend"
-								"background": new java.awt.Color( 255, 255, 255, 255 )
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "attendButton", true ) )
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "reviewButton"
-								"text": "Review"
-								"background": new java.awt.Color( 255, 255, 255, 255 )
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reviewButton", true ) )
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "review", true ) )
-							} )
-						} )
-					} )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"text": "Exams"
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button1"
-					"text": "Grades"
-					"background": new java.awt.Color( 182, 142, 185, 255 )
-					"foreground": sfield java.awt.Color darkGray
-					"opaque": false
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GradesButton", true ) )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "Logout"
 					"text": "Logout"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Logout", true ) )
 				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table1"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "timeLabel"
+					"text": "Time"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 630, 460 )
+			"size": new java.awt.Dimension( 635, 490 )
 		} )
 	}
 }
