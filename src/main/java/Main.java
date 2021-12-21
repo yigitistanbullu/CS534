@@ -1,4 +1,3 @@
-import Controller.ExamController.Exam;
 import Controller.QuestionController.Factory.QuestionFactory;
 import Controller.QuestionController.Factory.TextQuestionFactory;
 import Controller.UserController.MediatorImp;
@@ -6,17 +5,15 @@ import Controller.UserController.Password;
 import Controller.UserController.User;
 import Model.AuthorizationModel;
 import Model.DBConnection;
-import Model.ExamModel;
-import Model.QuestionModel;
+import View.EditExamFrame;
 import View.LoginView;
-import View.RegisterView;
-import View.StudentsQuestion.QuestionsPage;
-import View.TeachersHomePage;
 
-import javax.swing.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
+    private static AtomicInteger ID_GENERATOR = new AtomicInteger(1);
+
     public static void main(String[] args) {
 
         DBConnection connection = new DBConnection();
@@ -31,10 +28,6 @@ public class Main {
                 return null;
             }
         };
-        Exam exam = new Exam(5,"math",100);
-        ExamModel examModel = new ExamModel();
-        System.out.println(examModel.getGrade(exam));
-
 
         //authorizationModel.addUser(user);
         ArrayList<String> answers = new ArrayList<>(){};
@@ -47,8 +40,8 @@ public class Main {
         //factory.setPointsEarnedSystem(3);
         //factory.setPointsEarnedSystem(5,2,answers.get(0));
         //factory.setPointsEarnedInstructor(5,2,3);
-        examModel.setExamGrade(exam);
         LoginView app = new LoginView();
         app.setVisible(true);
+
     }
 }

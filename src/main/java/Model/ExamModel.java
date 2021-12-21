@@ -161,4 +161,25 @@ public class ExamModel {
     }
 
 
+    public int getExamIndex(){
+        int examId = 0;
+        ResultSet result;
+        String str ="";
+        String Query = "SELECT  max(exam_id)  FROM Exam ;";
+
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            examId = result.getInt(1);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return examId ;
+    }
+
+
+
 }

@@ -1,10 +1,8 @@
 package View;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.EventListener;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -13,9 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
 import Model.ExamModel;
-import View.StudentsQuestion.QuestionsPage;
-import View.TeachersQuestion.QuestionsPageInstructor;
-import View.TeacherGradingPage;
+import com.mysql.cj.result.Row;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:40:10 EET 2021
  */
@@ -54,34 +50,18 @@ public class TeachersHomePage extends JFrame {
     public void setExamData(){
         ExamModel model = new ExamModel();
         Exam exam = model.getExam(getExamId());
-        String[][] data = {{exam.getName(),"Edit","Review"}};
-        String[] columnNames = {"Exam Name","",""};
+        String[][] data = {{exam.getName(),"Date", "Time"}};
+        String[] columnNames = {"Exam Name","Date", "Time"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
-        ButtonColumn column = new ButtonColumn(table1, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-
-            }
-        }, 1 );
-        ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TeacherGradingPage review = new TeacherGradingPage(getExamId(), getUserName());
-                review.setVisible(true);
-                review.setLocationRelativeTo(null);
-                dispose();
-            }
-        }, 2 );
     }
 
     private void createExam(ActionEvent e) {
-        dispose();
-        QuestionsPageInstructor exam = new QuestionsPageInstructor();
-        exam.setVisible(true);
-        exam.setLocationRelativeTo(null);
+        CreateExamFrame frame = new CreateExamFrame(getUserName(),getUserId(),getExamId());
+        frame.setVisible(true);
+        this.dispose();
     }
 
     private void setNameLabel() {
@@ -108,7 +88,13 @@ public class TeachersHomePage extends JFrame {
         view.setVisible(true);
         dispose();
     }
-    
+
+    private void editExam(ActionEvent e) {
+        int indexSelectedRow = table1.getSelectedRow();
+        EditExamFrame frame = new EditExamFrame(getUserId(),getUserName(),getExamId());
+        frame.setVisible(true);
+        this.dispose();
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -121,6 +107,8 @@ public class TeachersHomePage extends JFrame {
         Logout = new JButton();
         dateLabel = new JLabel();
         timeLabel = new JLabel();
+        button1 = new JButton();
+        button2 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -128,17 +116,15 @@ public class TeachersHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , ""
-            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-            , java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER
+            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font
+            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072"
+            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
-            nameLabel.setText("Emre Kaplan");
+            nameLabel.setText("Instructor Name");
             nameLabel.setForeground(Color.white);
             nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
             nameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
@@ -168,24 +154,36 @@ public class TeachersHomePage extends JFrame {
             timeLabel.setForeground(Color.white);
             timeLabel.setFont(new Font("Roboto", Font.PLAIN, 13));
 
+            //---- button1 ----
+            button1.setText("Edit Exam");
+            button1.addActionListener(e -> editExam(e));
+
+            //---- button2 ----
+            button2.setText("Grade Exam");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Logout))
+                                .addComponent(Logout)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
+                                .addComponent(createExamButton))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addGap(0, 392, Short.MAX_VALUE)
+                                .addComponent(button2)
+                                .addGap(18, 18, 18)
+                                .addComponent(button1))
+                            .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(createExamButton, GroupLayout.Alignment.TRAILING)
-                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createParallelGroup()
-                                        .addComponent(timeLabel)
-                                        .addComponent(dateLabel)))))
+                                    .addComponent(timeLabel)
+                                    .addComponent(dateLabel))))
                         .addGap(28, 28, 28))
             );
             panel1Layout.setVerticalGroup(
@@ -202,12 +200,16 @@ public class TeachersHomePage extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(timeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(createExamButton)
-                            .addComponent(Logout))
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(Logout)
+                            .addComponent(createExamButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
-                        .addGap(211, 211, 211))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(button1)
+                            .addComponent(button2))
+                        .addGap(14, 14, 14))
             );
         }
 
@@ -219,9 +221,7 @@ public class TeachersHomePage extends JFrame {
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -238,5 +238,7 @@ public class TeachersHomePage extends JFrame {
     private JButton Logout;
     private JLabel dateLabel;
     private JLabel timeLabel;
+    private JButton button1;
+    private JButton button2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

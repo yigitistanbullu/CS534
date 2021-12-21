@@ -59,7 +59,7 @@ public class StudentsReviewPage extends JFrame {
     }
 
     private void doneButtonOnClicked(ActionEvent e) {
-        StudentsHomePage homePage = new StudentsHomePage(getStudentId(),getStudentName(),5);
+        StudentsHomePage homePage = new StudentsHomePage(getStudentId(),getStudentName(),1);
         homePage.setVisible(true);
         homePage.setLocationRelativeTo(null);
         this.dispose();

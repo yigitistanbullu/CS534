@@ -3,10 +3,11 @@ package Controller.ExamController;
 import Controller.QuestionController.Question;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Exam {
-    public Exam(int id, String name, double grade) {
-        this.id = id;
+    public Exam(int id,String name, double grade) {
+        this.id = id;;
         this.name = name;
         this.grade = grade;
         //this.questions = questions;

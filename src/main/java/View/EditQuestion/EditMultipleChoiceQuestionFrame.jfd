@@ -1,0 +1,70 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {seq t {space :0:0:x, comp panel1:::p::p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :48:33:x, par t {seq {comp textField3:::p:452:p, space :p:88:p}, comp button2::l:p::p}, space :p:55:p}, seq {par l {seq {space :p:34:p, par t:::p {seq t {par l {comp label2::t:p::p, comp label4::t:p::p, comp label3::t:p::p}, space u:::p, par l:::p {comp textField7::t:::x, comp textField6:::::x, comp textField5:::p:527:p}}, comp textField2::t:p:70:p, comp button1::t:p:78:p, comp textField4::t:p:552:p, comp label5::l:p::p}}, seq l {space :p:231:p, comp label1:::p::p}}, space ::42:x}}"
+				"$verticalGroup": "par l {seq l {space :p:13:p, comp label1:::p::p, space s:::p, comp label5:::p::p, space :::p, comp textField4:::p::p, space :::p, par b {comp label2::b:p::p, comp textField5::b:p::p}, space s:::p, par b {comp textField6::b:p::p, comp label4::b:p::p}, space s:::p, par b {comp textField7::b:p::p, comp label3::b:p::p}, space :p:27:p, par b {comp textField3::b:p::p, comp textField2::b:p::p}, space :p:30:p, par b {comp button2::b:p::p, comp button1::b:p:30:p}, space ::29:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Multiple Choice Question"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField2"
+					"text": "Points"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField3"
+					"text": "Key Answer"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "Cancel"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField4"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField5"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField6"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField7"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "A."
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "C."
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "B."
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Enter question here:"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 630, 400 )
+		} )
+	}
+}

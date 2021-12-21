@@ -1,0 +1,53 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {seq l {comp panel1:::p::p, space :0:6:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:231:p, comp label1:::p::p}, seq l {space :p:34:p, par t:::p {seq l {comp button2:::p::p, space :::x, comp button1:::p:78:p}, seq t {comp comboBox1:::p:149:p, space :::x, comp textField2:::p:70:p}, comp textField4::l:p:552:p, comp label5::l:p::p}}}, space ::42:x}}"
+				"$verticalGroup": "par l {seq l {space :p:13:p, comp label1:::p::p, space :p:22:p, comp label5:::p::p, space u:::p, comp textField4:::p::p, space u:::p, par b {comp textField2::b:p::p, comp comboBox1::b:p::p}, space s:::p, par b {comp button2::b:p::p, comp button1::b:p:30:p}, space ::21:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "True False Question"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField2"
+					"text": "Points"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "Cancel"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField4"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Enter question here:"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox1"
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "True"
+						addElement( "True" )
+						addElement( "False" )
+					}
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 630, 250 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}

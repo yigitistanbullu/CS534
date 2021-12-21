@@ -195,4 +195,35 @@ public class QuestionModel {
         return selectedAnswer;
     }
 
+    public String getKeyAnswer(int questionId){
+        String keyAnswer = "";
+        ResultSet result;
+        String Query = "SELECT key_answer FROM Question WHERE question_id ='" + questionId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            keyAnswer = result.getString(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return keyAnswer;
+    }
+    public String getAvailablePoints(int questionId){
+        String points = "";
+        ResultSet result;
+        String Query = "SELECT points FROM Question WHERE question_id ='" + questionId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            points = result.getString(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return points;
+    }
+
 }
