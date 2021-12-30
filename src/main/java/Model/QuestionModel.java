@@ -226,4 +226,21 @@ public class QuestionModel {
         return points;
     }
 
+    public int getQuestionIndex(int examId){
+        int questionIndex = 0;
+        ResultSet result;
+        String str ="";
+        String Query = "SELECT  max(question_id)  FROM Question Where exam_id =" + examId + " ;";
+        try {
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            questionIndex = result.getInt(1);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return questionIndex ;
+    }
+
 }

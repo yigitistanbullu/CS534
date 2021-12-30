@@ -140,7 +140,6 @@ public class ExamModel {
         String Query = "SELECT  user_exam_id  FROM User Where user_id =" + user_Id + ";";
         try {
 
-
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             sira = result.getMetaData().getColumnCount();
 
@@ -149,8 +148,6 @@ public class ExamModel {
                     exams.add(i);
                 }
             }
-
-
 
         } catch (SQLException e) {
 
