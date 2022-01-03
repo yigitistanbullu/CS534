@@ -2,6 +2,7 @@ package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Controller.ExamController.Exam;
 import Controller.UserController.User;
@@ -205,5 +206,31 @@ public class AuthorizationModel {
         return userId;
     }
 
+    public ArrayList<Integer> getUserIds(){
+        ResultSet result;
+            ArrayList<Integer> userIds = new ArrayList<>();
+
+        String Query = "SELECT  user_id  FROM User Where user_type ='" + 0 + "';";
+        try {
+
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            int sira = result.getMetaData().getColumnCount();
+
+            while(result.next()){
+                for(int i = 1 ; i<= sira; i++){
+                    userIds.add(Integer.parseInt(result.getString(i)));
+                }
+            }
+
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return userIds;
+    }
 
 }

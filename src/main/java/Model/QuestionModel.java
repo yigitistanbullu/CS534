@@ -11,7 +11,17 @@ public class QuestionModel {
 
     public static void addTrueFalseQuestion(Question question) {
 
-        String Query = "INSERT into Question(question_id, question, points, exam_id, question_type, key_answer) VALUES ('" + question.getId()+"','" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        String Query = "INSERT into Question(question, points, exam_id, question_type, key_answer) VALUES ('" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateTrueFalseQuestion(Question question) {
+        String Query = "UPDATE Question SET question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
         try {
             DBConnection.connection.createStatement().execute(Query);
         } catch (SQLException e) {
@@ -22,7 +32,7 @@ public class QuestionModel {
 
     public static void addTextQuestion(Question question) {
 
-        String Query = "INSERT into Question(question_id, user_answer1, question, points, exam_id, question_type, key_answer) VALUES ('" + question.getId()+"','" + question.getAvailableAnswers().get(0) +"','" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        String Query = "INSERT into Question(question, points, exam_id, question_type, key_answer) VALUES ('"+ question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -33,9 +43,33 @@ public class QuestionModel {
 
     }
 
+    public static void updateTextQuestion(Question question) {
+        String Query = "UPDATE Question SET question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
     public static void addMultipleChoiceQuestion(Question question) {
 
-        String Query = "INSERT into Question(question_id, user_answer1, user_answer2, user_answer3, question, points, exam_id, question_type, key_answer) VALUES ('" + question.getId()+"','" + question.getAvailableAnswers().get(0) +"','" + question.getAvailableAnswers().get(1) +"','" + question.getAvailableAnswers().get(2) +"','" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        String Query = "INSERT into Question(user_answer1, user_answer2, user_answer3, question, points, exam_id, question_type, key_answer) VALUES ('" + question.getAvailableAnswers().get(0) +"','" + question.getAvailableAnswers().get(1) +"','" + question.getAvailableAnswers().get(2) +"','" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateMultipleChoiceQuestion(Question question) {
+        String Query = "UPDATE Question SET user_answer1 = '" + question.getAvailableAnswers().get(0)+"',user_answer2 = '" + question.getAvailableAnswers().get(1)+"',user_answer3 = '" + question.getAvailableAnswers().get(2)+"',question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
+
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -226,21 +260,7 @@ public class QuestionModel {
         return points;
     }
 
-    public int getQuestionIndex(int examId){
-        int questionIndex = 0;
-        ResultSet result;
-        String str ="";
-        String Query = "SELECT  max(question_id)  FROM Question Where exam_id =" + examId + " ;";
-        try {
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            result.next();
-            questionIndex = result.getInt(1);
 
-        } catch (SQLException e) {
 
-            e.printStackTrace();
-        }
-        return questionIndex ;
-    }
 
 }

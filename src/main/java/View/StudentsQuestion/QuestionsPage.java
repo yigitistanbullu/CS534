@@ -16,15 +16,15 @@ import javax.swing.GroupLayout;
  * Created by JFormDesigner on Wed Dec 15 20:52:11 EET 2021
  */
 
-/**
- * @author Zeliha Aydın
- */
+
 public class QuestionsPage extends JFrame {
 
     public String userName;
     public int examId;
+
     public QuestionsPage(int examId, String name) {
         this.userName = name;
+        System.out.println(name);
         this.examId=examId;
         initComponents();
         setExamName();
@@ -86,7 +86,8 @@ public class QuestionsPage extends JFrame {
 
     private void submit(ActionEvent e) {
         AuthorizationModel model = new AuthorizationModel();
-        StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(getUserName()),getUserName(),getExamId());
+        String[] name = getUserName().split("\\s+");
+        StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(name[0]),getUserName());
         studentsHomePage.setVisible(true);
         dispose();
     }
@@ -112,11 +113,11 @@ public class QuestionsPage extends JFrame {
         {
             panel1.setBackground(Color.white);
             panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.
+            .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
             awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
             ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
             ;
 
             //---- userNameLabel ----

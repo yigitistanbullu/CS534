@@ -1,14 +1,11 @@
-import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
 import Controller.UserController.MediatorImp;
 import Controller.UserController.Password;
 import Controller.UserController.User;
 import Model.AuthorizationModel;
 import Model.DBConnection;
-import View.EditExamFrame;
+import View.GradingPage;
 import View.LoginView;
 
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
@@ -19,7 +16,7 @@ public class Main {
         DBConnection connection = new DBConnection();
         connection.establishConnection();
 
-        MediatorImp mediator = new MediatorImp();
+       /* MediatorImp mediator = new MediatorImp();
         AuthorizationModel authorizationModel = new AuthorizationModel();
         Password password = new Password("123");
         User user = new User(mediator, "Yasemin", "Orhun", "yaso@", password, 1, 0) {
@@ -29,19 +26,26 @@ public class Main {
             }
         };
 
-        //authorizationModel.addUser(user);
+        authorizationModel.addUser(user);
         ArrayList<String> answers = new ArrayList<>(){};
         answers.add("test");
         answers.add("test2");
         answers.add("test3");
         QuestionFactory factory = new TextQuestionFactory();
-        //factory.addQuestion(3,"",5,5,"test",answers);
+        QuestionFactory multipleChoice = new MultipleChoiceQuestionFactory();
+        QuestionFactory trueFalse = new TrueFalseQuestionFactory();
+
+        trueFalse.updateQuestion(3,"testupdate",50,1,"test", answers);
+       // multipleChoice.addQuestion("test",20,1,"test",answers);
+       // trueFalse.addQuestion("test",20,1,"test",answers);
+
         //factory.deleteQuestion(3);
-        //factory.setPointsEarnedSystem(3);
-        //factory.setPointsEarnedSystem(5,2,answers.get(0));
-        //factory.setPointsEarnedInstructor(5,2,3);
+        //,factory.setPointsEarnedSystem(3);/factory.setPointsEarnedSystem(5,2,answers.get(0));
+        //factory.setPointsEarnedInstructor(5,2,3);*/
         LoginView app = new LoginView();
         app.setVisible(true);
 
+        //GradingPage page = new GradingPage(1,"",1);
+       // page.setVisible(true);
     }
 }

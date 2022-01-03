@@ -4,13 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {seq l {comp panel1:::p:466:p, space :0:0:x}}"
+			"$horizontalGroup": "par l {seq l {comp panel1:::p:627:p, space :0:1:x}}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :p:23:p, par t {seq {comp examNameLabel:::p:179:p, space ::242:x, comp questionTypeBox:::p:121:p, space :::p, comp addQuestionButton:::p:38:p, space :p:34:p}, seq t {space :0:414:x, comp returnButton:::p::p, space s:::p, comp submitButton:::p::p, space :p:32:p}}}, seq t {space ::41:x, par l {seq {comp submitButton2:::p::p, space s:::p, comp submitButton3:::p::p}, comp scrollPane1:::p:570:p}, space :p:32:p}}"
-				"$verticalGroup": "par l {seq l {par l {seq {space :p:27:p, par b {comp questionTypeBox::b:p::p, comp addQuestionButton::b:p::p}}, seq l {space :p:15:p, comp examNameLabel:::p::p}}, space :::p, comp scrollPane1:::p:341:p, space :::x, par b {comp submitButton2::b:p::p, comp submitButton3::b:p::p, comp submitButton::b:p::p, comp returnButton::b:p::p}, space :p:56:p}}"
+				"$horizontalGroup": "par l {seq {space :23:23:p, par l {par l {seq t {comp examNameLabel:::p:179:p, space :0:0:x}, seq l {comp submitButton4:::p::p, space :84::x}}, seq l {par t {seq {comp questionTypeBox:::p:121:p, space :::p, comp addQuestionButton:::p:38:p}, par l:::p {comp scrollPane1:::p:570:p, seq {comp submitButton2:::p::p, space u:::p, comp submitButton3:::p::p, space :::x, comp returnButton:::p::p}}}, space :p:50:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:15:p, comp examNameLabel:::p::p, space u:::p, par b {comp submitButton4::b:p::p, comp addQuestionButton::b:p::p, comp questionTypeBox::b:p::p}, space :p:15:p, comp scrollPane1:::p:341:p, space s:::p, par b {comp submitButton2::b:p::p, comp submitButton3::b:p::p, comp returnButton::b:p::p}, space ::38:x}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -44,15 +44,9 @@ new FormModel {
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "submitButton"
-					"text": "Save"
-					"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "addQuestionButton"
 					"text": "+"
-					"background": #Color0
+					"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addQuestion", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -73,7 +67,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "returnButton"
-					"text": "Cancel"
+					"text": "Return"
 					"background": #Color0
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returnButton", true ) )
 				} )
@@ -81,18 +75,24 @@ new FormModel {
 					name: "submitButton2"
 					"text": "Edit"
 					"background": #Color0
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "edit", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "submitButton3"
 					"text": "Delete"
 					"background": #Color0
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "delete", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "submitButton4"
+					"text": "Refresh"
+					"background": #Color0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refresh", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 20, 0 )
-			"size": new java.awt.Dimension( 645, 490 )
+			"size": new java.awt.Dimension( 630, 545 )
 		} )
 	}
 }

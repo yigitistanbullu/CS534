@@ -10,11 +10,6 @@ import javax.swing.*;
  * Created by JFormDesigner on Wed Dec 15 18:36:24 EET 2021
  */
 
-
-
-/**
- * @author Zeliha Aydın
- */
 public class RegisterView extends JFrame {
     public RegisterView() {
         initComponents();

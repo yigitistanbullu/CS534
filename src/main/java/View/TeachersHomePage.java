@@ -2,6 +2,7 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
@@ -17,25 +18,23 @@ import com.mysql.cj.result.Row;
  */
 
 
-
-/**
- * @author Zeliha Aydın
- */
 public class TeachersHomePage extends JFrame {
     public int userId;
-    public int examId;
+    public ArrayList<Integer> examIds;
+    public ExamModel examModel = new ExamModel();
     public String userName;
 
 
-    public TeachersHomePage(int userId, String userName, int examId) {
+    public TeachersHomePage(int userId, String userName) {
         initComponents();
         this.userId = userId;
-        this.examId = examId;
+        this.examIds = getExamModel().getUserExamIds(userId);
         this.userName = userName;
         date();
         time();
         setNameLabel();
         setExamData();
+
     }
 
     public int getUserId() {
@@ -44,22 +43,31 @@ public class TeachersHomePage extends JFrame {
     public String getUserName() {
         return userName;
     }
-    public int getExamId() {
-        return examId;
+
+    public ArrayList<Integer> getExamIds() {
+        return examIds;
     }
+
+    public ExamModel getExamModel() {
+        return examModel;
+    }
+
     public void setExamData(){
-        ExamModel model = new ExamModel();
-        Exam exam = model.getExam(getExamId());
-        String[][] data = {{exam.getName(),"Date", "Time"}};
+        String[][] data = new String[examIds.size()][3];
+        for(int i=0; i<examIds.size();i++)  {
+            Exam exam = getExamModel().getExam(examIds.get(i));
+            data[i][0] = exam.getName();
+            data[i][1] = "Date";
+            data[i][2] = "Time";
+        }
         String[] columnNames = {"Exam Name","Date", "Time"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
-
     }
 
     private void createExam(ActionEvent e) {
-        CreateExamFrame frame = new CreateExamFrame(getUserName(),getUserId(),getExamId());
+        CreateExamFrame frame = new CreateExamFrame(getUserName(),getUserId());
         frame.setVisible(true);
         this.dispose();
     }
@@ -90,8 +98,13 @@ public class TeachersHomePage extends JFrame {
     }
 
     private void editExam(ActionEvent e) {
-        int indexSelectedRow = table1.getSelectedRow();
-        EditExamFrame frame = new EditExamFrame(getUserId(),getUserName(),getExamId());
+        EditExamFrame frame = new EditExamFrame(getUserId(),getUserName(), examIds.get(table1.getSelectedRow()));
+        frame.setVisible(true);
+        this.dispose();
+    }
+
+    private void grade(ActionEvent e) {
+        GradingPage frame = new GradingPage(examIds.get(table1.getSelectedRow()),getUserName(),getUserId());
         frame.setVisible(true);
         this.dispose();
     }
@@ -116,13 +129,11 @@ public class TeachersHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(182, 142, 185));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-            . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
-            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-            awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
-            ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-            ;
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+            0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+            . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+            red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+            beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Instructor Name");
@@ -161,6 +172,7 @@ public class TeachersHomePage extends JFrame {
 
             //---- button2 ----
             button2.setText("Grade Exam");
+            button2.addActionListener(e -> grade(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -174,7 +186,7 @@ public class TeachersHomePage extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
                                 .addComponent(createExamButton))
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGap(0, 392, Short.MAX_VALUE)
+                                .addGap(0, 361, Short.MAX_VALUE)
                                 .addComponent(button2)
                                 .addGap(18, 18, 18)
                                 .addComponent(button1))

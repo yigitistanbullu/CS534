@@ -11,10 +11,6 @@ import javax.swing.GroupLayout;
  */
 
 
-
-/**
- * @author Zeliha Aydın
- */
 public class LoginView extends JFrame {
     public LoginView() {
         initComponents();
@@ -23,12 +19,12 @@ public class LoginView extends JFrame {
         if(AuthorizationModel.logIn(emailField.getText(),passwordField.getText())){
             if(AuthorizationModel.getUserType(emailField.getText(),passwordField.getText()) == 0){
                 this.dispose();
-                StudentsHomePage studentsHomePage = new StudentsHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())),AuthorizationModel.getUserExamId(emailField.getText(),passwordField.getText()));
+                StudentsHomePage studentsHomePage = new StudentsHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())));
                 studentsHomePage.setVisible(true);
             }
             else if(AuthorizationModel.getUserType(emailField.getText(),passwordField.getText()) == 1){
                 this.dispose();
-                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())),AuthorizationModel.getUserExamId(emailField.getText(),passwordField.getText()));
+                TeachersHomePage teachersHomePage = new TeachersHomePage(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText()),AuthorizationModel.getName(AuthorizationModel.getUserId(emailField.getText(),passwordField.getText())));
                 teachersHomePage.setVisible(true);
             }
         }

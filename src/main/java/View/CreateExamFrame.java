@@ -6,6 +6,7 @@ package View;
 
 import java.awt.event.*;
 import Controller.ExamController.Exam;
+import Model.AuthorizationModel;
 import Model.ExamModel;
 import View.EditExamFrame;
 import View.TeachersHomePage;
@@ -18,6 +19,7 @@ import java.awt.*;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -32,10 +34,9 @@ public class CreateExamFrame extends JFrame {
     public int userId_instructor;
     public int examId_instructor;
 
-    public CreateExamFrame(String userName, int userId, int examId) {
+    public CreateExamFrame(String userName, int userId) {
         this.userName_instructor = userName;
         this.userId_instructor = userId;
-        this.examId_instructor = examId;
         initComponents();
     }
 
@@ -63,14 +64,22 @@ public class CreateExamFrame extends JFrame {
 
     private void create(ActionEvent e) {
         ExamModel examModel = new ExamModel();
-        Exam exam = new Exam(examModel.getExamIndex()+1,examNameLabel.getText(),100);
-        examModel.addExam(exam);
+        examModel.addExam(examNameLabel.getText(),100);
+        Exam exam = examModel.getExam(examModel.getExamIdFromName(examNameLabel.getText()));
+        AuthorizationModel model = new AuthorizationModel();
+        ArrayList<Integer> ids = model.getUserIds();
+        for(Integer id : ids){
+            examModel.addUserExam(exam,id);
+        }
+        examModel.addUserExam(exam,getUserId_instructor());
+        TeachersHomePage frame = new TeachersHomePage(getUserId_instructor(),getUserName_instructor());
+        frame.setVisible(true);
         dispose();
     }
 
     private void cancel(ActionEvent e) {
         dispose();
-        TeachersHomePage page = new TeachersHomePage(getUserId_instructor(),getUserName_instructor(),getExamId_instructor());
+        TeachersHomePage page = new TeachersHomePage(getUserId_instructor(),getUserName_instructor());
         page.setVisible(true);
     }
 
@@ -109,13 +118,12 @@ public class CreateExamFrame extends JFrame {
 
         //======== panel1 ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+            . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax
+            . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,
+            12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans
+            . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .
+            getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- label1 ----
             label1.setText("Start:");

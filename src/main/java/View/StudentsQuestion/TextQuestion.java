@@ -16,9 +16,6 @@ import javax.swing.GroupLayout;
 
 
 
-/**
- * @author Zeliha Aydın
- */
 public class TextQuestion extends JPanel {
 
     public int questionId;

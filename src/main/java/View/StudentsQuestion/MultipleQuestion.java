@@ -14,10 +14,6 @@ import javax.swing.border.*;
  */
 
 
-
-/**
- * @author Zeliha Aydın
- */
 public class MultipleQuestion extends JPanel {
 
     public int questionId;

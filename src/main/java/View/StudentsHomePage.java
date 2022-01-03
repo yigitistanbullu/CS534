@@ -3,6 +3,7 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.*;
@@ -19,16 +20,15 @@ import View.StudentsQuestion.QuestionsPage;
 
 
 
-/**
- * @author Zeliha Aydın
- */
 public class StudentsHomePage extends JFrame {
     public int userId;
     public String userName;
-    public int examId;
+    public ArrayList<Integer> examIds;
+    public ExamModel examModel = new ExamModel();
 
-    public StudentsHomePage(int userId, String userName, int examId) {
-        this.examId = examId;
+    public StudentsHomePage(int userId, String userName) {
+
+        this.examIds = getExamModel().getUserExamIds(userId);
         this.userId = userId;
         this.userName = userName;
         initComponents();
@@ -46,14 +46,22 @@ public class StudentsHomePage extends JFrame {
         return userName;
     }
 
-    public void setExamId(int examId) {
-        this.examId = examId;
+    public ArrayList<Integer> getExamIds() {
+        return examIds;
     }
 
-    public int getExamId() {
-        return examId;
+    public void setExamIds(ArrayList<Integer> examIds) {
+        this.examIds = examIds;
     }
-    
+
+    public ExamModel getExamModel() {
+        return examModel;
+    }
+
+    public void setExamModel(ExamModel examModel) {
+        this.examModel = examModel;
+    }
+
     public void setUserNameLabel( ){
         nameLabel.setText(getUserName());
     }
@@ -74,9 +82,14 @@ public class StudentsHomePage extends JFrame {
     
 
     public void setExamData(){
-        ExamModel model = new ExamModel();
-        Exam exam = model.getExam(getExamId());
-        String[][] data = {{exam.getName(),"Attend","Review",Double.toString(exam.getGrade())}};
+        String[][] data = new String[examIds.size()][4];
+        for(int i=0; i<examIds.size();i++)  {
+            Exam exam = getExamModel().getExam(examIds.get(i));
+            data[i][0] = exam.getName();
+            data[i][1] = "Attend";
+            data[i][2] = "Review";
+            data[i][3] = Double.toString(exam.getGrade());
+        }
         String[] columnNames = {"Exam Name","Status","","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
@@ -85,8 +98,8 @@ public class StudentsHomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ExamModel examModel = new ExamModel();
-                Exam newExam =  examModel.getExam(getExamId());
-                QuestionsPage examPage = new QuestionsPage(getExamId(), getUserName());
+                Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
+                QuestionsPage examPage = new QuestionsPage(examIds.get(table1.getSelectedRow()), getUserName());
                 examPage.setVisible(true);
                 dispose();
 
@@ -95,7 +108,7 @@ public class StudentsHomePage extends JFrame {
         ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),getExamId());
+                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()));
                 reviewPage.setVisible(true);
                 dispose();
 

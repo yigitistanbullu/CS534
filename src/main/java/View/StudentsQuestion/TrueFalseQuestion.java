@@ -14,9 +14,6 @@ import javax.swing.border.*;
 
 
 
-/**
- * @author Zeliha Aydın
- */
 public class TrueFalseQuestion extends JPanel {
 
     public int questionId;

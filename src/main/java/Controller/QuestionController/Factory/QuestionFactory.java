@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public abstract class QuestionFactory {
 
-    public void addQuestion(int id, String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers){
-       createQuestion( id, question, points, examId, keyAnswer, availableAnswers);
+    public void addQuestion( String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers){
+       createQuestion(  question, points, examId, keyAnswer, availableAnswers);
     }
 
     public void deleteQuestion(int id){
@@ -21,6 +21,10 @@ public abstract class QuestionFactory {
         model.setSelectedAnswer(examId, question_id, str);
     }
 
+    public void updateQuestion(int questionId, String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers) {
+        editQuestion(questionId, question,points,examId,keyAnswer,availableAnswers);
+    }
+
     public void setPointsEarnedSystem(int examId){
         setPoints(examId,0,0);
     }
@@ -30,7 +34,8 @@ public abstract class QuestionFactory {
         setPoints(examId,question_id, points);
     }
 
-    protected abstract void createQuestion(int id, String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers);
+    protected abstract void createQuestion(String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers);
+    protected abstract void editQuestion(int questionId,String question, double points, int examId, String keyAnswer, ArrayList<String> availableAnswers);
     protected abstract void setPoints(int examId, int question_id, double points);
 
 }

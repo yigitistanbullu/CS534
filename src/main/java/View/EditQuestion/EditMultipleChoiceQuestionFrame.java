@@ -26,20 +26,54 @@ import javax.swing.text.DefaultFormatterFactory;
 public class EditMultipleChoiceQuestionFrame extends JFrame {
     public int examId;
     public String question;
+    public int questionId;
     public String keyAnswer;
     public double points;
     public ArrayList<String> availableAnswers = new ArrayList<>();
+    public QuestionFactory factory = new MultipleChoiceQuestionFactory();
     public String type;
 
-    public EditMultipleChoiceQuestionFrame(int examId) {
+    public EditMultipleChoiceQuestionFrame(int examId, int questionId) {
+        this.questionId = questionId;
         this.examId = examId;
         initComponents();
+        if(questionId!=0){
+            editQuestion();
+        }
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void editQuestion(){
+        QuestionModel questionModel = new QuestionModel();
+        ArrayList<String> availableAnswers = questionModel.getQuestionAnswers(getQuestionId());
+        questionLabel.setText(questionModel.getQuestion(getQuestionId()));
+        keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));
+        pointsLabel.setText(questionModel.getAvailablePoints(getQuestionId()));
+        answer1.setText(availableAnswers.get(0));
+        answer2.setText(availableAnswers.get(1));
+        answer3.setText(availableAnswers.get(2));
+
+    }
+
+    public void updateQuestion(){
+        QuestionModel questionModel =  new QuestionModel();
+        getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
     public void createQuestion(){
         QuestionModel questionModel =  new QuestionModel();
-        QuestionFactory factory = new MultipleChoiceQuestionFactory();
-        factory.addQuestion(questionModel.getQuestionIndex(examId)+1,getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
+        getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
+    }
+
+    public QuestionFactory getFactory() {
+        return factory;
+    }
+
+    public void setFactory(QuestionFactory factory) {
+        this.factory = factory;
     }
 
     public int getExamId() {
@@ -91,7 +125,12 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         answers.add(answer2.getText());
         answers.add(answer3.getText());
         setAvailableAnswers(answers);
-        createQuestion();
+        if(questionId==0){
+            createQuestion();
+        }
+        else{
+            updateQuestion();
+        }
         this.dispose();
     }
 
@@ -113,18 +152,21 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
+        addButton2 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e"
+            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 )
+            , java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //---- label1 ----
             label1.setText("Multiple Choice Question");
@@ -154,6 +196,9 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
             //---- label5 ----
             label5.setText("Enter question here:");
 
+            //---- addButton2 ----
+            addButton2.setText("Save");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -182,7 +227,10 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
                                             .addComponent(answer2)
                                             .addComponent(answer1, GroupLayout.PREFERRED_SIZE, 527, GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(addButton2)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label5, GroupLayout.Alignment.LEADING)))
                             .addGroup(panel1Layout.createSequentialGroup()
@@ -218,7 +266,8 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelButton)
-                            .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton2))
                         .addContainerGap(29, Short.MAX_VALUE))
             );
         }
@@ -258,5 +307,6 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private JButton addButton2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

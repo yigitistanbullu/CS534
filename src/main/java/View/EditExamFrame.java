@@ -1,10 +1,15 @@
 package View;
 
 import Controller.ExamController.Exam;
+import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
+import Controller.QuestionController.Factory.QuestionFactory;
+import Controller.QuestionController.Factory.TextQuestionFactory;
+import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.ExamModel;
 import Model.QuestionModel;
 import View.EditQuestion.EditMultipleChoiceQuestionFrame;
 import View.EditQuestion.EditTextQuestionFrame;
+import View.EditQuestion.EditTrueFalseQuestionFrame;
 
 import javax.swing.table.*;
 
@@ -29,15 +34,15 @@ public class EditExamFrame extends JFrame {
 
     private void addQuestion(ActionEvent e) {
         if(questionTypeBox.getSelectedItem().equals("Text")){
-            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId());
+            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
-            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId());
+            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("True False")){
-            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId());
+            EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
     }
@@ -53,13 +58,27 @@ public class EditExamFrame extends JFrame {
         for(int i = 0; i< questionID.size();i++){
             DefaultTableModel tableModel = (DefaultTableModel) questionsTable.getModel();
             int qID = questionID.get(i);
-            tableModel.addRow(new Object[]{Integer.toString(qID),questionModel.getQuestionType(qID), questionModel.getKeyAnswer(qID),questionModel.getAvailablePoints(qID)});
+            tableModel.addRow(new Object[]{Integer.toString(i+1),questionModel.getQuestionType(qID), questionModel.getKeyAnswer(qID),questionModel.getAvailablePoints(qID)});
         }
-
     }
 
-    private void submit(ActionEvent e) {
-
+    private void delete(ActionEvent e) {
+        QuestionModel questionModel = new QuestionModel();
+        QuestionFactory factory;
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
+        int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
+        if(questionModel.getQuestionType(SelectedQuestionId).equals("text")){
+            factory = new TextQuestionFactory();
+            factory.deleteQuestion(SelectedQuestionId);
+        }
+       else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_choice")){
+            factory = new MultipleChoiceQuestionFactory();
+            factory.deleteQuestion(SelectedQuestionId);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("true_false")){
+            factory = new TrueFalseQuestionFactory();
+            factory.deleteQuestion(SelectedQuestionId);
+        }
     }
 
     public int getUserId() {
@@ -78,11 +97,34 @@ public class EditExamFrame extends JFrame {
         this.examId = examId;
     }
 
-
     private void returnButton(ActionEvent e) {
-        TeachersHomePage page = new TeachersHomePage(getUserId(),getUserName(),getExamId());
+        TeachersHomePage page = new TeachersHomePage(getUserId(),getUserName());
         page.setVisible(true);
         this.dispose();
+    }
+
+    private void refresh(ActionEvent e) {
+        EditExamFrame frame = new EditExamFrame(getUserId(),getUserName(),getExamId());
+        frame.setVisible(true);
+        this.dispose();
+    }
+
+    private void edit(ActionEvent e) {
+        QuestionModel questionModel = new QuestionModel();
+        ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
+        int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
+        if(questionModel.getQuestionType(SelectedQuestionId).equals("text")){
+            EditTextQuestionFrame frame = new EditTextQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.setVisible(true);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_choice")){
+            EditMultipleChoiceQuestionFrame frame = new EditMultipleChoiceQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.setVisible(true);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("true_false")){
+            EditTrueFalseQuestionFrame frame = new EditTrueFalseQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.setVisible(true);
+        }
     }
 
     private void initComponents() {
@@ -91,13 +133,13 @@ public class EditExamFrame extends JFrame {
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         questionsTable = new JTable();
-        submitButton = new JButton();
         addQuestionButton = new JButton();
         examNameLabel = new JLabel();
         questionTypeBox = new JComboBox<>();
         returnButton = new JButton();
         submitButton2 = new JButton();
         submitButton3 = new JButton();
+        submitButton4 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -105,13 +147,14 @@ public class EditExamFrame extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-            . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder
-            . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .
-            awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) )
-            ; panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-            ) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-            ;
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+            new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+            ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+            ,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12)
+            ,java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException()
+            ;}});
 
             //======== scrollPane1 ========
             {
@@ -128,11 +171,6 @@ public class EditExamFrame extends JFrame {
                 ));
                 scrollPane1.setViewportView(questionsTable);
             }
-
-            //---- submitButton ----
-            submitButton.setText("Save");
-            submitButton.setBackground(Color.white);
-            submitButton.addActionListener(e -> submit(e));
 
             //---- addQuestionButton ----
             addQuestionButton.setText("+");
@@ -153,71 +191,73 @@ public class EditExamFrame extends JFrame {
             }));
 
             //---- returnButton ----
-            returnButton.setText("Cancel");
+            returnButton.setText("Return");
             returnButton.setBackground(Color.white);
             returnButton.addActionListener(e -> returnButton(e));
 
             //---- submitButton2 ----
             submitButton2.setText("Edit");
             submitButton2.setBackground(Color.white);
-            submitButton2.addActionListener(e -> submit(e));
+            submitButton2.addActionListener(e -> edit(e));
 
             //---- submitButton3 ----
             submitButton3.setText("Delete");
             submitButton3.setBackground(Color.white);
-            submitButton3.addActionListener(e -> submit(e));
+            submitButton3.addActionListener(e -> delete(e));
+
+            //---- submitButton4 ----
+            submitButton4.setText("Refresh");
+            submitButton4.setBackground(Color.white);
+            submitButton4.addActionListener(e -> refresh(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
-                                .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addQuestionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(0, 414, Short.MAX_VALUE)
-                                .addComponent(returnButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(submitButton)
-                                .addGap(32, 32, 32))))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addContainerGap(41, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                    .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addComponent(submitButton4)
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(submitButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(submitButton3))
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32))
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(addQuestionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panel1Layout.createSequentialGroup()
+                                            .addComponent(submitButton2)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(submitButton3)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(returnButton))))
+                                .addGap(50, 50, 50))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addQuestionButton)))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(examNameLabel)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(15, 15, 15)
+                        .addComponent(examNameLabel)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(submitButton4)
+                            .addComponent(addQuestionButton)
+                            .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton2)
                             .addComponent(submitButton3)
-                            .addComponent(submitButton)
                             .addComponent(returnButton))
-                        .addGap(56, 56, 56))
+                        .addContainerGap(38, Short.MAX_VALUE))
             );
         }
 
@@ -225,13 +265,13 @@ public class EditExamFrame extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 627, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 466, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -243,12 +283,12 @@ public class EditExamFrame extends JFrame {
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable questionsTable;
-    private JButton submitButton;
     private JButton addQuestionButton;
     private JLabel examNameLabel;
     private JComboBox<String> questionTypeBox;
     private JButton returnButton;
     private JButton submitButton2;
     private JButton submitButton3;
+    private JButton submitButton4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

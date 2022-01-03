@@ -1,8 +1,7 @@
 package Model;
 
 import Controller.ExamController.Exam;
-import Controller.QuestionController.Question;
-import Controller.UserController.User;
+import Controller.ExamController.User_Exam;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,10 +10,23 @@ import java.util.ArrayList;
 public class ExamModel {
 
     public static Exam exam;
+    public static User_Exam userExam;
 
-    public static void addExam(Exam exam) {
+    public static void addExam(String examName, double examGrade) {
 
-        String Query = "INSERT into Exam(exam_id, exam_name, exam_grade) VALUES (" + "'" + exam.getId() + "'" + ", " + "'" + exam.getName() + "'" + " ," + "'" + exam.getGrade() + "'" + ") ;";
+        String Query = "INSERT into Exam(exam_name, exam_grade) VALUES (" + "'"  + examName + "'" + " ," + "'" + examGrade+ "'" + ") ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+    public static void addUserExam(Exam exam, int user_id) {
+
+        String Query = "INSERT into User_Exam(user_id, exam_id) VALUES (" +  "'" + user_id + "'" + " ," + "'" + exam.getId() + "'" + ") ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -37,7 +49,25 @@ public class ExamModel {
         }
     }
 
+    public int getUserExamExamId(User_Exam userExam){
+        int id = 0;
+        ResultSet result;
+        String str ="";
+        String Query = "SELECT exam_id FROM UserExam WHERE id ='" + userExam.getId() + "';";
 
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            id = result.getInt(1);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return id ;
+
+    }
 
     public double getGrade(Exam exam){
         double grade = 0;
@@ -88,6 +118,17 @@ public class ExamModel {
 
     public void removeExam(Exam exam){
         String Query = "DELETE FROM Exam WHERE exam_id =' " + exam.getId() +"' ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public void removeUserExam(int id){
+        String Query = "DELETE FROM User_Exam WHERE exam_id =' " + id +"' ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -158,11 +199,12 @@ public class ExamModel {
     }
 
 
-    public int getExamIndex(){
+
+    public int getExamIdFromName(String name){
         int examId = 0;
         ResultSet result;
         String str ="";
-        String Query = "SELECT  max(exam_id)  FROM Exam ;";
+        String Query = "SELECT  exam_id  FROM Exam Where exam_name =" + "'" +name + "'" + ";";
 
         try {
 
@@ -177,6 +219,52 @@ public class ExamModel {
         return examId ;
     }
 
+    public ArrayList<Integer> getUserExamIds(int userId){
+        ResultSet result;
+        ArrayList<Integer> examIds = new ArrayList<>();
 
+        String Query = "SELECT exam_id FROM User_Exam Where user_id ='" + userId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            int sira = result.getMetaData().getColumnCount();
+
+            while(result.next()){
+                for(int i = 1 ; i<= sira; i++){
+                    examIds.add(Integer.parseInt(result.getString(i)));
+                }
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return examIds;
+    }
+
+    public ArrayList<Integer> getUserIdsFromExamId(int examId){
+        ResultSet result;
+        ArrayList<Integer> userIds = new ArrayList<>();
+
+        String Query = "SELECT user_id FROM User_Exam Where exam_id ='" + examId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            int sira = result.getMetaData().getColumnCount();
+
+            while(result.next()){
+                for(int i = 1 ; i<= sira; i++){
+                    userIds.add(Integer.parseInt(result.getString(i)));
+                }
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+        return userIds;
+    }
 
 }
