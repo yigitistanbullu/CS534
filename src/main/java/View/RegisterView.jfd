@@ -4,82 +4,116 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p:137:p, space :p:97:p, par l:::p {seq {comp registerButton:::p::p, space :::x, comp registerButton2:::p::p}, comp label6:::p::p, comp label5:::p::p, comp label4:::p::p, seq l {comp teacherCheckbox:::p::p, space :::x, comp studentCheckbox:::p::p}, comp registerText::l:::x, comp emailFiled::l:::x, comp studentIDField::l:::x, seq l {par l {seq l {comp nameField:::p:109:p, space :p:26:p}, seq t {comp label2:::p::p, space :p:99:p}}, par l {comp label3:::p::p, comp surnameFiled:::p:110:p}}, comp passwordField::l:::x}, space ::233:x}}"
-			"$verticalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p::p}, seq l {comp registerText:::p::p, space :::p, par b {comp label2::b:p::p, comp label3::b:p::p}, space :::p, par b {comp surnameFiled::b:p::p, comp nameField::b:p::p}, space :::p, comp label4:::p::p, space :::p, comp emailFiled:::p::p, space :::p, comp label5:::p::p, space :p:10:p, comp passwordField:::p::p, space u:::p, comp label6:::p::p, space :::p, comp studentIDField:::p::p, space s:::p, par b {comp teacherCheckbox::b:p::p, comp studentCheckbox::b:p::p}}}, space s:::p, par l {comp registerButton:::p::p, comp registerButton2:::p::p}, space :::p}}"
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 182, 142, 185, 255 )
+			"background": new java.awt.Color( 102, 102, 102, 255 )
 			"foreground": new java.awt.Color( 182, 142, 185, 255 )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "registerText"
-				"text": "Register"
-				"foreground": sfield java.awt.Color black
-				"font": new java.awt.Font( "Roboto Light", 0, 48 )
-				"horizontalAlignment": 0
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "nameField"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "surnameFiled"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "emailFiled"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "studentIDField"
-			} )
-			add( new FormComponent( "javax.swing.JCheckBox" ) {
-				name: "teacherCheckbox"
-				"text": "Teacher"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "teacher", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JCheckBox" ) {
-				name: "studentCheckbox"
-				"text": "Student"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "chkstudent", true ) )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "student", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "registerButton"
-				"text": "Register"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "register", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "CS434 Exam Portal"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "Name"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "Surname"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label4"
-				"text": "Email"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label5"
-				"text": "Password"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "Student ID"
-			} )
-			add( new FormComponent( "javax.swing.JPasswordField" ) {
-				name: "passwordField"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "registerButton2"
-				"text": "Login"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:24:p, comp label1:::p:137:p, space ::732:x}, seq t {par t {seq l {space ::284:x, par l {comp nameField:::p:151:p, comp label2:::p::p}, space ::26:x, par l {comp label3:::p::p, comp surnameFiled:::p:166:p}}, seq t {space :0:284:x, par l {comp label6:::p::p, par t {comp studentIDField:::p:343:p, par l:t::p {comp emailFiled::::343:x, comp passwordField::::343:x, comp label5::l:p::p}, comp label4::l:p:39:p}}}}, space :p:266:p}, seq t {space ::325:x, par l {seq t {comp teacherCheckbox:::p::p, space :p:101:p, comp studentCheckbox:::p::p, space :p:322:p}, seq t {comp registerButton:::p::p, space :::p, comp registerButton2:::p::p, space :p:360:p}, seq t {comp ozuIconLabel:::p:126:p, space :p:375:p}, seq t {comp registerText:::p:245:p, space :p:316:p}}}}"
+				"$verticalGroup": "par l {seq t {space :p:18:p, comp label1:::p::p, space :p:26:p, comp registerText:::p::p, space :p:31:p, par b {comp label3::b:p::p, comp label2::b:p::p}, space :::p, par b {comp surnameFiled::b:p::p, comp nameField::b:p::p}, space u:::p, comp label4:::p:16:p, space :::p, comp emailFiled:::p::p, space :p:10:p, comp label5:::p::p, space :::p, comp passwordField:::p::p, space :p:12:p, comp label6:::p::p, space :::p, comp studentIDField:::p::p, space s:::p, par b {comp teacherCheckbox::b:p::p, comp studentCheckbox::b:p::p}, space s:::p, par b {comp registerButton2::b:p::p, comp registerButton::b:p::p}, space ::35:x, comp ozuIconLabel:::p:43:p, space :p:17:p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Name"
+					"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": sfield java.awt.Color white
+					"font": &Font0 new java.awt.Font( "Roboto", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Surname"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "surnameFiled"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "nameField"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "registerText"
+					"text": "Register"
+					"foreground": sfield java.awt.Color white
+					"font": new java.awt.Font( "Roboto", 0, 48 )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "emailFiled"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Email"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Password"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordField"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Student ID"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "studentIDField"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "teacherCheckbox"
+					"text": "Teacher"
+					"foreground": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "teacher", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "studentCheckbox"
+					"text": "Student"
+					"foreground": #Color1
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "chkstudent", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "student", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "registerButton2"
+					"text": "Cancel"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "registerButton"
+					"text": "Register"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "register", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "CS434 Exam Portal"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "ozuIconLabel"
+					"text": "text"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 15, 0 )
-			"size": new java.awt.Dimension( 720, 430 )
+			"size": new java.awt.Dimension( 895, 600 )
 		} )
 	}
 }

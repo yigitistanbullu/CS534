@@ -75,14 +75,15 @@ public class StudentsReviewPage extends JFrame {
                 question.removeSave();
                 panel2.add(question);
             }
+
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
                 MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i));
                 question.removeSave();
                 panel2.add(question);
-
             }
+
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
                 TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
@@ -90,6 +91,7 @@ public class StudentsReviewPage extends JFrame {
                 question.removeSave();
                 panel2.add(question);
             }
+
         }
     }
 

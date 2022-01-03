@@ -4,7 +4,9 @@
 
 package View;
 
+import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
+import Model.ExamModel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -78,10 +80,14 @@ public class GradingPage extends JFrame {
 
     private void grade(ActionEvent e) {
         int id = userIds.get(table1.getSelectedRow());
-
+        StudentsReviewPage frame = new StudentsReviewPage(id, getAuthorizationModel().getName(id),getExamId());
+        frame.setVisible(true);
     }
 
     public void setUserTable(){
+        ExamModel model = new ExamModel();
+        Exam newExam = model.getExam(getExamId());
+        instructorNameLabel.setText(newExam.getName());
         String[][] data = new String[userIds.size()][2];
         for(int i=0; i<userIds.size(); i++)  {
             data[i][0] = getAuthorizationModel().getName(userIds.get(i));
@@ -110,11 +116,11 @@ public class GradingPage extends JFrame {
         {
             panel1.setBackground(new Color(182, 142, 185));
             panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
+            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
             . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
+            .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
             . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
+            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
             equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //======== scrollPane1 ========
@@ -125,7 +131,7 @@ public class GradingPage extends JFrame {
             }
 
             //---- instructorNameLabel ----
-            instructorNameLabel.setText("Instructor Name");
+            instructorNameLabel.setText("Exam Name");
             instructorNameLabel.setForeground(Color.white);
             instructorNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
             instructorNameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
@@ -143,28 +149,29 @@ public class GradingPage extends JFrame {
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(20, 20, 20)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(gradeButton)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(instructorNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                .addGap(347, 347, 347)
-                                .addComponent(backButton))
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 604, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(51, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addComponent(instructorNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(backButton))
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 604, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(32, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(instructorNameLabel)
-                            .addComponent(backButton))
-                        .addGap(26, 26, 26)
+                            .addComponent(backButton)
+                            .addComponent(instructorNameLabel))
+                        .addGap(18, 18, 18)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(gradeButton)
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
             );
         }
 
@@ -172,7 +179,9 @@ public class GradingPage extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()

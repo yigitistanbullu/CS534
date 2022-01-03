@@ -9,14 +9,14 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :p:22:p, par l {seq {comp Logout:::p::p, space ::393:x, comp createExamButton:::p::p}, seq t {space :0:361:x, comp button2:::p::p, space s:::p, comp button1:::p::p}, comp scrollPane1::t::583:x, seq t {comp nameLabel:::p:179:p, space :::x, par l {comp timeLabel:::p::p, comp dateLabel:::p::p}}}, space :p:28:p}}"
-				"$verticalGroup": "par l {seq l {par l:::p {seq l {space :p:14:p, comp nameLabel:::p::p, space :p:20:p}, seq l {space :::p, comp dateLabel:::p::p, space :::x, comp timeLabel:::p::p, space u:::p}}, par l {comp Logout:::p::p, comp createExamButton:::p::p}, space :::x, comp scrollPane1:::p:312:p, space :::p, par b {comp button1::b:p::p, comp button2::b:p::p}, space :p:14:p}}"
+				"$horizontalGroup": "par l {seq t {space :p:22:p, par l {comp scrollPane1::t::913:x, seq t {comp createExamButton:::p::p, space ::579:x, comp button2:::p::p, space s:::p, comp button1:::p::p}, seq t {par l {comp nameLabel:::p:179:p, comp Logout::l:p::p}, space ::660:x, par l {comp timeLabel:::p::p, comp dateLabel:::p::p}, space :p:9:p}}, space :p:28:p}}"
+				"$verticalGroup": "par l {seq l {space ::15:x, par t {seq t {comp nameLabel:::p::p, space :p:12:p, comp Logout:::p::p, space :::p}, seq t {comp dateLabel:::p:23:p, space u:::p, comp timeLabel:::p::p, space :p:27:p}}, comp scrollPane1::::492:x, space :::p, par b {comp button1::b:p::p, comp button2::b:p::p, comp createExamButton::b:p::p}, space :p:14:p}}"
 			} ) {
 				name: "panel1"
-				"background": new java.awt.Color( 182, 142, 185, 255 )
+				"background": new java.awt.Color( 103, 137, 171, 255 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "nameLabel"
-					"text": "Instructor Name"
+					"text": "Instructor"
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"horizontalAlignment": 2
 					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
@@ -27,6 +27,7 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "table1"
+						"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -64,7 +65,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 635, 480 )
+			"size": new java.awt.Dimension( 965, 660 )
 		} )
 	}
 }

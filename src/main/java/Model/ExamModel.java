@@ -24,6 +24,7 @@ public class ExamModel {
         }
 
     }
+
     public static void addUserExam(Exam exam, int user_id) {
 
         String Query = "INSERT into User_Exam(user_id, exam_id) VALUES (" +  "'" + user_id + "'" + " ," + "'" + exam.getId() + "'" + ") ;";
@@ -173,6 +174,7 @@ public class ExamModel {
         Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)));
         return newExam;
     }
+
     public ArrayList<Integer> getExamIds(int user_Id){
         ResultSet result;
         ArrayList<Integer> exams = new ArrayList<>();
@@ -197,8 +199,6 @@ public class ExamModel {
 
         return exams;
     }
-
-
 
     public int getExamIdFromName(String name){
         int examId = 0;
