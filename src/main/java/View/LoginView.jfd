@@ -1,0 +1,69 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label2:::p::p, space ::789:x}, seq t {space :0:275:x, par l {par l {seq t {comp loginText:::p::p, space :p:413:p}, seq t {comp emailLabel:::p::p, space :p:600:p}}, seq {par l:::p {comp passLabel::l:p::p, comp emailField::l::330:x, comp passwordField::l::330:x}, space :::p}}}}}, seq l {space :p:379:p, par l {comp registerButton:::p:109:p, comp loginButton:::p:109:p}, space :0:425:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label2:::p::p, space :p:79:p, comp loginText:::p::p, space :p:20:p, comp emailLabel:::p::p, space :p:11:p, comp emailField:::p::p, space :p:30:p, comp passLabel:::p::p, space s:::p, comp passwordField:::p::p, space :p:39:p, comp loginButton:::p:40:p, space s:::p, comp registerButton:::p:40:p, space ::138:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 113, 188, 255, 255 )
+				"foreground": sfield java.awt.Color white
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "loginText"
+					"text": "Login"
+					"font": new java.awt.Font( "Roboto Thin", 1, 48 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "emailField"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "loginButton"
+					"text": "Login"
+					"background": &Color0 new java.awt.Color( 113, 188, 255, 255 )
+					"foreground": sfield java.awt.Color white
+					"font": &Font0 new java.awt.Font( "Roboto Light", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "emailLabel"
+					"text": "Email"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "passLabel"
+					"text": "Password"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "CS434 Exam Portal"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordField"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "registerButton"
+					"text": "Register"
+					"background": #Color0
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "register", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 915, 635 )
+		} )
+	}
+}

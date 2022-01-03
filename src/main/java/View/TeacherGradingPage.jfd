@@ -1,0 +1,156 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {comp panel1::t:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space ::22:x, par l:::p {seq t {par l {comp exitButton2::t:p:90:p, comp scrollPane1::t:::x}, space :p:16:p}, seq t {comp label1:::p::p, space :::x, comp examName:::p::p, space :p:349:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:19:p, par t {comp examName:::p::p, comp label1:::p::p}, space u:::p, comp scrollPane1:::::x, space u:::x, comp exitButton2:::p:40:p, space :::p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 255, 153, 153, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "examName"
+					"text": "CS434 Midterm"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto Light", 1, 25 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					"background": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": &Color2 new java.awt.Color( 255, 255, 255, 255 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq t {space ::190:x, comp panel3:::p::p, space :p:151:p}}"
+						"$verticalGroup": "par l {seq l {space :p:15:p, comp panel3:::p::p, space ::383:x}}"
+					} ) {
+						name: "panel2"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {space :p:14:p, comp studentName:::p::p, space ::104:x, comp reviewButton:::p:100:p, space :p:70:p}}"
+							"$verticalGroup": "par l {seq t {space ::27:x, par b {comp studentName::b:p::p, comp reviewButton::b:p::p}, space :p:22:p}}"
+							"honorsVisibility": false
+						} ) {
+							name: "panel3"
+							"background": new java.awt.Color( 255, 255, 255, 255 )
+							"foreground": new java.awt.Color( 51, 51, 51, 255 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "studentName"
+								"text": "Zeliha Aydın S018460"
+								"foreground": new java.awt.Color( 51, 51, 51, 255 )
+								"font": new java.awt.Font( "Roboto Light", 1, 25 )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "reviewButton"
+								"text": "Review"
+								"background": new java.awt.Color( 255, 255, 255, 255 )
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reviewButton", true ) )
+							} )
+						} )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "exitButton2"
+					"text": "Back"
+					"background": new java.awt.Color( 221, 171, 183, 255 )
+					"foreground": sfield java.awt.Color white
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "backbutton", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Exam Reviews"
+					"foreground": sfield java.awt.Color white
+					"font": new java.awt.Font( "Roboto Light", 0, 18 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 915, 635 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {space :0:913:x};par l {comp panel4::l:::x}"
+			"$verticalGroup": "par l {space :0:614:x};par l {comp panel4::t:::x}"
+		} ) {
+			name: "frame1"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {comp nameLabel2:::p:179:p, space :p:207:p, comp dateLabel2:::p::p}, par t {comp scrollPane2:::p:873:p, comp exitButton:::p:90:p}}, space ::18:x}}"
+				"$verticalGroup": "par l {seq l {space :p:26:p, par b {comp nameLabel2::b:p::p, comp dateLabel2::b:p::p}, space u:::p, comp scrollPane2:::p:492:p, space u:::p, comp exitButton:::p:39:p, space :::p}}"
+			} ) {
+				name: "panel4"
+				"background": new java.awt.Color( 255, 153, 153, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "nameLabel2"
+					"text": "Zeliha Aydın S018460"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"horizontalAlignment": 2
+					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "dateLabel2"
+					"text": "CS434 Midterm"
+					"foreground": #Color0
+					"font": new java.awt.Font( "Roboto Light", 1, 20 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					"background": #Color1
+					"foreground": #Color2
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, comp this2:::p::p, space ::18:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp this2:::p::p, space ::385:x}}"
+					} ) {
+						name: "panel5"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {space :p:13:p, par t {seq t {comp label2:::p::p, space :::p, comp gradeField:::p::p, space ::636:x, comp submitButton:::p::p}, seq t {comp questionNumber:::p::p, space :::p, par l {comp questionLabel:::p::p, comp answer:::p:510:p}, space :0:298:x}}, space :::p}}"
+							"$verticalGroup": "par l {seq l {space :p:10:p, par b {comp questionLabel::b:p::p, comp questionNumber::b:p::p}, space :::p, comp answer:::p:45:p, space ::17:x, par b {comp gradeField::b:p::p, comp label2::b:p::p, comp submitButton::b:p::p}, space :::p}}"
+						} ) {
+							name: "this2"
+							"background": new java.awt.Color( 255, 255, 255, 255 )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "submitButton"
+								"text": "Submit"
+								"background": sfield java.awt.Color white
+								"foreground": sfield java.awt.Color white
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "questionLabel"
+								"text": "question"
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "questionNumber"
+								"text": "2."
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "answer"
+								"text": "text"
+								"foreground": new java.awt.Color( 51, 51, 51, 255 )
+							} )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "gradeField"
+								"background": new java.awt.Color( 255, 255, 255, 255 )
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label2"
+								"text": "Grade:"
+								"foreground": sfield java.awt.Color red
+							} )
+						} )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "exitButton"
+					"text": "Exit"
+					"background": new java.awt.Color( 255, 153, 153, 255 )
+					"foreground": sfield java.awt.Color white
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exitButton", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 670 )
+			"size": new java.awt.Dimension( 915, 635 )
+		} )
+	}
+}

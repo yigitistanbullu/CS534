@@ -1,0 +1,58 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {comp label1:::p::p, seq {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p}, seq l {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :::p, par l {comp cAnswer:::p:481:p, comp bAnswer:::p:481:p}}, comp question::l:p:593:p}, space ::28:x}, seq t {space ::533:x, comp save:::p::p, space :p:47:p}}"
+			"$verticalGroup": "par l {seq l {space ::10:x, comp label1:::p::p, space :::p, comp question:::p:33:p, space :::p, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space u:::p, comp save:::p::p, space :p:22:p}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 255, 255, 255, 255 )
+			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "question"
+				"text": "question"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "aAnswer"
+				"text": "answer"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "bAnswer"
+				"text": "answer"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "cAnswer"
+				"text": "answer"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton1"
+				"text": "a."
+				"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton2"
+				"text": "b."
+				"background": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton3"
+				"text": "c."
+				"background": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "save"
+				"text": "save"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 660, 245 )
+		} )
+	}
+}
