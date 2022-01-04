@@ -29,7 +29,8 @@ public class CreateExamFrame extends JFrame {
     public String examName;
     public String courseCode;
     public Date dateOfExam;
-    public Time timeOfExam;
+    public Time startTime;
+    public Time endTime;
     public String userName_instructor;
     public int userId_instructor;
     public int examId_instructor;
@@ -40,31 +41,12 @@ public class CreateExamFrame extends JFrame {
         initComponents();
     }
 
-    public void setFormattedFields(){
-        //dateField
-        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        DateFormatter df = new DateFormatter(format);
-        DefaultFormatterFactory dateFactory = new DefaultFormatterFactory(df);
-        date.setFormatterFactory(dateFactory);
-        date.setPreferredSize(new Dimension(100, 20));
-        date.setValue(new Date());
-
-        //timeField
-        DateFormat time = new SimpleDateFormat("HH:mm:ss");
-        DateFormatter tdf = new DateFormatter(time);
-        DefaultFormatterFactory timeFactory = new DefaultFormatterFactory(tdf);
-        startTime.setFormatterFactory(timeFactory);
-        startTime.setPreferredSize(new Dimension(100, 20));
-        startTime.setValue(new Date().getTime());
-
-        endTime.setFormatterFactory(timeFactory);
-        endTime.setPreferredSize(new Dimension(100, 20));
-        endTime.setValue(new Date().getTime());
-    }
-
     private void create(ActionEvent e) {
         ExamModel examModel = new ExamModel();
-        examModel.addExam(examNameLabel.getText(),100);
+        System.out.println(startTimeLabel.getText());
+        System.out.println(endTimeLabel.getText());
+        System.out.println(dateLabel.getText());
+        examModel.addExam(examNameLabel.getText(),100,Time.valueOf(startTimeLabel.getText()), Time.valueOf(endTimeLabel.getText()), java.sql.Date.valueOf(dateLabel.getText()));
         Exam exam = examModel.getExam(examModel.getExamIdFromName(examNameLabel.getText()));
         AuthorizationModel model = new AuthorizationModel();
         ArrayList<Integer> ids = model.getUserIds();
@@ -95,151 +77,158 @@ public class CreateExamFrame extends JFrame {
         return examId_instructor;
     }
 
+    public Date getDateOfExam() {
+        return dateOfExam;
+    }
+
+    public void setDateOfExam(Date dateOfExam) {
+        this.dateOfExam = dateOfExam;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    private void createUIComponents() {
+        // TODO: add custom component creation code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
+        startTimeLabel = new JTextField();
+        endTimeLabel = new JTextField();
+        dateLabel = new JTextField();
+        examNameLabel = new JTextField();
+        createButton = new JButton();
         label1 = new JLabel();
         label2 = new JLabel();
         label3 = new JLabel();
-        date = new JFormattedTextField();
-        startTime = new JFormattedTextField();
-        endTime = new JFormattedTextField();
-        label4 = new JLabel();
         label5 = new JLabel();
-        createButton = new JButton();
-        examNameLabel = new JTextField();
-        courseCodeLabel = new JTextField();
-        label6 = new JLabel();
         button1 = new JButton();
+        label6 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-            0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-            . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-            red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-            beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
-
-            //---- label1 ----
-            label1.setText("Start:");
-
-            //---- label2 ----
-            label2.setText("End:");
-
-            //---- label3 ----
-            label3.setText("Date:");
-
-            //---- label4 ----
-            label4.setText("Course Code:");
-
-            //---- label5 ----
-            label5.setText("Exam Name:");
-
-            //---- createButton ----
-            createButton.setText("Create");
-            createButton.addActionListener(e -> create(e));
-
-            //---- label6 ----
-            label6.setText("Create Exam");
-
-            //---- button1 ----
-            button1.setText("Cancel");
-            button1.addActionListener(e -> cancel(e));
-
-            GroupLayout panel1Layout = new GroupLayout(panel1);
-            panel1.setLayout(panel1Layout);
-            panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(label1)
-                                            .addComponent(label3))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(startTime, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label2)
-                                                .addGap(91, 91, 91))
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(date, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(endTime, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(createButton)))
-                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                                .addGroup(panel1Layout.createParallelGroup()
-                                                    .addComponent(label4)
-                                                    .addComponent(label5))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(panel1Layout.createParallelGroup()
-                                                    .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(courseCodeLabel, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addComponent(button1)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(label6)))
-                        .addGap(30, 30, 30))
-            );
-            panel1Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {courseCodeLabel, examNameLabel});
-            panel1Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {endTime, startTime});
-            panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label6)
-                        .addGap(19, 19, 19)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label5))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label4)
-                            .addComponent(courseCodeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(startTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2)
-                            .addComponent(endTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(createButton)
-                            .addComponent(button1))
-                        .addContainerGap(20, Short.MAX_VALUE))
-            );
-            panel1Layout.linkSize(SwingConstants.VERTICAL, new Component[] {courseCodeLabel, date, endTime, examNameLabel, startTime});
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+            border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
+            ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+            . BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
+            new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
+            .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setLayout(new FlowLayout());
         }
+
+        //---- startTimeLabel ----
+        startTimeLabel.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        startTimeLabel.setText("HH:mm:ss");
+
+        //---- endTimeLabel ----
+        endTimeLabel.setText("HH:mm:ss");
+
+        //---- dateLabel ----
+        dateLabel.setText("yyyy-MM-dd");
+
+        //---- createButton ----
+        createButton.setText("Create");
+        createButton.addActionListener(e -> create(e));
+
+        //---- label1 ----
+        label1.setText("Start Time:");
+
+        //---- label2 ----
+        label2.setText("End Time:");
+
+        //---- label3 ----
+        label3.setText("Date:");
+
+        //---- label5 ----
+        label5.setText("Exam Name:");
+
+        //---- button1 ----
+        button1.setText("Cancel");
+        button1.addActionListener(e -> cancel(e));
+
+        //---- label6 ----
+        label6.setText("Create Exam");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(35, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(label3)
+                                .addComponent(label2)
+                                .addComponent(label5)
+                                .addComponent(label1))
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createParallelGroup()
+                                    .addComponent(startTimeLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(endTimeLabel, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dateLabel, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(button1)
+                            .addGap(49, 49, 49)
+                            .addComponent(createButton)))
+                    .addGap(84, 84, 84))
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(122, 122, 122)
+                    .addComponent(label6)
+                    .addContainerGap(138, Short.MAX_VALUE))
         );
+        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {dateLabel, endTimeLabel, examNameLabel, startTimeLabel});
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(label6)
+                    .addGap(26, 26, 26)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label5)
+                        .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(startTimeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label2)
+                        .addComponent(endTimeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label3)
+                        .addComponent(dateLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(createButton)
+                        .addComponent(button1))
+                    .addGap(32, 32, 32))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -249,18 +238,16 @@ public class CreateExamFrame extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
+    private JTextField startTimeLabel;
+    private JTextField endTimeLabel;
+    private JTextField dateLabel;
+    private JTextField examNameLabel;
+    private JButton createButton;
     private JLabel label1;
     private JLabel label2;
     private JLabel label3;
-    private JFormattedTextField date;
-    private JFormattedTextField startTime;
-    private JFormattedTextField endTime;
-    private JLabel label4;
     private JLabel label5;
-    private JButton createButton;
-    private JTextField examNameLabel;
-    private JTextField courseCodeLabel;
-    private JLabel label6;
     private JButton button1;
+    private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

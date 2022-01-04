@@ -25,11 +25,13 @@ public class QuestionsPage extends JFrame {
 
     public String userName;
     public int examId;
+    public int userType;
 
-    public QuestionsPage(int examId, String name) {
+    public QuestionsPage(int examId, String name, int userType) {
         this.userName = name;
         System.out.println(name);
         this.examId=examId;
+        this.userType = userType;
         initComponents();
         setExamName();
         setUserName();
@@ -60,6 +62,14 @@ public class QuestionsPage extends JFrame {
         examNameLabel.setText(exam1.getName());
     }
 
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
     public void setUserName(){
         userNameLabel.setText(getUserName());
     }
@@ -67,23 +77,25 @@ public class QuestionsPage extends JFrame {
     public void addQuestion(int examId ){
         QuestionModel questionModel = new QuestionModel();
         ArrayList<Integer> questionID = questionModel.getQuestionIds(examId);
+        AuthorizationModel model = new AuthorizationModel();
+        String[] name = getUserName().split("\\s+");
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
-                TextQuestion question = new TextQuestion(questionID.get(i), examId);
+                TextQuestion question = new TextQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
                 question.setNumber(String.valueOf(i+1));
                 question.removeGrade();
                 panel2.add(question);
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
-                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
+                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
                 question.setNumber(String.valueOf(i+1));
                 question.removeGrade();
                 panel2.add(question);
 
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
-                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
+                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
                 question.setNumber(String.valueOf(i+1));
                 question.removeGrade();
                 panel2.add(question);
@@ -114,7 +126,6 @@ public class QuestionsPage extends JFrame {
         studentsHomePage.setVisible(true);
         dispose();
     }
-
 
     private void initComponents() {
         setVisible(true);

@@ -114,7 +114,12 @@ public class GradingPage extends JFrame {
         String[][] data = new String[userIds.size()][3];
         for(int i=0; i<userIds.size(); i++)  {
             data[i][0] = getAuthorizationModel().getName(userIds.get(i));
-            data[i][1] = "Has Attended";
+            if(model.hasAttendedExam(userIds.get(i),getExamId())){
+                data[i][1] = "Attended";
+            }
+            else{
+                data[i][1] = "Has Not Attended";
+            }
             data[i][2] = "Not Graded";
         }
         String[] columnNames = {"Student Name","Attendance","Grade"};

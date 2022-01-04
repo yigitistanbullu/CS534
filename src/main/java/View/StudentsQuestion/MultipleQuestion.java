@@ -18,12 +18,14 @@ public class MultipleQuestion extends JPanel {
 
     public int questionId;
     public int examId;
+    public int userType;
+    public int userId;
 
-    QuestionModel model = new QuestionModel();
-
-    public MultipleQuestion(int id, int examId) {
+    public MultipleQuestion(int id, int examId, int userType, int userId) {
         this.questionId =id;
         this.examId =examId;
+        this.userType = userType;
+        this.userId = userId;
         initComponents();
         setQuestion(id);
         setAnswerOptions(id);
@@ -43,6 +45,14 @@ public class MultipleQuestion extends JPanel {
 
     public void setExamId(int examId) {
         this.examId = examId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setQuestion(int qId ){
@@ -76,8 +86,7 @@ public class MultipleQuestion extends JPanel {
         }
     }
 
-    public void removeSave(){
-        save.setVisible(false);
+    public void disableGradeFieldForStudent(){
         gradeField.setEnabled(false);
     }
 
@@ -91,22 +100,29 @@ public class MultipleQuestion extends JPanel {
     }
 
     private void save(ActionEvent e) {
-        QuestionModel model = new QuestionModel();
-        if(aAnswer.isEnabled()){
-            model.addUserAnswer(aAnswer.getText(),1,getQuestionId());
+        if(userType == 0) {
+            QuestionModel model = new QuestionModel();
+            if (aAnswer.isEnabled()) {
+                model.addUserAnswer(aAnswer.getText(), getUserId(), getQuestionId());
+            } else if (bAnswer.isEnabled()) {
+                model.addUserAnswer(bAnswer.getText(), getUserId(), getQuestionId());
+            } else if (cAnswer.isEnabled()) {
+                model.addUserAnswer(cAnswer.getText(), getUserId(), getQuestionId());
+            }
         }
-        else if(bAnswer.isEnabled()){
-            model.addUserAnswer(bAnswer.getText(),1,getQuestionId());
+        else{
+            getGradeForQuestion();
         }
-        else if(cAnswer.isEnabled()){
-            model.addUserAnswer(cAnswer.getText(),1,getQuestionId());
-        }
+    }
+
+    public double getGradeForQuestion(){
+        return Double.parseDouble(gradeField.getText());
     }
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         question = new JLabel();
         aAnswer = new JLabel();
         bAnswer = new JLabel();
@@ -122,13 +138,11 @@ public class MultipleQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
+        ,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+        ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red),
+         getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         //---- question ----
         question.setText("question");
@@ -230,7 +244,7 @@ public class MultipleQuestion extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JLabel question;
     private JLabel aAnswer;
     private JLabel bAnswer;

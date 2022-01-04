@@ -4,70 +4,62 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {comp panel1::t:::x}"
+			"$horizontalGroup": "par l {seq {comp panel1:::p:353:p, space :0:0:x}, seq t {space ::35:x, par t {seq {par t {comp label3:::p::p, comp label2:::p::p, comp label5:::p::p, comp label1:::p::p}, space s:::p, par l {par l:t {comp startTimeLabel:1::p:133:p, comp endTimeLabel:1::p:133:p}, comp dateLabel:1:l:p:139:p, comp examNameLabel:1::p:139:p}}, seq {comp button1:::p::p, space :p:49:p, comp createButton:::p::p}}, space :p:84:p}, seq l {space :p:122:p, comp label6:::p::p, space ::138:x}}"
+			"$verticalGroup": "par l {seq t {comp panel1:::p::p, space s:::p, comp label6:::p::p, space :p:26:p, par b {comp label5::b:p::p, comp examNameLabel::b:p::p}, space :::p, par b {comp label1::b:p::p, comp startTimeLabel::b:p::p}, space :::p, par b {comp label2::b:p::p, comp endTimeLabel::b:p::p}, space :::p, par b {comp label3::b:p::p, comp dateLabel::b:p::p}, space s:::p, par b {comp createButton::b:p::p, comp button1::b:p::p}, space :p:32:p}}"
 		} ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq {space :p:23:p, par t {seq l {par t {comp label1:::p::p, comp label3:::p::p}, space :::p, par l {seq {comp startTime:4::p:73:p, space :::x, comp label2:::p::p, space :p:91:p}, seq {comp date:::p:144:p, space :0:0:x}}}, seq {space :0:0:x, par t {comp endTime:4::p:85:p, comp createButton:::p::p}}, seq l {par t {seq l {par l {comp label4:::p::p, comp label5:::p::p}, space u:::p, par l {comp examNameLabel:3::p:73:p, comp courseCodeLabel:3::p:153:p}}, seq l {space :p:1:p, comp button1:::p::p}}, space :0:0:x}}}, seq l {space :p:110:p, comp label6:::p::p}}, space :p:30:p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space :p:19:p, par b {comp examNameLabel:1:b:p::p, comp label5::b:p::p}, space :::p, par b {comp label4::b:p::p, comp courseCodeLabel:1:b:p::p}, space :::p, par b {comp startTime:1:b:p::p, comp label2::b:p::p, comp endTime:1:b:p::p, comp label1::b:p::p}, space :::p, par b {comp date:1:b:p::p, comp label3::b:p::p}, space u:::p, par b {comp createButton::b:p::p, comp button1::b:p::p}, space ::20:x}}"
-			} ) {
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
 				name: "panel1"
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"text": "Start:"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label2"
-					"text": "End:"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label3"
-					"text": "Date:"
-				} )
-				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-					name: "date"
-				} )
-				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-					name: "startTime"
-				} )
-				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-					name: "endTime"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label4"
-					"text": "Course Code:"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label5"
-					"text": "Exam Name:"
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "createButton"
-					"text": "Create"
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "create", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "examNameLabel"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "courseCodeLabel"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label6"
-					"text": "Create Exam"
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button1"
-					"text": "Cancel"
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
-				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "startTimeLabel"
+				"cursor": new java.awt.Cursor( 2 )
+				"text": "HH:mm:ss"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "endTimeLabel"
+				"text": "HH:mm:ss"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "dateLabel"
+				"text": "yyyy-MM-dd"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "examNameLabel"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "createButton"
+				"text": "Create"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "create", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Start Time:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "End Time:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Date:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Exam Name:"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Create Exam"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 295, 265 )
+			"size": new java.awt.Dimension( 340, 315 )
 		} )
 	}
 }
-
-

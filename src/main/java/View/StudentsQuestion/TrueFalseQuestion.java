@@ -18,10 +18,14 @@ public class TrueFalseQuestion extends JPanel {
 
     public int questionId;
     public int examId;
+    public int userType;
+    public int userId;
 
-    public TrueFalseQuestion(int id, int examId) {
+    public TrueFalseQuestion(int id, int examId,int userType,int userId) {
         this.questionId =id;
         this.examId = examId;
+        this.userType = userType;
+        this.userId = userId;
         initComponents();
         setQuestion(id);
     }
@@ -42,6 +46,14 @@ public class TrueFalseQuestion extends JPanel {
         this.examId = examId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public void setQuestion(int qId ){
         QuestionModel model = new QuestionModel();
         questionLabel.setText(model.getQuestion(qId));
@@ -52,16 +64,21 @@ public class TrueFalseQuestion extends JPanel {
     }
 
     private void save(ActionEvent e) {
-        QuestionModel model = new QuestionModel();
-        if(trueCheck.isEnabled()){
-            model.addUserAnswer("True",1,getQuestionId());
+        if(userType == 0) {
+            QuestionModel model = new QuestionModel();
+            if (trueCheck.isEnabled()) {
+                model.addUserAnswer("True", getUserId(), getQuestionId());
 
+            } else if (falseCheck.isEnabled()) {
+                model.addUserAnswer("False", getUserId(), getQuestionId());
+
+            }
         }
-        else if(falseCheck.isEnabled()){
-            model.addUserAnswer("False",1,getQuestionId());
-
+        else{
+            getGradeForQuestion();
         }
     }
+
     public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
         String answer =  model.getUserAnswer(userId, questionId);
@@ -75,8 +92,7 @@ public class TrueFalseQuestion extends JPanel {
             falseCheck.setSelected(true);
         }
     }
-    public void removeSave(){
-        save.setVisible(false);
+    public void removeGradeFieldForStudent(){
         gradeField.setEnabled(false);
     }
 
@@ -85,11 +101,14 @@ public class TrueFalseQuestion extends JPanel {
         gradeLabel.setVisible(false);
     }
 
+    public double getGradeForQuestion(){
+        return Double.parseDouble(gradeField.getText());
+    }
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         trueCheck = new JCheckBox();
         falseCheck = new JCheckBox();
         questionLabel = new JLabel();
@@ -101,12 +120,13 @@ public class TrueFalseQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
+        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing
+        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
+        Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red
+        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
+        public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName(
+        )))throw new RuntimeException();}});
 
         //---- trueCheck ----
         trueCheck.setText("True");
@@ -181,7 +201,7 @@ public class TrueFalseQuestion extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JCheckBox trueCheck;
     private JCheckBox falseCheck;
     private JLabel questionLabel;

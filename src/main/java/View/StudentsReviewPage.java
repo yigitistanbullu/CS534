@@ -5,7 +5,6 @@
 package View;
 
 import Controller.ExamController.Exam;
-import Model.AuthorizationModel;
 import Model.ExamModel;
 import Model.QuestionModel;
 import View.StudentsQuestion.MultipleQuestion;
@@ -67,8 +66,12 @@ public class StudentsReviewPage extends JFrame {
     }
 
     private void doneButtonOnClicked(ActionEvent e) {
-
-        this.dispose();
+        if(userType == 0){
+            this.dispose();
+        }
+        else{
+            this.dispose();
+        }
     }
 
     public void addQuestion(int examId ){
@@ -77,30 +80,30 @@ public class StudentsReviewPage extends JFrame {
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
-                TextQuestion question = new TextQuestion(questionID.get(i), examId);
+                TextQuestion question = new TextQuestion(questionID.get(i), examId,getUserType(),getStudentId());
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
-                    question.removeSave();
+                    question.removeGradeFieldForStudent();
                 }                panel2.add(question);
             }
 
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
-                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
+                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId,getUserType(),getStudentId());
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
-                    question.removeSave();
+                    question.disableGradeFieldForStudent();
                 }
                 panel2.add(question);
             }
 
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
-                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
+                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId,getUserType(),getStudentId());
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
-                    question.removeSave();
+                    question.removeGradeFieldForStudent();
                 }
                 panel2.add(question);
             }

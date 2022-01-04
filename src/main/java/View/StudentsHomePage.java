@@ -5,7 +5,13 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLOutput;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -22,8 +28,6 @@ import View.StudentsQuestion.QuestionsPage;
 /*
  * Created by JFormDesigner on Wed Dec 15 19:07:28 EET 2021
  */
-
-
 
 public class StudentsHomePage extends JFrame {
     public int userId;
@@ -105,15 +109,17 @@ public class StudentsHomePage extends JFrame {
     }
 
     public void setExamData(){
-        String[][] data = new String[examIds.size()][4];
+        String[][] data = new String[examIds.size()][6];
         for(int i=0; i<examIds.size();i++)  {
             Exam exam = getExamModel().getExam(examIds.get(i));
             data[i][0] = exam.getName();
-            data[i][1] = "Attend";
-            data[i][2] = "Review";
-            data[i][3] = Double.toString(exam.getGrade());
+            data[i][1] = exam.getDate().toString();
+            data[i][2] = exam.getStartTime().toString() + "-" + exam.getEndTime().toString();
+            data[i][3] = "Attend";
+            data[i][4] = "Review";
+            data[i][5] = Double.toString(exam.getGrade());
         }
-        String[] columnNames = {"Exam Name","Status","Review","Grade"};
+        String[] columnNames = {"Exam Name","Date","Time","Status","Review","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
@@ -126,17 +132,39 @@ public class StudentsHomePage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ExamModel examModel = new ExamModel();
                 Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
-                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())){
-                QuestionsPage examPage = new QuestionsPage(examIds.get(table1.getSelectedRow()), getUserName());
-                examPage.setVisible(true);
-                dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(new JFrame(),"You have already attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+                LocalDateTime currentDate = LocalDateTime.now();
+                DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String current = sdf.format(new Date());
+                Date timeNow = new Date();
+                try {
+                    timeNow = sdf.parse(current);
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
                 }
 
+                long startTime = newExam.getStartTime().getTime();
+                long endTime = newExam.getEndTime().getTime();
+                long currentTime = timeNow.getTime();
+
+                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())
+                        && newExam.getDate().toString().equals(date.format(currentDate))
+                        && startTime <= currentTime && endTime >= currentTime
+                ){
+                    QuestionsPage examPage = new QuestionsPage(examIds.get(table1.getSelectedRow()), getUserName(),0);
+                    examPage.setVisible(true);
+                    dispose();
+                }
+                else if(!newExam.getDate().toString().equals(date.format(currentDate))
+                        || startTime > currentTime || endTime < currentTime){
+                        JOptionPane.showMessageDialog(new JFrame(),"The exam has not started / has ended.","Dialog",JOptionPane.ERROR_MESSAGE);
+                }
+                else if(examModel.hasAttendedExam(getUserId(),newExam.getId())){
+                    JOptionPane.showMessageDialog(new JFrame(),"You have already attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+                }
             }
-        }, 1 );
+        }, 3 );
 
         ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
             @Override
@@ -144,15 +172,15 @@ public class StudentsHomePage extends JFrame {
                 ExamModel examModel = new ExamModel();
                 Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
                 if(!examModel.hasAttendedExam(getUserId(),newExam.getId())){
+                    JOptionPane.showMessageDialog(new JFrame(),"You have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+                }
+                else{
                     StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
                     reviewPage.setVisible(true);
                 }
-                else{
-                    JOptionPane.showMessageDialog(new JFrame(),"You have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
-                }
 
             }
-        }, 2 );
+        }, 4 );
     }
 
     private void Logout(ActionEvent e) {
@@ -184,13 +212,12 @@ public class StudentsHomePage extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(893, 576));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+            border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
+            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
+            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
+            .equals(e.getPropertyName()))throw new RuntimeException();}});
 
             //---- nameLabel ----
             nameLabel.setText("Name Surname");

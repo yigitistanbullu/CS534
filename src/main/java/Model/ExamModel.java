@@ -5,16 +5,18 @@ import Controller.ExamController.User_Exam;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ExamModel {
 
     public static Exam exam;
-    public static User_Exam userExam;
 
-    public static void addExam(String examName, double examGrade) {
+    public static void addExam(String examName, double examGrade, Time startTime, Time endTime, Date date) {
 
-        String Query = "INSERT into Exam(exam_name, exam_grade) VALUES (" + "'"  + examName + "'" + " ," + "'" + examGrade+ "'" + ") ;";
+        String Query = "INSERT into Exam(exam_name, exam_grade, exam_start_time, exam_end_time, exam_date) VALUES (" + "'"  + examName + "'" + " ," + "'" + examGrade+ "'"+ " ," + "'" + startTime+ " '," + "'" + endTime + " '," + "'" + date + "') ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -38,11 +40,15 @@ public class ExamModel {
 
     }
 
-    public void setGrade(Exam exam) {
+    public static void setGrade(double grade, int examId, int userId) {
 
-        String Query = "UPDATE Exam SET exam_grade = " + exam.getGrade() + " WHERE exam_id = " + exam.getId() + ";";
+        String Query = "UPDATE User_Exam SET exam_grade = '" + grade + "' WHERE exam_id = '" + examId + "' AND user_id = '"+ userId + "';";
+        String Query2 = "UPDATE User_Exam SET has_graded = 1 WHERE exam_id = '" + examId + "' AND user_id = '"+ userId + "';";
+
         try {
             DBConnection.connection.createStatement().execute(Query);
+            DBConnection.connection.createStatement().execute(Query2);
+
 
         } catch (SQLException e) {
 
@@ -70,11 +76,11 @@ public class ExamModel {
 
     }
 
-    public double getGrade(Exam exam){
+    public double getGrade(int userId, int examId){
         double grade = 0;
         ResultSet result;
         String str ="";
-        String Query = "SELECT exam_grade FROM Exam WHERE exam_id ='" + exam.getId() + "';";
+        String Query = "SELECT exam_grade FROM User_Exam WHERE exam_id = " + examId+ " AND user_id = "+ userId + ";";
 
         try {
 
@@ -154,7 +160,7 @@ public class ExamModel {
         ResultSet result;
         ArrayList<String> exam = new ArrayList<>();
 
-        String Query = "SELECT  exam_id , exam_name , exam_grade FROM Exam Where exam_id ='" + examId + "';";
+        String Query = "SELECT  exam_id , exam_name , exam_grade , exam_start_time, exam_end_time, exam_date FROM Exam Where exam_id ='" + examId + "';";
         try {
 
 
@@ -171,7 +177,7 @@ public class ExamModel {
 
             e.printStackTrace();
         }
-        Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)));
+        Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
         return newExam;
     }
 
@@ -286,7 +292,7 @@ public class ExamModel {
     }
 
     public static void attendExam(int userId, int examId){
-        String Query = "UPDATE User_Exam SET has_attended = '1' WHERE exam_id = " + exam.getId() + "' AND user_id = '"+ userId + "';";
+        String Query = "UPDATE User_Exam SET has_attended = 1 WHERE exam_id = " + examId+ " AND user_id = "+ userId + ";";
         try {
             DBConnection.connection.createStatement().execute(Query);
 

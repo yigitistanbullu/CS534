@@ -20,10 +20,14 @@ public class TextQuestion extends JPanel {
 
     public int questionId;
     public int examId;
+    public int userType;
+    public int userId;
 
-    public TextQuestion(int id, int examId) {
+    public TextQuestion(int id, int examId, int userType ,int userId) {
         this.questionId =id;
         this.examId =examId;
+        this.userType = userType;
+        this.userId = userId;
         initComponents();
         setQuestion(id);
     }
@@ -44,6 +48,14 @@ public class TextQuestion extends JPanel {
         this.examId = examId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public ExamModel examModel = new ExamModel();
 
     public void setQuestion(int qId){
@@ -61,8 +73,13 @@ public class TextQuestion extends JPanel {
     }
 
     private void save(ActionEvent e) {
+        if(userType == 0){
         QuestionModel model = new QuestionModel();
-        model.addUserAnswer(answerField.getText(), 1, getQuestionId());
+        model.addUserAnswer(answerField.getText(), getUserId(), getQuestionId());
+        }
+        else{
+        getGradeForQuestion();
+        }
     }
 
     public void setAnswerForReview(int questionId, int userId){
@@ -73,15 +90,18 @@ public class TextQuestion extends JPanel {
         answerField.setText(answer);
     }
 
-    public void removeSave(){
-        save.setVisible(false);
+    public void removeGradeFieldForStudent(){
         gradeField.setEnabled(false);
+    }
+
+    public double getGradeForQuestion(){
+        return Double.parseDouble(gradeField.getText());
     }
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         questionLabel = new JLabel();
         answerField = new JTextField();
         enterAnswer = new JLabel();
@@ -93,12 +113,13 @@ public class TextQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
-        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax
-        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,
-        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
-        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e.
-        getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
+        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
+        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
+        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+        .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
+        ( ); }} );
 
         //---- questionLabel ----
         questionLabel.setText("question");
@@ -165,7 +186,7 @@ public class TextQuestion extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JLabel questionLabel;
     private JTextField answerField;
     private JLabel enterAnswer;

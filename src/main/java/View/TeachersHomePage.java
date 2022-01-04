@@ -76,8 +76,8 @@ public class TeachersHomePage extends JFrame {
         for(int i=0; i<examIds.size();i++)  {
             Exam exam = getExamModel().getExam(examIds.get(i));
             data[i][0] = exam.getName();
-            data[i][1] = "Date";
-            data[i][2] = "Time";
+            data[i][1] = exam.getDate().toString();
+            data[i][2] = exam.getStartTime().toString() + "-" + exam.getEndTime().toString();
         }
         String[] columnNames = {"Exam Name","Date", "Time"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
