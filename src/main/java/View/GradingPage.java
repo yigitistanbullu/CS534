@@ -101,7 +101,7 @@ public class GradingPage extends JFrame {
 
     private void grade(ActionEvent e) {
         int id = userIds.get(table1.getSelectedRow());
-        StudentsReviewPage reviewPage = new StudentsReviewPage(id, AuthorizationModel.getName(id),userIds.get(table1.getSelectedRow()),1);
+        StudentsReviewPage reviewPage = new StudentsReviewPage(id, AuthorizationModel.getName(id),getExamId(),1);
         reviewPage.setVisible(true);
     }
 
