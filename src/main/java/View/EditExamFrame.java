@@ -1,5 +1,6 @@
 package View;
 
+import javax.swing.border.*;
 import Controller.ExamController.Exam;
 import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
@@ -65,6 +66,9 @@ public class EditExamFrame extends JFrame {
             int qID = questionID.get(i);
             tableModel.addRow(new Object[]{Integer.toString(i+1),questionModel.getQuestionType(qID), questionModel.getKeyAnswer(qID),questionModel.getAvailablePoints(qID)});
         }
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) questionsTable.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(0);
+        questionsTable.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
     }
 
     private void delete(ActionEvent e) {
@@ -147,7 +151,7 @@ public class EditExamFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         questionsTable = new JTable();
@@ -167,17 +171,18 @@ public class EditExamFrame extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(991, 561));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
-            (0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
-            .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-            .Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
-            propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-            ;}});
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+            border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border . TitledBorder. CENTER
+            ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dialo\u0067", java .awt . Font
+            . BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener(
+            new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "borde\u0072"
+            .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
             //======== scrollPane1 ========
             {
-                scrollPane1.setBackground(Color.white);
+                scrollPane1.setBackground(new Color(189, 204, 218));
                 scrollPane1.setForeground(Color.white);
+                scrollPane1.setBorder(new EmptyBorder(5, 5, 5, 5));
 
                 //---- questionsTable ----
                 questionsTable.setModel(new DefaultTableModel(
@@ -304,7 +309,7 @@ public class EditExamFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable questionsTable;

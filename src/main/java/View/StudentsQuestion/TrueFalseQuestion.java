@@ -54,17 +54,18 @@ public class TrueFalseQuestion extends JPanel {
     private void save(ActionEvent e) {
         QuestionModel model = new QuestionModel();
         if(trueCheck.isEnabled()){
-            model.setSelectedAnswer(getExamId(),getQuestionId(),"True");
+            model.addUserAnswer("True",1,getQuestionId());
 
         }
         else if(falseCheck.isEnabled()){
-            model.setSelectedAnswer(getExamId(),getQuestionId(),"False");
+            model.addUserAnswer("False",1,getQuestionId());
 
         }
     }
-    public void setAnswerForReview(int questionId){
+    public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
-        String answer =  model.getSelectedAnswer(questionId);
+        String answer =  model.getUserAnswer(userId, questionId);
+        System.out.println(answer);
         trueCheck.setEnabled(false);
         falseCheck.setEnabled(false);
         if(answer.equals(trueCheck.getText())){

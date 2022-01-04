@@ -108,6 +108,8 @@ public class QuestionsPage extends JFrame {
     private void submit(ActionEvent e) {
         AuthorizationModel model = new AuthorizationModel();
         String[] name = getUserName().split("\\s+");
+        ExamModel examModel = new ExamModel();
+        examModel.attendExam(model.getUserId(name[0]),getExamId());
         StudentsHomePage studentsHomePage = new StudentsHomePage(model.getUserId(name[0]),getUserName());
         studentsHomePage.setVisible(true);
         dispose();

@@ -12,7 +12,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyledEditorKit;
 
 import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
@@ -81,6 +83,9 @@ public class TeachersHomePage extends JFrame {
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) table1.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(0);
+        table1.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
     }
 
     private void createExam(ActionEvent e) {
@@ -137,13 +142,12 @@ public class TeachersHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-            .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing
-            .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-            Font("Dialo\u0067",java.awt.Font.BOLD,12),java.awt.Color.red
-            ),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-            public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName(
-            )))throw new RuntimeException();}});
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //---- nameLabel ----
             nameLabel.setText("Instructor Name");
@@ -153,8 +157,9 @@ public class TeachersHomePage extends JFrame {
 
             //======== scrollPane1 ========
             {
-                scrollPane1.setBackground(Color.white);
+                scrollPane1.setBackground(new Color(189, 204, 218));
                 scrollPane1.setForeground(Color.white);
+                scrollPane1.setBorder(new EmptyBorder(6, 6, 6, 6));
 
                 //---- table1 ----
                 table1.setBorder(new EmptyBorder(5, 5, 5, 5));

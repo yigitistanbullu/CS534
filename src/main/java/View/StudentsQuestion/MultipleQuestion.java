@@ -58,9 +58,10 @@ public class MultipleQuestion extends JPanel {
         cAnswer.setText(answers.get(2));
     }
 
-    public void setAnswerForReview(int questionId){
+    public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
-        String answer =  model.getSelectedAnswer(questionId);
+        String answer =  model.getUserAnswer(userId,questionId);
+        System.out.println(answer);
         radioButton1.setEnabled(false);
         radioButton2.setEnabled(false);
         radioButton3.setEnabled(false);
@@ -92,13 +93,13 @@ public class MultipleQuestion extends JPanel {
     private void save(ActionEvent e) {
         QuestionModel model = new QuestionModel();
         if(aAnswer.isEnabled()){
-            model.setSelectedAnswer(getExamId(),getQuestionId(),aAnswer.getText());
+            model.addUserAnswer(aAnswer.getText(),1,getQuestionId());
         }
         else if(bAnswer.isEnabled()){
-            model.setSelectedAnswer(getExamId(),getQuestionId(),bAnswer.getText());
+            model.addUserAnswer(bAnswer.getText(),1,getQuestionId());
         }
         else if(cAnswer.isEnabled()){
-            model.setSelectedAnswer(getExamId(),getQuestionId(),cAnswer.getText());
+            model.addUserAnswer(cAnswer.getText(),1,getQuestionId());
         }
     }
 

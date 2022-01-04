@@ -4,6 +4,7 @@
 
 package View;
 
+import javax.swing.border.*;
 import Controller.ExamController.Exam;
 import Model.AuthorizationModel;
 import Model.ExamModel;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -115,10 +117,13 @@ public class GradingPage extends JFrame {
             data[i][1] = "Has Attended";
             data[i][2] = "Not Graded";
         }
-        String[] columnNames = {"User Name","Attendance","Grade"};
+        String[] columnNames = {"Student Name","Attendance","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) table1.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(0);
+        table1.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
     }
 
     private void initComponents() {
@@ -138,18 +143,19 @@ public class GradingPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax
-            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
-            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .
-            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+            . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder
+            . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
+            awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) )
+            ; panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+            ) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+            ;
 
             //======== scrollPane1 ========
             {
-                scrollPane1.setBackground(Color.white);
+                scrollPane1.setBackground(new Color(189, 204, 218));
                 scrollPane1.setForeground(Color.white);
+                scrollPane1.setBorder(new EmptyBorder(5, 5, 5, 5));
 
                 //---- table1 ----
                 table1.setRowHeight(30);

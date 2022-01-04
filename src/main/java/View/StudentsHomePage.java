@@ -113,18 +113,27 @@ public class StudentsHomePage extends JFrame {
             data[i][2] = "Review";
             data[i][3] = Double.toString(exam.getGrade());
         }
-        String[] columnNames = {"Exam Name","Status","","Grade"};
+        String[] columnNames = {"Exam Name","Status","Review","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
         table1.setModel(tableModel);
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) table1.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(0);
+        table1.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
+
         ButtonColumn column = new ButtonColumn(table1, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ExamModel examModel = new ExamModel();
                 Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
+                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())){
                 QuestionsPage examPage = new QuestionsPage(examIds.get(table1.getSelectedRow()), getUserName());
                 examPage.setVisible(true);
                 dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(new JFrame(),"You have already attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+                }
 
             }
         }, 1 );
@@ -132,8 +141,15 @@ public class StudentsHomePage extends JFrame {
         ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
-                reviewPage.setVisible(true);
+                ExamModel examModel = new ExamModel();
+                Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
+                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())){
+                    StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
+                    reviewPage.setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(new JFrame(),"You have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+                }
 
             }
         }, 2 );
@@ -168,12 +184,13 @@ public class StudentsHomePage extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(893, 576));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-            ( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-            . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
+            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+            .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
+            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
+            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Name Surname");
@@ -192,13 +209,15 @@ public class StudentsHomePage extends JFrame {
 
             //======== scrollPane2 ========
             {
+                scrollPane2.setBorder(new EmptyBorder(6, 6, 6, 6));
+                scrollPane2.setBackground(new Color(189, 204, 218));
 
                 //---- table1 ----
                 table1.setBorder(new EmptyBorder(5, 5, 5, 5));
                 table1.setFont(new Font("Roboto Thin", Font.PLAIN, 13));
-                table1.setAutoCreateRowSorter(true);
                 table1.setRowHeight(30);
                 table1.setSelectionForeground(new Color(204, 204, 204));
+                table1.setIntercellSpacing(new Dimension(5, 5));
                 scrollPane2.setViewportView(table1);
             }
 

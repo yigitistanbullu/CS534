@@ -62,12 +62,13 @@ public class TextQuestion extends JPanel {
 
     private void save(ActionEvent e) {
         QuestionModel model = new QuestionModel();
-        model.setSelectedAnswer(getExamId(),getQuestionId(),answerField.getText());
+        model.addUserAnswer(answerField.getText(), 1, getQuestionId());
     }
 
-    public void setAnswerForReview(int questionId){
+    public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
-        String answer =  model.getSelectedAnswer(questionId);
+        String answer =  model.getUserAnswer(userId,questionId);
+        System.out.println(answer);
         answerField.setEnabled(false);
         answerField.setText(answer);
     }

@@ -35,13 +35,15 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane2"
+					"border": new javax.swing.border.EmptyBorder( 6, 6, 6, 6 )
+					"background": new java.awt.Color( 189, 204, 218, 255 )
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "table1"
 						"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
 						"font": new java.awt.Font( "Roboto Thin", 0, 13 )
-						"autoCreateRowSorter": true
 						"rowHeight": 30
 						"selectionForeground": new java.awt.Color( 204, 204, 204, 255 )
+						"intercellSpacing": new java.awt.Dimension( 5, 5 )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

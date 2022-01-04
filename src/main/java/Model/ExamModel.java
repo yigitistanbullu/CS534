@@ -139,8 +139,8 @@ public class ExamModel {
         }
     }
 
-    public void setExamGrade(Exam exam){
-        String Query = "UPDATE Exam SET exam_grade = (SELECT SUM(points_earned) FROM Question WHERE exam_id = " + exam.getId() + " ) WHERE exam_id =" + exam.getId() + " ;";
+    public void setExamGrade(int examId){
+        String Query = "UPDATE User_Exam SET exam_grade =(SELECT SUM(points_earned) FROM Question WHERE exam_id = " +examId + " ) WHERE exam_id =" + exam.getId() + " ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -265,6 +265,35 @@ public class ExamModel {
         }
 
         return userIds;
+    }
+
+    public boolean hasAttendedExam(int userId, int examId){
+        ResultSet result;
+        boolean hasAttended = false;
+        String Query = "SELECT has_attended FROM User_Exam Where exam_id ='" +examId + "' AND user_id = '"+ userId + "';";
+
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            hasAttended = result.getBoolean(1);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return hasAttended ;
+    }
+
+    public static void attendExam(int userId, int examId){
+        String Query = "UPDATE User_Exam SET has_attended = '1' WHERE exam_id = " + exam.getId() + "' AND user_id = '"+ userId + "';";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
     }
 
 }

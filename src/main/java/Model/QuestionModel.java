@@ -261,6 +261,36 @@ public class QuestionModel {
     }
 
 
+    //create User_Answer
+    public static void addUserAnswer(String answer, int userId, int questionId){
+
+        String Query = "INSERT into User_Answer(user_id, question_id, selected_answer) VALUES (" + userId+"," + questionId+",'" + answer+"') ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    //create User_Answer
+    public String getUserAnswer(int userId, int questionId){
+        String userAnswer = "";
+        ResultSet result;
+        String Query = "SELECT selected_answer FROM User_Answer WHERE user_id ='" + userId + "' AND question_id ='" + questionId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            userAnswer = result.getString(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userAnswer;
+    }
+
+
 
 
 }

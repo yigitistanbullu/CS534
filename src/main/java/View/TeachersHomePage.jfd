@@ -23,8 +23,9 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
-					"background": new java.awt.Color( 255, 255, 255, 255 )
+					"background": new java.awt.Color( 189, 204, 218, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"border": new javax.swing.border.EmptyBorder( 6, 6, 6, 6 )
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "table1"
 						"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )

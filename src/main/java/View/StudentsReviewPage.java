@@ -79,7 +79,7 @@ public class StudentsReviewPage extends JFrame {
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
                 TextQuestion question = new TextQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
-                question.setAnswerForReview(questionID.get(i));
+                question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeSave();
                 }                panel2.add(question);
@@ -88,7 +88,7 @@ public class StudentsReviewPage extends JFrame {
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
                 MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
-                question.setAnswerForReview(questionID.get(i));
+                question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeSave();
                 }
@@ -98,7 +98,7 @@ public class StudentsReviewPage extends JFrame {
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
                 TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
-                question.setAnswerForReview(questionID.get(i));
+                question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeSave();
                 }
@@ -110,7 +110,7 @@ public class StudentsReviewPage extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         nameLabel = new JLabel();
         nameLabel2 = new JLabel();
@@ -125,12 +125,13 @@ public class StudentsReviewPage extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(863, 576));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-            ( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+            swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border
+            . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog"
+            , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder
+            () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+            . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException
+            ( ) ;} } );
 
             //---- nameLabel ----
             nameLabel.setText("Student Name");
@@ -217,7 +218,7 @@ public class StudentsReviewPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel nameLabel2;

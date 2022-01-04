@@ -17,8 +17,9 @@ new FormModel {
 				"preferredSize": new java.awt.Dimension( 991, 561 )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
-					"background": new java.awt.Color( 255, 255, 255, 255 )
+					"background": new java.awt.Color( 189, 204, 218, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "questionsTable"
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {

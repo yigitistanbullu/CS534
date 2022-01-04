@@ -23,7 +23,7 @@ public class DBConnection {
 
     public static void closeConnection() {
         try {
-            System.out.println("alive");
+            System.out.println("dead");
             if (connection != null) {
                 connection.close();
             }
