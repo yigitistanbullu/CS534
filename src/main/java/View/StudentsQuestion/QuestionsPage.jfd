@@ -9,14 +9,14 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq t {space :p:18:p, comp userNameLabel:::p:167:p, space :p:60:p, comp examNameLabel:::p:162:p, space :::x, comp time:::p:162:p, space :p:10:p}, seq {space ::619:x, comp submitButton:::p::p}, comp questionScrollPane::l:::x}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp userNameLabel::b:p::p, comp examNameLabel::b:p::p, comp time::b:p::p}, space :::p, comp questionScrollPane::::380:x, space :::p, comp submitButton:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :0:369:x, comp ozuLogoLabel:::p:114:p, space :p:290:p, comp submitButton:::p::p}, seq t {comp userNameLabel:::p:167:p, space :p:162:p, comp examNameLabel:::p:162:p, space ::189:x, comp time:::p:162:p, space :p:9:p}, comp questionScrollPane::t:::x}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space ::19:x, par b {comp examNameLabel::b:p::p, comp time::b:p::p, comp userNameLabel::b:p::p}, space :::p, comp questionScrollPane::::534:x, space :::p, par b {comp submitButton::b:p::p, comp ozuLogoLabel::b::35:x}, space :p:9:p}}"
 			} ) {
 				name: "panel1"
-				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"background": sfield java.awt.Color white
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "userNameLabel"
-					"text": "Zeliha Aydın"
+					"text": "Student Name"
 					"foreground": sfield java.awt.Color darkGray
 					"horizontalAlignment": 2
 					"font": &Font0 new java.awt.Font( "Roboto Thin", 0, 18 )
@@ -51,10 +51,14 @@ new FormModel {
 					"font": #Font0
 					"horizontalTextPosition": 4
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "ozuLogoLabel"
+					"text": "text"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 40, 0 )
-			"size": new java.awt.Dimension( 705, 480 )
+			"size": new java.awt.Dimension( 865, 655 )
 		} )
 	}
 }

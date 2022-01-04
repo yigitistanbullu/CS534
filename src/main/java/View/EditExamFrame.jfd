@@ -4,16 +4,17 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {comp panel1:::p:627:p, space :0:1:x}}"
-			"$verticalGroup": "par l {comp panel1::l:::x}"
+			"$horizontalGroup": "par l {seq l {comp panel1:::p:966:p, space :0:0:x}}"
+			"$verticalGroup": "par l {seq l {comp panel1:::p:582:p, space :0:0:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :23:23:p, par l {par l {seq t {comp examNameLabel:::p:179:p, space :0:0:x}, seq l {comp submitButton4:::p::p, space :84::x}}, seq l {par t {seq {comp questionTypeBox:::p:121:p, space :::p, comp addQuestionButton:::p:38:p}, par l:::p {comp scrollPane1:::p:570:p, seq {comp submitButton2:::p::p, space u:::p, comp submitButton3:::p::p, space :::x, comp returnButton:::p::p}}}, space :p:50:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:15:p, comp examNameLabel:::p::p, space u:::p, par b {comp submitButton4::b:p::p, comp addQuestionButton::b:p::p, comp questionTypeBox::b:p::p}, space :p:15:p, comp scrollPane1:::p:341:p, space s:::p, par b {comp submitButton2::b:p::p, comp submitButton3::b:p::p, comp returnButton::b:p::p}, space ::38:x}}"
+				"$horizontalGroup": "par l {seq l {space :23:23:p, par l {seq {comp examNameLabel:::p:179:p, space ::764:x}, seq t {par t {seq {comp submitButton4:::p::p, space ::629:x, comp questionTypeBox:::p:151:p, space :::p, comp addQuestionButton:::p:38:p}, comp scrollPane1::l::906:x, seq t {space :p:1:p, comp submitButton2:::p::p, space u:::p, comp submitButton3:::p::p, space :p:232:p, comp ozuIconLabel:::p:118:p, space ::309:x, comp returnButton:::p::p}}, space :p:37:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:15:p, comp examNameLabel:::p::p, space u:::p, par b {comp submitButton4::b:p::p, comp addQuestionButton::b:p::p, comp questionTypeBox::b:p::p}, space :p:15:p, comp scrollPane1:::p:405:p, space s:::p, par b {comp returnButton::b:p::p, comp submitButton3::b:p::p, comp submitButton2::b:p::p, comp ozuIconLabel::b:p:40:p}, space ::25:x}}"
 			} ) {
 				name: "panel1"
-				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				"preferredSize": new java.awt.Dimension( 991, 561 )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
 					"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -41,6 +42,7 @@ new FormModel {
 							add( null )
 							add( null )
 						} )
+						"rowHeight": 25
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -52,9 +54,9 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "examNameLabel"
 					"text": "Exam Name"
-					"foreground": sfield java.awt.Color black
+					"foreground": sfield java.awt.Color white
 					"horizontalAlignment": 2
-					"font": new java.awt.Font( "Roboto Thin", 0, 18 )
+					"font": new java.awt.Font( "Roboto", 0, 18 )
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "questionTypeBox"
@@ -89,10 +91,14 @@ new FormModel {
 					"background": #Color0
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refresh", true ) )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "ozuIconLabel"
+					"text": "text"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 20, 0 )
-			"size": new java.awt.Dimension( 630, 545 )
+			"size": new java.awt.Dimension( 965, 605 )
 		} )
 	}
 }

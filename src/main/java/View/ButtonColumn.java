@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.*;
 
 public class ButtonColumn extends AbstractCellEditor
@@ -30,7 +31,7 @@ public class ButtonColumn extends AbstractCellEditor
         editButton.setFocusPainted( false );
         editButton.addActionListener( this );
         originalBorder = editButton.getBorder();
-        setFocusBorder( new LineBorder(Color.BLUE) );
+        setFocusBorder( new LineBorder(Color.WHITE) );
 
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(column).setCellRenderer( this );

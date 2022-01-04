@@ -2,12 +2,17 @@ package View;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.border.*;
 import javax.swing.table.*;
 
 import Controller.ExamController.Exam;
@@ -36,6 +41,7 @@ public class StudentsHomePage extends JFrame {
         setExamData();
         date();
         time();
+        setIcon();
     }
 
     public int getUserId() {
@@ -80,6 +86,23 @@ public class StudentsHomePage extends JFrame {
         }).start();
     }
     
+    public void setIcon(){
+        BufferedImage img = null;
+        BufferedImage img2 = null;
+        try {
+            img = ImageIO.read(new File("src/main/java/View/Images/ou_logo_ing_white.png"));
+            Image ozuLogo = img.getScaledInstance(ozuIconLabel.getWidth(),ozuIconLabel.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(ozuLogo);
+            ozuIconLabel.setIcon(imageIcon);
+            img2 = ImageIO.read(new File("src/main/java/View/Images/profile-user.png"));
+            Image profileLogo = img2.getScaledInstance(profileIcon.getWidth(),profileIcon.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon imageIcon2 = new ImageIcon(profileLogo);
+            profileIcon.setIcon(imageIcon2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setExamData(){
         String[][] data = new String[examIds.size()][4];
@@ -105,12 +128,12 @@ public class StudentsHomePage extends JFrame {
 
             }
         }, 1 );
+
         ButtonColumn column2 = new ButtonColumn(table1, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()));
+                StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
                 reviewPage.setVisible(true);
-                dispose();
 
             }
         }, 2 );
@@ -127,7 +150,7 @@ public class StudentsHomePage extends JFrame {
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         nameLabel = new JLabel();
         dateLabel = new JLabel();
@@ -135,25 +158,28 @@ public class StudentsHomePage extends JFrame {
         scrollPane2 = new JScrollPane();
         table1 = new JTable();
         timeLabel = new JLabel();
+        ozuIconLabel = new JLabel();
+        profileIcon = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
-            panel1.setBackground(new Color(182, 142, 185));
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setPreferredSize(new Dimension(893, 576));
             panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-            ( 0, 0, 0, 0) , "", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            ( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
             . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
             ; }} );
 
             //---- nameLabel ----
-            nameLabel.setText("Zeliha Ayd\u0131n S018460");
+            nameLabel.setText("Name Surname");
             nameLabel.setForeground(Color.white);
             nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            nameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            nameLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
 
             //---- dateLabel ----
             dateLabel.setText("15.12.2021");
@@ -166,6 +192,13 @@ public class StudentsHomePage extends JFrame {
 
             //======== scrollPane2 ========
             {
+
+                //---- table1 ----
+                table1.setBorder(new EmptyBorder(5, 5, 5, 5));
+                table1.setFont(new Font("Roboto Thin", Font.PLAIN, 13));
+                table1.setAutoCreateRowSorter(true);
+                table1.setRowHeight(30);
+                table1.setSelectionForeground(new Color(204, 204, 204));
                 scrollPane2.setViewportView(table1);
             }
 
@@ -174,45 +207,60 @@ public class StudentsHomePage extends JFrame {
             timeLabel.setForeground(Color.white);
             timeLabel.setFont(new Font("Roboto", Font.PLAIN, 13));
 
+            //---- ozuIconLabel ----
+            ozuIconLabel.setText("text");
+
+            //---- profileIcon ----
+            profileIcon.setText("text");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap(529, Short.MAX_VALUE)
-                                .addComponent(Logout))
-                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 940, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(dateLabel)
-                                            .addComponent(timeLabel))
-                                        .addGap(8, 8, 8)))))
-                        .addGap(26, 26, 26))
+                                        .addComponent(Logout)
+                                        .addGap(342, 342, 342)
+                                        .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(29, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(profileIcon, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 627, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(dateLabel)
+                                    .addComponent(timeLabel))
+                                .addContainerGap(38, Short.MAX_VALUE))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(nameLabel))
+                                .addContainerGap(40, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nameLabel)
+                                    .addComponent(profileIcon, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
+                                .addGap(18, 18, 18)
                                 .addComponent(dateLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(timeLabel)))
-                        .addGap(26, 26, 26)
-                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 319, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Logout)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(timeLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
+                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 474, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Logout))
+                        .addGap(11, 11, 11))
             );
         }
 
@@ -220,11 +268,13 @@ public class StudentsHomePage extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 991, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -232,7 +282,7 @@ public class StudentsHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JLabel nameLabel;
     private JLabel dateLabel;
@@ -240,6 +290,8 @@ public class StudentsHomePage extends JFrame {
     private JScrollPane scrollPane2;
     private JTable table1;
     private JLabel timeLabel;
+    private JLabel ozuIconLabel;
+    private JLabel profileIcon;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
 

@@ -51,6 +51,11 @@ public class TextQuestion extends JPanel {
         questionLabel.setText(model.getQuestion(qId));
     }
 
+    public void removeGrade(){
+        gradeField.setVisible(false);
+        gradeLabel.setVisible(false);
+    }
+
     public void setNumber(String number){
         label1.setText(number);
     }
@@ -69,6 +74,7 @@ public class TextQuestion extends JPanel {
 
     public void removeSave(){
         save.setVisible(false);
+        gradeField.setEnabled(false);
     }
 
     private void initComponents() {
@@ -80,17 +86,18 @@ public class TextQuestion extends JPanel {
         enterAnswer = new JLabel();
         label1 = new JLabel();
         save = new JButton();
+        gradeLabel = new JLabel();
+        gradeField = new JTextField();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-        . swing. border. EmptyBorder( 0, 0, 0, 0) , "", javax. swing
-        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-        Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName (
-        ) )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax
+        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,
+        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
+        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e.
+        getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
         //---- questionLabel ----
         questionLabel.setText("question");
@@ -108,20 +115,32 @@ public class TextQuestion extends JPanel {
         save.setText("save");
         save.addActionListener(e -> save(e));
 
+        //---- gradeLabel ----
+        gradeLabel.setText("Grade:");
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(28, 28, 28)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(save)
-                        .addGroup(layout.createParallelGroup()
-                            .addComponent(label1)
-                            .addComponent(enterAnswer)
-                            .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(label1, GroupLayout.Alignment.LEADING)
+                                .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(enterAnswer, GroupLayout.Alignment.LEADING))
+                            .addContainerGap(38, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(gradeLabel)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(423, 423, 423)
+                                    .addComponent(save)))
+                            .addGap(0, 32, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -129,14 +148,17 @@ public class TextQuestion extends JPanel {
                     .addGap(14, 14, 14)
                     .addComponent(label1)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(enterAnswer)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(save)
-                    .addGap(12, 12, 12))
+                    .addGap(32, 32, 32)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(save)
+                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gradeLabel))
+                    .addContainerGap(21, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -148,6 +170,8 @@ public class TextQuestion extends JPanel {
     private JLabel enterAnswer;
     private JLabel label1;
     private JButton save;
+    private JLabel gradeLabel;
+    private JTextField gradeField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

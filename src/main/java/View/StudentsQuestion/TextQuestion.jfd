@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par t {comp save:::p::p, par l {comp label1:::p::p, comp enterAnswer::l:p::p, comp answerField::l:p:602:p, comp questionLabel::l:p:602:p}}, space ::13:x}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space :::p, comp questionLabel:::::x, space :::p, comp enterAnswer:::p::p, space :::p, comp answerField:::p::p, space :::p, comp save:::p::p, space :p:12:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {seq l {par t {comp label1::l:p::p, comp questionLabel::l:p:602:p, comp enterAnswer::l:p::p}, space ::38:x}, seq l {par t {comp answerField::t:p:602:p, seq t {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p, space :p:423:p, comp save:::p::p}}, space :0:32:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space :::p, comp questionLabel:::p:40:p, space :::p, comp enterAnswer:::p::p, space u:::p, comp answerField:::p::p, space :p:32:p, par b {comp save::b:p::p, comp gradeField::b:p::p, comp gradeLabel::b:p::p}, space ::21:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -31,9 +31,16 @@ new FormModel {
 				"text": "save"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "gradeLabel"
+				"text": "Grade:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "gradeField"
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 10 )
-			"size": new java.awt.Dimension( 645, 155 )
+			"size": new java.awt.Dimension( 670, 225 )
 		} )
 	}
 }

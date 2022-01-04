@@ -11,10 +11,14 @@ import View.EditQuestion.EditMultipleChoiceQuestionFrame;
 import View.EditQuestion.EditTextQuestionFrame;
 import View.EditQuestion.EditTrueFalseQuestionFrame;
 
+import javax.imageio.ImageIO;
 import javax.swing.table.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -30,6 +34,7 @@ public class EditExamFrame extends JFrame {
         this.userName = userName;
         initComponents();
         editTableAndFrame();
+        setIcon();
     }
 
     private void addQuestion(ActionEvent e) {
@@ -127,6 +132,19 @@ public class EditExamFrame extends JFrame {
         }
     }
 
+    public void setIcon(){
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("src/main/java/View/Images/ou_logo_ing_white.png"));
+            Image ozuLogo = img.getScaledInstance(ozuIconLabel.getWidth(),ozuIconLabel.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(ozuLogo);
+            ozuIconLabel.setIcon(imageIcon);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yasemin
@@ -140,20 +158,20 @@ public class EditExamFrame extends JFrame {
         submitButton2 = new JButton();
         submitButton3 = new JButton();
         submitButton4 = new JButton();
+        ozuIconLabel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
 
         //======== panel1 ========
         {
-            panel1.setBackground(Color.white);
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-            new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-            ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-            ,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12)
-            ,java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException()
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setPreferredSize(new Dimension(991, 561));
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+            (0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+            .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+            .Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+            propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
             ;}});
 
             //======== scrollPane1 ========
@@ -169,6 +187,7 @@ public class EditExamFrame extends JFrame {
                         "Question # ", "Type", "Key Answer", "Points"
                     }
                 ));
+                questionsTable.setRowHeight(25);
                 scrollPane1.setViewportView(questionsTable);
             }
 
@@ -179,9 +198,9 @@ public class EditExamFrame extends JFrame {
 
             //---- examNameLabel ----
             examNameLabel.setText("Exam Name");
-            examNameLabel.setForeground(Color.black);
+            examNameLabel.setForeground(Color.white);
             examNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            examNameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            examNameLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
 
             //---- questionTypeBox ----
             questionTypeBox.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -210,6 +229,9 @@ public class EditExamFrame extends JFrame {
             submitButton4.setBackground(Color.white);
             submitButton4.addActionListener(e -> refresh(e));
 
+            //---- ozuIconLabel ----
+            ozuIconLabel.setText("text");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -217,28 +239,28 @@ public class EditExamFrame extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                    .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(panel1Layout.createSequentialGroup()
-                                    .addComponent(submitButton4)
-                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(764, Short.MAX_VALUE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(submitButton4)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
+                                        .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(addQuestionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(submitButton2)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(submitButton3)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(returnButton))))
-                                .addGap(50, 50, 50))))
+                                    .addComponent(scrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(submitButton2)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(submitButton3)
+                                        .addGap(232, 232, 232)
+                                        .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                                        .addComponent(returnButton)))
+                                .addGap(37, 37, 37))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -251,13 +273,14 @@ public class EditExamFrame extends JFrame {
                             .addComponent(addQuestionButton)
                             .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 405, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(submitButton2)
+                            .addComponent(returnButton)
                             .addComponent(submitButton3)
-                            .addComponent(returnButton))
-                        .addContainerGap(38, Short.MAX_VALUE))
+                            .addComponent(submitButton2)
+                            .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(25, Short.MAX_VALUE))
             );
         }
 
@@ -266,12 +289,14 @@ public class EditExamFrame extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 627, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 1, Short.MAX_VALUE))
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 966, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -290,5 +315,6 @@ public class EditExamFrame extends JFrame {
     private JButton submitButton2;
     private JButton submitButton3;
     private JButton submitButton4;
+    private JLabel ozuIconLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

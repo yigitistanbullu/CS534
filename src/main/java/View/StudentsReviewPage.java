@@ -23,15 +23,25 @@ public class StudentsReviewPage extends JFrame {
     public String studentName;
     public int examId;
     public int studentId;
+    public int userType;
 
-    public StudentsReviewPage(int studentId, String studentName, int examId) {
+    public StudentsReviewPage(int studentId, String studentName, int examId, int userType) {
         this.studentName = studentName;
         this.examId = examId;
         this.studentId = studentId;
+        this.userType =userType;
         initComponents();
         nameLabelPropertyChange();
         setExamName();
         addQuestion(examId);
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 
     public int getExamId() {
@@ -57,9 +67,7 @@ public class StudentsReviewPage extends JFrame {
     }
 
     private void doneButtonOnClicked(ActionEvent e) {
-        StudentsHomePage homePage = new StudentsHomePage(getStudentId(),getStudentName());
-        homePage.setVisible(true);
-        homePage.setLocationRelativeTo(null);
+
         this.dispose();
     }
 
@@ -72,15 +80,18 @@ public class StudentsReviewPage extends JFrame {
                 TextQuestion question = new TextQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i));
-                question.removeSave();
-                panel2.add(question);
+                if(userType == 0){
+                    question.removeSave();
+                }                panel2.add(question);
             }
 
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
                 MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i));
-                question.removeSave();
+                if(userType == 0){
+                    question.removeSave();
+                }
                 panel2.add(question);
             }
 
@@ -88,7 +99,9 @@ public class StudentsReviewPage extends JFrame {
                 TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
                 question.setAnswerForReview(questionID.get(i));
-                question.removeSave();
+                if(userType == 0){
+                    question.removeSave();
+                }
                 panel2.add(question);
             }
 
@@ -110,27 +123,29 @@ public class StudentsReviewPage extends JFrame {
 
         //======== panel1 ========
         {
-            panel1.setBackground(Color.white);
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setPreferredSize(new Dimension(863, 576));
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+            ( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+            propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //---- nameLabel ----
-            nameLabel.setText("Zeliha Ayd\u0131n");
-            nameLabel.setForeground(Color.darkGray);
+            nameLabel.setText("Student Name");
+            nameLabel.setForeground(Color.white);
             nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            nameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            nameLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
+            nameLabel.setBackground(Color.white);
 
             //---- nameLabel2 ----
             nameLabel2.setText("CS434 Midterm 1");
-            nameLabel2.setForeground(Color.darkGray);
+            nameLabel2.setForeground(Color.white);
             nameLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-            nameLabel2.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
+            nameLabel2.setFont(new Font("Roboto", Font.PLAIN, 18));
             nameLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
+            nameLabel2.setBackground(Color.white);
 
             //======== scrollPane1 ========
             {
@@ -153,35 +168,34 @@ public class StudentsReviewPage extends JFrame {
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(nameLabel2, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 662, GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17))
-                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                .addGap(567, 567, 567)
-                                .addComponent(doneButton)))
-                        .addGap(0, 3, Short.MAX_VALUE))
+                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addGap(147, 147, 147)
+                                .addComponent(nameLabel2, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(369, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(scrollPane1)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(doneButton)))
+                                .addGap(29, 29, 29))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(37, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(nameLabel)
                             .addComponent(nameLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 436, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(doneButton)
-                        .addContainerGap())
+                        .addGap(27, 27, 27))
             );
         }
 
@@ -189,7 +203,9 @@ public class StudentsReviewPage extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()

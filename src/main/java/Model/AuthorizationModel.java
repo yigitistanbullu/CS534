@@ -233,4 +233,28 @@ public class AuthorizationModel {
         return userIds;
     }
 
+    public static int getUserTypeFromId(int id){
+
+        ResultSet result;
+        String a = "";
+        int b =0;
+
+        String Query = "SELECT user_type FROM User WHERE  user_id ='" + id + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            if(result.next()) {
+                b = result.getInt("user_type");
+
+
+            }
+
+        } catch (SQLException e) {
+
+
+            e.printStackTrace();
+        }
+        return b;
+    }
+
 }

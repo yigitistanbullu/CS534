@@ -8,8 +8,12 @@ import Model.QuestionModel;
 import View.StudentsHomePage;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -30,6 +34,7 @@ public class QuestionsPage extends JFrame {
         setExamName();
         setUserName();
         addQuestion(examId);
+        setIcon();
     }
     public void time(){
         new Timer(0, new ActionListener(){
@@ -67,19 +72,35 @@ public class QuestionsPage extends JFrame {
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
                 TextQuestion question = new TextQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
+                question.removeGrade();
                 panel2.add(question);
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
                 MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
+                question.removeGrade();
                 panel2.add(question);
 
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
                 TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId);
                 question.setNumber(String.valueOf(i+1));
+                question.removeGrade();
                 panel2.add(question);
             }
+        }
+    }
+
+    public void setIcon(){
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("src/main/java/View/Images/ou_logo_ing.png"));
+            Image ozuLogo = img.getScaledInstance(ozuLogoLabel.getWidth(),ozuLogoLabel.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(ozuLogo);
+            ozuLogoLabel.setIcon(imageIcon);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -105,6 +126,7 @@ public class QuestionsPage extends JFrame {
         panel2 = new JPanel();
         submitButton = new JButton();
         time = new JLabel();
+        ozuLogoLabel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -112,16 +134,16 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
-            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
-            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+            .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
+            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- userNameLabel ----
-            userNameLabel.setText("Zeliha Ayd\u0131n");
+            userNameLabel.setText("Student Name");
             userNameLabel.setForeground(Color.darkGray);
             userNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
             userNameLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
@@ -157,39 +179,46 @@ public class QuestionsPage extends JFrame {
             time.setFont(new Font("Roboto Thin", Font.PLAIN, 18));
             time.setHorizontalTextPosition(SwingConstants.RIGHT);
 
+            //---- ozuLogoLabel ----
+            ozuLogoLabel.setText("text");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(userNameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap(619, Short.MAX_VALUE)
+                                .addGap(0, 369, Short.MAX_VALUE)
+                                .addComponent(ozuLogoLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+                                .addGap(290, 290, 290)
                                 .addComponent(submitButton))
-                            .addComponent(questionScrollPane))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addComponent(userNameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addGap(162, 162, 162)
+                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                                .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9))
+                            .addComponent(questionScrollPane, GroupLayout.Alignment.TRAILING))
                         .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(userNameLabel)
                             .addComponent(examNameLabel)
-                            .addComponent(time))
+                            .addComponent(time)
+                            .addComponent(userNameLabel))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionScrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                        .addComponent(questionScrollPane, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(submitButton)
-                        .addContainerGap())
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(submitButton)
+                            .addComponent(ozuLogoLabel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                        .addGap(9, 9, 9))
             );
         }
 
@@ -217,5 +246,6 @@ public class QuestionsPage extends JFrame {
     private JPanel panel2;
     private JButton submitButton;
     private JLabel time;
+    private JLabel ozuLogoLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
