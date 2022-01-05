@@ -5,6 +5,8 @@
 package View;
 
 import javax.swing.border.*;
+
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;
@@ -81,9 +83,15 @@ public class GradingPage extends JFrame {
     }
 
     private void grade(ActionEvent e) {
+        ExamModel model = new ExamModel();
         int id = userIds.get(table1.getSelectedRow());
-        StudentsReviewPage reviewPage = new StudentsReviewPage(id, AuthorizationModel.getName(id),getExamId(),1);
-        reviewPage.setVisible(true);
+        if(model.hasAttendedExam(id,getExamId())) {
+            ReviewPage reviewPage = new ReviewPage(id, AuthorizationModel.getName(id), getExamId(), 1);
+            reviewPage.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(new JFrame(),"Student have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void setUserTable(){

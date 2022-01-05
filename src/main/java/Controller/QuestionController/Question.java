@@ -17,8 +17,6 @@ public abstract class Question {
     public String selectedAnswer;
     public ArrayList<String> availableAnswers;
 
-    public abstract void display();
-
     public int getId() {
         return id;
     }
@@ -96,10 +94,6 @@ public abstract class Question {
             questionType = new TextQuestionBehavior();
             this.type = questionType.setQuestionType();
         }
-        @Override
-        public void display() {
-
-        }
     }
 
     public static class TrueFalseQuestion extends Question {
@@ -107,19 +101,12 @@ public abstract class Question {
             questionType = new TrueFalseQuestionBehavior();
             this.type = questionType.setQuestionType();
         }
-        @Override
-        public void display() {
-
-        }
     }
 
     public static class MultipleChoiceQuestion extends Question {
         public MultipleChoiceQuestion(){
             questionType = new MultipleChoiceQuestionBehavior();
             this.type = questionType.setQuestionType();
-        }
-        @Override
-        public void display() {
         }
     }
 

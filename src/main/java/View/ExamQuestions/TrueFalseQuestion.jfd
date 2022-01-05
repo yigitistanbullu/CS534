@@ -4,27 +4,31 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {seq l {par t {seq l {comp label1:::p::p, space s:::p, comp point:::p:78:p}, comp questionLabel::l:p:602:p, comp enterAnswer::l:p::p}, space ::38:x}, seq l {par t {comp answerField::t:p:602:p, seq t {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p, space :p:423:p, comp save:::p::p}}, space :0:32:x}}}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp label1::b:p::p, comp point::b:p::p}, space :::p, comp questionLabel:::p:40:p, space :::p, comp enterAnswer:::p::p, space u:::p, comp answerField:::p::p, space :p:32:p, par b {comp save::b:p::p, comp gradeField::b:p::p, comp gradeLabel::b:p::p}, space ::21:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:41:p, par t:::p {seq {comp label1:::p:13:p, space :::p, comp point:::p:78:p, space :::x, comp gradeLabel:::p::p, space u:::p, comp gradeField:::p:59:p}, seq {par t {comp trueCheck:::p:73:p, comp falseCheck:::p:73:p}, space :p:469:p, comp save:::p::p}, comp questionLabel::t:::x}, space ::22:x}}"
+			"$verticalGroup": "par l {seq l {space ::19:x, par b {comp gradeField::b:p::p, comp gradeLabel::b:p::p, comp point::b:p::p, comp label1::b:p::p}, space :p:8:p, comp questionLabel:::p:33:p, space u:::p, comp trueCheck:::p::p, space :::p, par l {comp save:::p::p, comp falseCheck::l:p::p}, space ::29:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
 			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "questionLabel"
-				"text": "question"
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "trueCheck"
+				"text": "True"
+				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "answerField"
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "falseCheck"
+				"text": "False"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "enterAnswer"
-				"text": "Enter answer here"
+				name: "questionLabel"
+				"text": "question"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "1"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "save"
@@ -44,8 +48,8 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, -3, false )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 10 )
-			"size": new java.awt.Dimension( 670, 225 )
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 685, 190 )
 		} )
 	}
 }

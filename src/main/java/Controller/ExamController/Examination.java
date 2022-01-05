@@ -5,7 +5,6 @@ import Controller.QuestionController.Question;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Examination implements Exam {
 

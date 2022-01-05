@@ -1,11 +1,18 @@
 package View;
 
 import javax.swing.border.*;
+
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
-import Controller.QuestionController.Factory.*;
+import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
+import Controller.QuestionController.Factory.QuestionFactory;
+import Controller.QuestionController.Factory.TextQuestionFactory;
+import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.EditQuestion.*;
+import View.EditQuestion.EditMultipleChoiceQuestionFrame;
+import View.EditQuestion.EditTextQuestionFrame;
+import View.EditQuestion.EditTrueFalseQuestionFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.table.*;
@@ -23,6 +30,8 @@ public class EditExamFrame extends JFrame {
     public int userId;
     public int examId;
     public String userName;
+    public QuestionModel questionModel = new QuestionModel();
+
 
     public EditExamFrame(int userId, String userName, int examId) {
         this.userId = userId;
@@ -56,26 +65,28 @@ public class EditExamFrame extends JFrame {
         }
     }
 
+    public void setExamId(int examId) {
+        this.examId = examId;
+    }
+
     public void editTableAndFrame(){
         ExamModel model = new ExamModel();
         Examination examination = model.getExam(getExamId());
         examNameLabel.setText(examination.getName());
-
-        QuestionModel questionModel = new QuestionModel();
-        ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
+        ArrayList<Integer> questionID = getQuestionModel().getQuestionIds(getExamId());
 
         for(int i = 0; i< questionID.size();i++){
             DefaultTableModel tableModel = (DefaultTableModel) questionsTable.getModel();
             int qID = questionID.get(i);
             tableModel.addRow(new Object[]{Integer.toString(i+1),questionModel.getQuestionType(qID), questionModel.getKeyAnswer(qID),questionModel.getAvailablePoints(qID)});
         }
+
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) questionsTable.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
         questionsTable.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
     }
 
     private void delete(ActionEvent e) {
-        QuestionModel questionModel = new QuestionModel();
         QuestionFactory factory;
         ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
         int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
@@ -170,7 +181,7 @@ public class EditExamFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         questionsTable = new JTable();
@@ -190,12 +201,13 @@ public class EditExamFrame extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(991, 561));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-            border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER
-            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
-            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r"
-            .equals(e.getPropertyName()))throw new RuntimeException();}});
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax
+            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
+            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .
+            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
             //======== scrollPane1 ========
             {
@@ -230,9 +242,7 @@ public class EditExamFrame extends JFrame {
             questionTypeBox.setModel(new DefaultComboBoxModel<>(new String[] {
                 "Text",
                 "True False",
-                "Multiple Choice",
-                "Multiple Selection",
-                "Gap Filling"
+                "Multiple Choice"
             }));
 
             //---- returnButton ----
@@ -330,7 +340,7 @@ public class EditExamFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable questionsTable;

@@ -20,6 +20,7 @@ public class MultipleQuestion extends JPanel {
     public int examId;
     public int userType;
     public int userId;
+    public String questionNumber;
 
     public MultipleQuestion (int id, int examId, int userType, int userId) {
         this.questionId =id;
@@ -51,7 +52,11 @@ public class MultipleQuestion extends JPanel {
         return userId;
     }
 
-    public void setQuestion(int qId ){
+    public String getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setComponents(int qId){
         QuestionModel model = new QuestionModel();
         question.setText(model.getQuestion(qId));
     }
@@ -63,6 +68,8 @@ public class MultipleQuestion extends JPanel {
         bAnswer.setText(answers.get(1));
         cAnswer.setText(answers.get(2));
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
+        label1.setText(getQuestionNumber());
+
     }
 
     public void setAnswerForReview(int questionId, int userId){
@@ -85,8 +92,12 @@ public class MultipleQuestion extends JPanel {
         gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
 
         if(userType == 1) {
+            save.setText("Save Grade");
             model.setPointsBySystem(getUserId(), getQuestionId());
             gradeField.setText(model.getPointsEarned(getUserId(), getQuestionId()));
+        }
+        else{
+            save.setVisible(false);
         }
     }
 
@@ -122,10 +133,42 @@ public class MultipleQuestion extends JPanel {
         }
     }
 
+    public static class Builder{
+        public int questionId;
+        public int examId;
+        public int userType;
+        public int userId;
+        public String questionNumber;
+
+
+        public Builder(int id, int examId, int userId) {
+            this.questionId =id;
+            this.examId =examId;
+            this.userId = userId;
+
+        }
+
+        public Builder withUserType(int userType) {
+            this.userType = userType;
+            return this;
+        }
+
+        public Builder withQuestionNumber(String questionNumber) {
+            this.questionNumber = questionNumber;
+            return this;
+        }
+
+
+        public MultipleQuestion build() {
+            return new MultipleQuestion(this);
+        }
+    }
+
+
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         question = new JLabel();
         aAnswer = new JLabel();
         bAnswer = new JLabel();
@@ -142,14 +185,12 @@ public class MultipleQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
 
         //---- question ----
         question.setText("question");
@@ -263,7 +304,7 @@ public class MultipleQuestion extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JLabel question;
     private JLabel aAnswer;
     private JLabel bAnswer;

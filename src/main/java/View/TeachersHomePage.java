@@ -15,6 +15,7 @@ import javax.swing.border.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;

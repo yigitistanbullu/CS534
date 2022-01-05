@@ -2,23 +2,16 @@
  * Created by JFormDesigner on Tue Dec 21 13:20:24 TRT 2021
  */
 
-package View.EditQuestion;
+package View.EditQuestions;
 
-import java.awt.*;
 import java.awt.event.*;
 import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
-import Model.ExamModel;
 import Model.QuestionModel;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.GroupLayout;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.DefaultFormatterFactory;
 
 /**
  * @author yasemin
@@ -42,10 +35,6 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         }
     }
 
-    public int getQuestionId() {
-        return questionId;
-    }
-
     public void editQuestion(){
         QuestionModel questionModel = new QuestionModel();
         ArrayList<String> availableAnswers = questionModel.getQuestionAnswers(getQuestionId());
@@ -55,7 +44,6 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         answer1.setText(availableAnswers.get(0));
         answer2.setText(availableAnswers.get(1));
         answer3.setText(availableAnswers.get(2));
-
     }
 
     public void updateQuestion(){
@@ -66,6 +54,9 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
+    public int getQuestionId() {
+        return questionId;
+    }
     public QuestionFactory getFactory() {
         return factory;
     }

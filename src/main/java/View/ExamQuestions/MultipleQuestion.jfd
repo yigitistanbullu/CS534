@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {seq l {par l {par t:l {comp radioButton3:::p::p, comp radioButton2:::p::p}, seq l {space :p:1:p, comp gradeLabel:::p::p}}, space :::p, par l {comp cAnswer:::p:481:p, comp bAnswer:::p:481:p, seq l {comp gradeField:::p:59:p, space ::533:x, comp save:::p::p}}}, seq {par l {seq {comp label1:::p::p, space u:::p, comp point:::p:78:p}, seq {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p}, comp question::l:p:593:p}, space :0:126:x}}, space :p:22:p}}"
-			"$verticalGroup": "par l {seq l {space :p:10:p, par b {comp label1::b:p::p, comp point::b:p::p}, space :::p, comp question:::p:33:p, space :::p, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, par l {seq {space u:::p, par b {comp gradeLabel::b:::x, comp gradeField::b:p::p}, space ::27:x}, seq t {space ::21:x, comp save:::p::p, space :p:18:p}}}}"
+			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {comp question:::p:593:p, seq l {par l {par l:l {seq l {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p, space :p:9:p}, seq t {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :p:14:p, par l {comp bAnswer::l:p:481:p, comp cAnswer::l:p:481:p}}}, seq l {comp label1:::p:15:p, space :::p, comp point:::p:78:p}}, space :p:6:p, par l {seq {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p}, seq t {comp save:::p::p, space :p:8:p}}}}, space ::13:x}}"
+			"$verticalGroup": "par l {seq l {space ::25:x, par l {par b:t {comp label1::b:p:16:p, comp point::b:p::p}, par b:t {comp gradeField::b:p::p, comp gradeLabel::b:p::p}}, space :::p, comp question:::p:33:p, space :::p, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, par l {seq {space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space :p:50:p}, seq t {space :::p, comp save:::p::p, space :p:24:p}}}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -13,6 +13,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "question"
 				"text": "question"
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "aAnswer"
@@ -44,10 +45,11 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "1"
+				"font": #SwingDerivedFont0
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "save"
-				"text": "save"
+				"text": "Save"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -64,7 +66,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 780, 250 )
+			"size": new java.awt.Dimension( 695, 260 )
 		} )
 	}
 }

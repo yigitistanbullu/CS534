@@ -25,7 +25,7 @@ public class ExamModel {
 
     }
 
-    public static void addUserExam(Examination examination, int user_id) {
+    public static void addUserExam(Exam examination, int user_id) {
 
         String Query = "INSERT into User_Exam(user_id, exam_id) VALUES (" +  "'" + user_id + "'" + " ," + "'" + examination.getId() + "'" + ") ;";
         try {
@@ -79,13 +79,11 @@ public class ExamModel {
         String Query = "SELECT exam_grade FROM User_Exam WHERE exam_id = " + examId+ " AND user_id = "+ userId + ";";
 
         try {
-
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             result.next();
             grade = result.getDouble(1);
 
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return grade ;
@@ -133,20 +131,20 @@ public class ExamModel {
 
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             int sira = result.getMetaData().getColumnCount();
-
-            while(result.next()){
-                for(int i = 1 ; i<= sira; i++){
+            /*
+            if(!result.next()){
+                return new NullExam(0,"",0,new Date(),new Time(System.currentTimeMillis()),new Time(System.currentTimeMillis()));
+            }*/
+            while (result.next()) {
+                for (int i = 1; i <= sira; i++) {
                     exam.add(result.getString(i));
                 }
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
-        /*ExamFactory factory = new ExamFactory();
-        Exam exam1 = factory.createExam(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
-        */
+        catch (SQLException e) {
+                e.printStackTrace();
+        }
 
         Examination examination = new Examination(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
         return examination;
