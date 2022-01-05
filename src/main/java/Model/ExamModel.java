@@ -71,6 +71,7 @@ public class ExamModel {
 
     }
 
+
     public double getGrade(int userId, int examId){
         double grade = 0;
         ResultSet result;

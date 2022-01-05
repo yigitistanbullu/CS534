@@ -4,6 +4,7 @@
 
 package View.EditQuestions;
 
+import java.awt.*;
 import java.awt.event.*;
 
 import Controller.QuestionController.Factory.QuestionFactory;
@@ -123,7 +124,7 @@ public class EditTrueFalseQuestionFrame extends JFrame implements EditQuestionCo
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         label1 = new JLabel();
         pointsLabel = new JTextField();
@@ -138,80 +139,97 @@ public class EditTrueFalseQuestionFrame extends JFrame implements EditQuestionCo
 
         //======== panel1 ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
-            , 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
-            panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
 
             //---- label1 ----
             label1.setText("True False Question");
+            label1.setForeground(Color.white);
+            label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
             //---- pointsLabel ----
             pointsLabel.setText("Points");
+            pointsLabel.setForeground(Color.red);
+            pointsLabel.setBackground(Color.white);
 
             //---- button1 ----
             button1.setText("Add");
+            button1.setBackground(new Color(103, 137, 171));
+            button1.setForeground(Color.darkGray);
             button1.addActionListener(e -> addQuestion(e));
 
             //---- button2 ----
             button2.setText("Cancel");
+            button2.setBackground(new Color(103, 137, 171));
+            button2.setForeground(Color.darkGray);
             button2.addActionListener(e -> cancel(e));
 
             //---- questionLabel ----
             questionLabel.setText("Question");
+            questionLabel.setForeground(Color.darkGray);
+            questionLabel.setBackground(Color.white);
 
             //---- label5 ----
             label5.setText("Enter question here:");
+            label5.setForeground(Color.white);
 
             //---- keyAnswerBox ----
             keyAnswerBox.setModel(new DefaultComboBoxModel<>(new String[] {
                 "True",
                 "False"
             }));
+            keyAnswerBox.setForeground(Color.darkGray);
+            keyAnswerBox.setBackground(Color.white);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(231, 231, 231)
-                                .addComponent(label1))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                        .addGap(35, 35, 35)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(label5, GroupLayout.Alignment.LEADING)
+                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addComponent(button2)
+                                    .addGap(394, 394, 394)
+                                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                        .addComponent(button2)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(keyAnswerBox, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label5, GroupLayout.Alignment.LEADING))))
-                        .addContainerGap(42, Short.MAX_VALUE))
+                                        .addGap(323, 323, 323)
+                                        .addComponent(pointsLabel))
+                                    .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap(249, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addGap(249, 249, 249))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(17, 17, 17)
                         .addComponent(label1)
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
                         .addComponent(label5)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(keyAnswerBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(keyAnswerBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(button2)
                             .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(21, Short.MAX_VALUE))
+                        .addContainerGap(28, Short.MAX_VALUE))
             );
         }
 
@@ -225,7 +243,7 @@ public class EditTrueFalseQuestionFrame extends JFrame implements EditQuestionCo
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE))
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -233,7 +251,7 @@ public class EditTrueFalseQuestionFrame extends JFrame implements EditQuestionCo
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel label1;
     private JTextField pointsLabel;

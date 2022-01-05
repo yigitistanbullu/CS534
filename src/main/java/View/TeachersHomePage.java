@@ -122,7 +122,7 @@ public class TeachersHomePage extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         nameLabel = new JLabel();
         scrollPane1 = new JScrollPane();
@@ -140,14 +140,12 @@ public class TeachersHomePage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-            new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-            ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-            ,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12)
-            ,java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException()
-            ;}});
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+            EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+            . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
+            java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
+            throw new RuntimeException( ); }} );
 
             //---- nameLabel ----
             nameLabel.setText("Instructor Name");
@@ -170,10 +168,14 @@ public class TeachersHomePage extends JFrame {
 
             //---- createExamButton ----
             createExamButton.setText("Create Exam");
+            createExamButton.setBackground(new Color(103, 137, 171));
+            createExamButton.setForeground(Color.darkGray);
             createExamButton.addActionListener(e -> createExam(e));
 
             //---- Logout ----
             Logout.setText("Logout");
+            Logout.setBackground(new Color(103, 137, 171));
+            Logout.setForeground(Color.darkGray);
             Logout.addActionListener(e -> Logout(e));
 
             //---- dateLabel ----
@@ -183,10 +185,14 @@ public class TeachersHomePage extends JFrame {
 
             //---- button1 ----
             button1.setText("Edit Exam");
+            button1.setBackground(new Color(103, 137, 171));
+            button1.setForeground(Color.darkGray);
             button1.addActionListener(e -> editExam(e));
 
             //---- button2 ----
             button2.setText("Grade Exam");
+            button2.setBackground(new Color(103, 137, 171));
+            button2.setForeground(Color.darkGray);
             button2.addActionListener(e -> grade(e));
 
             //---- ozuIconLabel ----
@@ -259,7 +265,7 @@ public class TeachersHomePage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel nameLabel;
     private JScrollPane scrollPane1;

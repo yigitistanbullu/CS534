@@ -4,6 +4,7 @@
 
 package View.EditQuestions;
 
+import java.awt.*;
 import Controller.QuestionController.Factory.QuestionFactory;
 import Controller.QuestionController.Factory.TextQuestionFactory;
 import Model.QuestionModel;
@@ -16,7 +17,7 @@ import javax.swing.GroupLayout;
 /**
  * @author Zeliha Aydın
  */
-public class EditGapFillingQuestionFrame extends JFrame {
+public class EditGapFillingQuestionFrame extends JFrame implements EditQuestionCommand{
     public int examId;
     public int questionId;
     public String partOne;
@@ -31,9 +32,6 @@ public class EditGapFillingQuestionFrame extends JFrame {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
-        if(questionId!=0){
-            editQuestion();
-        }
     }
     public int getQuestionId() {
         return questionId;
@@ -90,7 +88,8 @@ public class EditGapFillingQuestionFrame extends JFrame {
         getFactory().addQuestionForGapFilling(getPartOne(), getPartTwo(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);
     }
 
-    public void editQuestion(){
+    @Override
+    public void edit() {
         QuestionModel questionModel = new QuestionModel();
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
         keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));
@@ -120,6 +119,7 @@ public class EditGapFillingQuestionFrame extends JFrame {
         dispose();
     }
 
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
@@ -139,36 +139,58 @@ public class EditGapFillingQuestionFrame extends JFrame {
 
         //======== panel1 ========
         {
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
-            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setForeground(Color.white);
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax
+            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
+            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .
+            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
             //---- label1 ----
             label1.setText(" Gap Filling Question");
+            label1.setForeground(Color.white);
+            label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
             //---- pointsLabel ----
             pointsLabel.setText("Points");
+            pointsLabel.setBackground(Color.white);
+            pointsLabel.setForeground(Color.red);
 
             //---- keyAnswerLabel ----
             keyAnswerLabel.setText("Key Answer");
+            keyAnswerLabel.setBackground(Color.white);
+            keyAnswerLabel.setForeground(Color.darkGray);
 
             //---- button1 ----
             button1.setText("Add");
+            button1.setBackground(new Color(103, 137, 171));
+            button1.setForeground(Color.darkGray);
             button1.addActionListener(e -> addQuestion(e));
 
             //---- button2 ----
             button2.setText("Cancel");
+            button2.setBackground(new Color(103, 137, 171));
+            button2.setForeground(Color.darkGray);
             button2.addActionListener(e -> cancel(e));
+
+            //---- questionLabel ----
+            questionLabel.setBackground(Color.white);
+            questionLabel.setForeground(Color.darkGray);
 
             //---- label5 ----
             label5.setText("First part");
+            label5.setForeground(Color.white);
+
+            //---- questionLabel2 ----
+            questionLabel2.setBackground(Color.white);
+            questionLabel2.setForeground(Color.darkGray);
 
             //---- label6 ----
             label6.setText("Second Part");
+            label6.setForeground(Color.white);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -181,23 +203,25 @@ public class EditGapFillingQuestionFrame extends JFrame {
                                 .addComponent(label1))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(button2)
-                                        .addGap(396, 396, 396)
-                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(label6)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(questionLabel2)
-                                                .addGap(226, 226, 226)))
-                                        .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(label5, GroupLayout.Alignment.LEADING)
-                                    .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(label6, GroupLayout.Alignment.LEADING)
+                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(panel1Layout.createSequentialGroup()
+                                            .addComponent(button2)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panel1Layout.createSequentialGroup()
+                                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(questionLabel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                                .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addGap(59, 59, 59)
+                                                    .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addGap(218, 218, 218)
+                                                    .addComponent(pointsLabel))))))))
                         .addContainerGap(37, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
@@ -208,21 +232,20 @@ public class EditGapFillingQuestionFrame extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(label5)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(label6)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(questionLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(label6)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(questionLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addComponent(button2))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(18, Short.MAX_VALUE))
             );
         }
 
@@ -234,9 +257,7 @@ public class EditGapFillingQuestionFrame extends JFrame {
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());

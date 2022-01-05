@@ -14,7 +14,7 @@ import javax.swing.GroupLayout;
 
 
 
-public class TextQuestion extends JPanel {
+public class TextQuestion extends JPanel implements Question{
 
     public int questionId;
     public int examId;
@@ -99,6 +99,17 @@ public class TextQuestion extends JPanel {
         }
     }
 
+    @Override
+    public void removeGradeForExamination() {
+        gradeField.setVisible(false);
+        gradeLabel.setVisible(false);
+    }
+
+    @Override
+    public void disableGradeFieldForStudent() {
+        gradeField.setEnabled(false);
+    }
+
     public static class Builder{
         public int questionId;
         public int examId;
@@ -133,7 +144,7 @@ public class TextQuestion extends JPanel {
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         questionLabel = new JLabel();
         answerField = new JTextField();
         enterAnswer = new JLabel();
@@ -146,32 +157,40 @@ public class TextQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-                javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
-                . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-                .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-                . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-                PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
-                equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+        0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+        .BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.
+        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+        beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         //---- questionLabel ----
         questionLabel.setText("question");
+        questionLabel.setForeground(new Color(51, 51, 51));
 
         //---- answerField ----
         answerField.setBackground(Color.white);
 
         //---- enterAnswer ----
         enterAnswer.setText("Enter answer here");
+        enterAnswer.setForeground(Color.lightGray);
 
         //---- label1 ----
         label1.setText("1");
+        label1.setForeground(new Color(103, 137, 171));
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
         //---- save ----
         save.setText("save");
+        save.setForeground(new Color(103, 137, 171));
+        save.setBackground(Color.white);
         save.addActionListener(e -> save(e));
 
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
+
+        //---- gradeField ----
+        gradeField.setBackground(Color.white);
+        gradeField.setForeground(Color.red);
 
         //---- point ----
         point.setText("Points");
@@ -180,59 +199,62 @@ public class TextQuestion extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup()
+            layout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 599, Short.MAX_VALUE)
-                                                .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addGap(28, 28, 28)
-                                                .addGroup(layout.createParallelGroup()
-                                                        .addComponent(answerField, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(enterAnswer)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 517, Short.MAX_VALUE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(gradeLabel)
-                                                                                .addGap(49, 49, 49))
-                                                                        .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(0, 28, Short.MAX_VALUE))
-                                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addGap(0, 552, Short.MAX_VALUE)
-                                                                .addComponent(save)))))
-                                .addGap(25, 25, 25))
+                            .addContainerGap(587, Short.MAX_VALUE)
+                            .addComponent(save))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(answerField, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(enterAnswer)
+                                        .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 35, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                                    .addComponent(gradeLabel)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(6, 6, 6)))))
+                    .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup()
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(gradeLabel)
-                                        .addComponent(point)
-                                        .addComponent(label1))
-                                .addGap(12, 12, 12)
-                                .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(enterAnswer)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(save)
-                                .addContainerGap(23, Short.MAX_VALUE))
+                            .addGap(26, 26, 26)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(point)
+                                .addComponent(label1))
+                            .addGap(19, 19, 19))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gradeLabel))
+                            .addGap(18, 18, 18)))
+                    .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(enterAnswer)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                    .addComponent(save)
+                    .addGap(19, 19, 19))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JLabel questionLabel;
     private JTextField answerField;
     private JLabel enterAnswer;

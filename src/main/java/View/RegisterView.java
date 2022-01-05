@@ -65,7 +65,7 @@ public class RegisterView extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         label2 = new JLabel();
         label3 = new JLabel();
@@ -93,12 +93,12 @@ public class RegisterView extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-            EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
-            . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-            java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
-            throw new RuntimeException( ); }} );
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+            EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+            . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+            java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+            { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )
+            throw new RuntimeException( ) ;} } );
 
             //---- label2 ----
             label2.setText("Name");
@@ -112,11 +112,20 @@ public class RegisterView extends JFrame {
             label3.setForeground(Color.white);
             label3.setFont(new Font("Roboto", Font.PLAIN, 14));
 
+            //---- surnameFiled ----
+            surnameFiled.setBackground(Color.white);
+
+            //---- nameField ----
+            nameField.setBackground(Color.white);
+
             //---- registerText ----
             registerText.setText("Register");
             registerText.setForeground(Color.white);
             registerText.setFont(new Font("Roboto", Font.PLAIN, 48));
             registerText.setHorizontalAlignment(SwingConstants.CENTER);
+
+            //---- emailFiled ----
+            emailFiled.setBackground(Color.white);
 
             //---- label4 ----
             label4.setText("Email");
@@ -130,32 +139,44 @@ public class RegisterView extends JFrame {
             label5.setForeground(Color.white);
             label5.setFont(new Font("Roboto", Font.PLAIN, 14));
 
+            //---- passwordField ----
+            passwordField.setBackground(Color.white);
+
             //---- label6 ----
             label6.setText("Student ID");
             label6.setBackground(Color.white);
             label6.setForeground(Color.white);
             label6.setFont(new Font("Roboto", Font.PLAIN, 14));
 
+            //---- studentIDField ----
+            studentIDField.setBackground(Color.white);
+
             //---- teacherCheckbox ----
             teacherCheckbox.setText("Teacher");
             teacherCheckbox.setForeground(Color.white);
             teacherCheckbox.setFont(new Font("Roboto", Font.PLAIN, 14));
+            teacherCheckbox.setBackground(new Color(103, 137, 171));
             teacherCheckbox.addActionListener(e -> teacher(e));
 
             //---- studentCheckbox ----
             studentCheckbox.setText("Student");
             studentCheckbox.setForeground(Color.white);
             studentCheckbox.setFont(new Font("Roboto", Font.PLAIN, 14));
+            studentCheckbox.setBackground(new Color(103, 137, 171));
             studentCheckbox.addActionListener(e -> chkstudent(e));
 
             //---- registerButton2 ----
             registerButton2.setText("Cancel");
             registerButton2.setFont(new Font("Roboto", Font.PLAIN, 14));
+            registerButton2.setBackground(new Color(103, 137, 171));
+            registerButton2.setForeground(Color.darkGray);
             registerButton2.addActionListener(e -> login(e));
 
             //---- registerButton ----
             registerButton.setText("Register");
-            registerButton.setFont(new Font("Roboto", Font.PLAIN, 14));
+            registerButton.setFont(new Font("Roboto", Font.BOLD, 14));
+            registerButton.setBackground(new Color(103, 137, 171));
+            registerButton.setForeground(Color.darkGray);
             registerButton.addActionListener(e -> register(e));
 
             //---- label1 ----
@@ -172,50 +193,52 @@ public class RegisterView extends JFrame {
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(732, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                .addContainerGap(284, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label2))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(label3)
-                                    .addComponent(surnameFiled, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(0, 284, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(label6)
-                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(studentIDField, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(emailFiled, GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                                            .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                                            .addComponent(label5))
-                                        .addComponent(label4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(266, 266, 266))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addContainerGap(325, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(teacherCheckbox)
-                                .addGap(101, 101, 101)
-                                .addComponent(studentCheckbox)
-                                .addGap(322, 322, 322))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(registerButton)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(registerButton2)
-                                .addGap(360, 360, 360))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(registerButton2, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                .addGap(161, 161, 161)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                            .addGroup(panel1Layout.createParallelGroup()
+                                                .addComponent(label2)
+                                                .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(panel1Layout.createParallelGroup()
+                                                .addComponent(label3)
+                                                .addComponent(surnameFiled, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(label6)
+                                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                .addComponent(studentIDField, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(emailFiled)
+                                                    .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label5))
+                                                .addComponent(label4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(teacherCheckbox)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(studentCheckbox)
+                                        .addGap(56, 56, 56))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(registerText, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)))
+                                .addGap(266, 266, 266))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
                                 .addGap(375, 375, 375))
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(registerText, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-                                .addGap(316, 316, 316))))
+                                .addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                .addGap(383, 383, 383))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -223,36 +246,37 @@ public class RegisterView extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(label1)
                         .addGap(26, 26, 26)
-                        .addComponent(registerText)
-                        .addGap(31, 31, 31)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label3)
-                            .addComponent(label2))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(surnameFiled, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailFiled, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(label5)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(label6)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(studentIDField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(teacherCheckbox)
-                            .addComponent(studentCheckbox))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addComponent(registerButton2)
-                            .addComponent(registerButton))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(registerText)
+                                .addGap(31, 31, 31)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label3)
+                                    .addComponent(label2))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(surnameFiled, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailFiled, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(label5)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(label6)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(studentIDField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(teacherCheckbox)
+                                    .addComponent(studentCheckbox))))
+                        .addGap(18, 18, 18)
+                        .addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
             );
@@ -274,7 +298,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel label2;
     private JLabel label3;

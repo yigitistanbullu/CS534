@@ -16,7 +16,7 @@ import javax.swing.border.*;
 /**
  * @author Zeliha Aydın
  */
-public class MultipleSelection extends JPanel {
+public class MultipleSelection extends JPanel implements Question{
     public int questionId;
     public int examId;
     public int userType;
@@ -189,35 +189,46 @@ public class MultipleSelection extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+        EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+        . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )
+        throw new RuntimeException( ) ;} } );
 
         //---- question ----
         question.setText("question");
+        question.setForeground(new Color(51, 51, 51));
 
         //---- aAnswer ----
         aAnswer.setText("answer");
+        aAnswer.setForeground(new Color(51, 51, 51));
 
         //---- bAnswer ----
         bAnswer.setText("answer");
+        bAnswer.setForeground(new Color(51, 51, 51));
 
         //---- cAnswer ----
         cAnswer.setText("answer");
+        cAnswer.setForeground(new Color(51, 51, 51));
 
         //---- label1 ----
         label1.setText("1");
+        label1.setForeground(new Color(103, 137, 171));
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
         //---- save ----
         save.setText("save");
+        save.setBackground(Color.white);
+        save.setForeground(new Color(103, 137, 171));
         save.addActionListener(e -> save(e));
 
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
+
+        //---- gradeField ----
+        gradeField.setBackground(Color.white);
+        gradeField.setForeground(Color.red);
 
         //---- point ----
         point.setText("Points");
@@ -225,12 +236,21 @@ public class MultipleSelection extends JPanel {
 
         //---- checkBox1 ----
         checkBox1.setText("1");
+        checkBox1.setBackground(Color.white);
+        checkBox1.setForeground(new Color(51, 51, 51));
+        checkBox1.setFont(checkBox1.getFont().deriveFont(checkBox1.getFont().getStyle() | Font.BOLD));
 
         //---- checkBox2 ----
         checkBox2.setText("2");
+        checkBox2.setBackground(Color.white);
+        checkBox2.setForeground(new Color(51, 51, 51));
+        checkBox2.setFont(checkBox2.getFont().deriveFont(checkBox2.getFont().getStyle() | Font.BOLD));
 
         //---- checkBox3 ----
         checkBox3.setText("3");
+        checkBox3.setBackground(Color.white);
+        checkBox3.setForeground(new Color(51, 51, 51));
+        checkBox3.setFont(checkBox3.getFont().deriveFont(checkBox3.getFont().getStyle() | Font.BOLD));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -240,47 +260,49 @@ public class MultipleSelection extends JPanel {
                     .addGap(37, 37, 37)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(gradeLabel)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
+                            .addGap(1, 560, Short.MAX_VALUE)
                             .addComponent(save))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label1)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
                                 .addComponent(question, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(checkBox1)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(checkBox2)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(bAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(checkBox3)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(cAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 126, Short.MAX_VALUE)))
-                    .addGap(22, 22, 22))
+                            .addGap(0, 45, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 7, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
+                            .addComponent(gradeLabel)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
+                    .addGap(9, 9, 9)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label1)
-                        .addComponent(point))
+                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(point)
+                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gradeLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(question, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(checkBox1))
+                        .addComponent(checkBox1)
+                        .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(checkBox2)
@@ -289,17 +311,9 @@ public class MultipleSelection extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(checkBox3)
                         .addComponent(cAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup()
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(gradeLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(27, Short.MAX_VALUE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                            .addComponent(save)
-                            .addGap(18, 18, 18))))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addComponent(save)
+                    .addGap(19, 19, 19))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

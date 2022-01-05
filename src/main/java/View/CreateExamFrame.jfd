@@ -1,65 +1,88 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {comp panel1:::p:353:p, space :0:0:x}, seq t {space ::35:x, par t {seq {par t {comp label3:::p::p, comp label2:::p::p, comp label5:::p::p, comp label1:::p::p}, space s:::p, par l {par l:t {comp startTimeLabel:1::p:133:p, comp endTimeLabel:1::p:133:p}, comp dateLabel:1:l:p:139:p, comp examNameLabel:1::p:139:p}}, seq {comp button1:::p::p, space :p:49:p, comp createButton:::p::p}}, space :p:84:p}, seq l {space :p:122:p, comp label6:::p::p, space ::138:x}}"
-			"$verticalGroup": "par l {seq t {comp panel1:::p::p, space s:::p, comp label6:::p::p, space :p:26:p, par b {comp label5::b:p::p, comp examNameLabel::b:p::p}, space :::p, par b {comp label1::b:p::p, comp startTimeLabel::b:p::p}, space :::p, par b {comp label2::b:p::p, comp endTimeLabel::b:p::p}, space :::p, par b {comp label3::b:p::p, comp dateLabel::b:p::p}, space s:::p, par b {comp createButton::b:p::p, comp button1::b:p::p}, space :p:32:p}}"
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+			"background": new java.awt.Color( 103, 137, 171, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {par t {seq {space ::203:x, comp label6:::p::p, space :p:39:p}, seq l {space :p:121:p, par l {seq {comp button1:::p:94:p, space ::56:x, comp createButton:::p:94:p}, seq {par t {comp label5:::p::p, comp label1::l:p::p, comp label2::l:p::p, comp label3::l:p::p}, space s:::p, par l {comp startTimeLabel::l::149:x, comp examNameLabel::::149:x, comp endTimeLabel::l::149:x, comp dateLabel::l::149:x}}}}}, space :p:153:p}}"
+				"$verticalGroup": "par l {seq {space :::p, comp label6:::p::p, space :p:56:p, par b {comp label5::b:p::p, comp examNameLabel::b:p::p}, space :::p, par b {comp startTimeLabel::b:p::p, comp label1::b:p::p}, space :::p, par b {comp endTimeLabel::b:p::p, comp label2::b:p::p}, space :::p, par b {comp dateLabel::b:p::p, comp label3::b:p::p}, space ::57:x, par b {comp createButton::b:p:40:p, comp button1::b:p:40:p}, space :p:59:p}}"
+			} ) {
 				name: "panel1"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "startTimeLabel"
-				"cursor": new java.awt.Cursor( 2 )
-				"text": "HH:mm:ss"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "endTimeLabel"
-				"text": "HH:mm:ss"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "dateLabel"
-				"text": "yyyy-MM-dd"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "examNameLabel"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "createButton"
-				"text": "Create"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "create", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "Start Time:"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "End Time:"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "Date:"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label5"
-				"text": "Exam Name:"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "Cancel"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "Create Exam"
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "startTimeLabel"
+					"cursor": new java.awt.Cursor( 2 )
+					"text": "HH:mm:ss"
+					"background": sfield java.awt.Color white
+					"foreground": &Color0 new java.awt.Color( 51, 51, 51, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "endTimeLabel"
+					"text": "HH:mm:ss"
+					"background": sfield java.awt.Color white
+					"foreground": #Color0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "dateLabel"
+					"text": "yyyy-MM-dd"
+					"background": sfield java.awt.Color white
+					"foreground": #Color0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "examNameLabel"
+					"background": sfield java.awt.Color white
+					"foreground": #Color0
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "createButton"
+					"text": "Create"
+					"background": &Color1 new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "create", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Start Time:"
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "End Time:"
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Date:"
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Exam Name:"
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Cancel"
+					"background": #Color1
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Create Exam"
+					"foreground": sfield java.awt.Color white
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 20, true )
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 340, 315 )
+			"size": new java.awt.Dimension( 520, 405 )
 		} )
 	}
 }

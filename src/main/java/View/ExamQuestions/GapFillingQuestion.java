@@ -4,7 +4,6 @@
 
 package View.ExamQuestions;
 
-import Controller.QuestionController.Question;
 import Model.QuestionModel;
 
 import java.awt.*;
@@ -16,7 +15,7 @@ import javax.swing.border.*;
 /**
  * @author Zeliha Aydın
  */
-public class GapFillingQuestion extends JPanel {
+public class GapFillingQuestion extends JPanel implements Question {
     public int questionId;
     public int examId;
     public int userType;
@@ -63,17 +62,6 @@ public class GapFillingQuestion extends JPanel {
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
     }
 
-    public void setComponents(int qId){
-        QuestionModel model = new QuestionModel();
-        String string = model.getQuestion(questionId);
-        String partOne = string.substring(0,string.indexOf(" "));
-        String partTwo = string.substring(string.indexOf(" ") + 1);
-        partOneLabel.setText(partOne);
-        partTwoLabel.setText(partTwo);
-        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
-        label1.setText(getQuestionNumber());
-
-    }
     public String getQuestionNumber() {
         return questionNumber;
     }
@@ -87,7 +75,29 @@ public class GapFillingQuestion extends JPanel {
     }
     QuestionModel model = new QuestionModel();
 
-    private void save(ActionEvent e) {
+    @Override
+    public void setComponents(int questionId) {
+        QuestionModel model = new QuestionModel();
+        String string = model.getQuestion(questionId);
+        String partOne = string.substring(0,string.indexOf(" "));
+        String partTwo = string.substring(string.indexOf(" ") + 1);
+        partOneLabel.setText(partOne);
+        partTwoLabel.setText(partTwo);
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
+        label1.setText(getQuestionNumber());
+    }
+
+    @Override
+    public void setAnswerForReview(int questionId, int userId) {
+        QuestionModel model = new QuestionModel();
+        String answer =  model.getUserAnswer(userId,questionId);
+        System.out.println(answer);
+        answerField.setEnabled(false);
+        answerField.setText(answer);
+        gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
+    }
+
+    public void save(ActionEvent e) {
         if(userType == 0){
             model.addUserAnswer(answerField.getText(), getUserId(), getQuestionId(),getExamId());
         }
@@ -98,18 +108,16 @@ public class GapFillingQuestion extends JPanel {
         }
     }
 
-    public void setAnswerForReview(int questionId, int userId){
-        QuestionModel model = new QuestionModel();
-        String answer =  model.getUserAnswer(userId,questionId);
-        System.out.println(answer);
-        answerField.setEnabled(false);
-        answerField.setText(answer);
-        gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
-    }
-
-    public void removeGradeFieldForStudent(){
+    @Override
+    public void removeGradeForExamination() {
         gradeField.setEnabled(false);
     }
+
+    @Override
+    public void disableGradeFieldForStudent() {
+        gradeField.setEnabled(false);
+    }
+
     public static class Builder{
         public int questionId;
         public int examId;
@@ -157,28 +165,38 @@ public class GapFillingQuestion extends JPanel {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
-        .EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax
-        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
-        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
-        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.
-        getPropertyName()))throw new RuntimeException();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
+        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+        Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
+        ) ) )throw new RuntimeException( ) ;} } );
 
         //---- answerField ----
         answerField.setBackground(Color.white);
 
         //---- partOneLabel ----
         partOneLabel.setText("First part ");
+        partOneLabel.setForeground(new Color(51, 51, 51));
 
         //---- label1 ----
         label1.setText("1");
+        label1.setForeground(new Color(103, 137, 171));
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
         //---- save ----
         save.setText("save");
+        save.setBackground(Color.white);
+        save.setForeground(new Color(103, 137, 171));
         save.addActionListener(e -> save(e));
 
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
+
+        //---- gradeField ----
+        gradeField.setBackground(Color.white);
+        gradeField.setForeground(Color.red);
 
         //---- point ----
         point.setText("Points");
@@ -186,6 +204,7 @@ public class GapFillingQuestion extends JPanel {
 
         //---- partTwoLabel ----
         partTwoLabel.setText("Second part");
+        partTwoLabel.setForeground(new Color(51, 51, 51));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -195,45 +214,45 @@ public class GapFillingQuestion extends JPanel {
                     .addGap(28, 28, 28)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label1)
-                            .addGap(18, 18, 18)
-                            .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(538, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(partTwoLabel)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(partOneLabel)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(gradeLabel)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(423, 423, 423)
-                                        .addComponent(save))))
-                            .addGap(0, 32, Short.MAX_VALUE))))
+                            .addComponent(partTwoLabel)
+                            .addGap(0, 589, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 437, Short.MAX_VALUE)
+                                    .addComponent(gradeLabel)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(partOneLabel)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+                                    .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(save)))
+                            .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(14, 14, 14)
+                    .addGap(4, 4, 4)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label1)
-                        .addComponent(point))
-                    .addGap(41, 41, 41)
+                        .addComponent(point)
+                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gradeLabel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+                    .addGap(24, 24, 24)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(partOneLabel)
                         .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
+                    .addGap(25, 25, 25)
                     .addComponent(partTwoLabel)
-                    .addGap(33, 33, 33)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(save)
-                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gradeLabel))
-                    .addContainerGap(25, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(save)
+                    .addGap(19, 19, 19))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

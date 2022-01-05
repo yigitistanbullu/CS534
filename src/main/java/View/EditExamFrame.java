@@ -4,10 +4,7 @@ import javax.swing.border.*;
 
 import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
-import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
-import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
+import Controller.QuestionController.Factory.*;
 import Model.ExamModel;
 import Model.QuestionModel;
 import View.EditQuestions.EditMultipleChoiceQuestionFrame;
@@ -96,11 +93,11 @@ public class EditExamFrame extends JFrame {
             factory = new TrueFalseQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
-        else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_selection")){
+        else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("multiple_selection")){
             factory = new MultipleSelectionQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
-        else if(questionModel.getQuestionType(SelectedQuestionId).equals("gap_filling")){
+        else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("gap_filling")){
             factory = new GapFillingQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
@@ -117,6 +114,10 @@ public class EditExamFrame extends JFrame {
         }
         else if(questionTypeBox.getSelectedItem().equals("True False")){
             EditQuestionCommand frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("Multiple Selection")){
+            EditQuestionCommand frame =  new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
     }
@@ -173,7 +174,7 @@ public class EditExamFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         questionsTable = new JTable();
@@ -193,13 +194,14 @@ public class EditExamFrame extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(991, 561));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax
-            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
-            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .
-            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
+            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
+            , java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
 
             //======== scrollPane1 ========
             {
@@ -221,7 +223,9 @@ public class EditExamFrame extends JFrame {
 
             //---- addQuestionButton ----
             addQuestionButton.setText("+");
-            addQuestionButton.setBackground(Color.white);
+            addQuestionButton.setBackground(new Color(103, 137, 171));
+            addQuestionButton.setForeground(Color.darkGray);
+            addQuestionButton.setFont(addQuestionButton.getFont().deriveFont(addQuestionButton.getFont().getStyle() | Font.BOLD));
             addQuestionButton.addActionListener(e -> addQuestion(e));
 
             //---- examNameLabel ----
@@ -235,28 +239,32 @@ public class EditExamFrame extends JFrame {
                 "Text",
                 "True False",
                 "Multiple Choice",
-                "Multiple Selection",
-                "Gap Filling"
+                "Gap Filling",
+                "Multiple Selection"
             }));
 
             //---- returnButton ----
             returnButton.setText("Return");
-            returnButton.setBackground(Color.white);
+            returnButton.setBackground(new Color(103, 137, 171));
+            returnButton.setForeground(Color.darkGray);
             returnButton.addActionListener(e -> returnButton(e));
 
             //---- submitButton2 ----
             submitButton2.setText("Edit");
-            submitButton2.setBackground(Color.white);
+            submitButton2.setBackground(new Color(103, 137, 171));
+            submitButton2.setForeground(Color.darkGray);
             submitButton2.addActionListener(e -> edit(e));
 
             //---- submitButton3 ----
             submitButton3.setText("Delete");
-            submitButton3.setBackground(Color.white);
+            submitButton3.setBackground(new Color(103, 137, 171));
+            submitButton3.setForeground(Color.darkGray);
             submitButton3.addActionListener(e -> delete(e));
 
             //---- submitButton4 ----
             submitButton4.setText("Refresh");
-            submitButton4.setBackground(Color.white);
+            submitButton4.setBackground(new Color(103, 137, 171));
+            submitButton4.setForeground(Color.darkGray);
             submitButton4.addActionListener(e -> refresh(e));
 
             //---- ozuIconLabel ----
@@ -276,7 +284,7 @@ public class EditExamFrame extends JFrame {
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(submitButton4)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 627, Short.MAX_VALUE)
                                         .addComponent(questionTypeBox, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(addQuestionButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
@@ -334,7 +342,7 @@ public class EditExamFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable questionsTable;

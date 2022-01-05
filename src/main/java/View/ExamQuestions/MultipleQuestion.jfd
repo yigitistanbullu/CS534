@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {comp question:::p:593:p, seq l {par l {par l:l {seq l {comp radioButton1:::p::p, space :::p, comp aAnswer:::p:481:p, space :p:9:p}, seq t {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :p:14:p, par l {comp bAnswer::l:p:481:p, comp cAnswer::l:p:481:p}}}, seq l {comp label1:::p:15:p, space :::p, comp point:::p:78:p}}, space :p:6:p, par l {seq {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p}, seq t {comp save:::p::p, space :p:8:p}}}}, space ::13:x}}"
-			"$verticalGroup": "par l {seq l {space ::25:x, par l {par b:t {comp label1::b:p:16:p, comp point::b:p::p}, par b:t {comp gradeField::b:p::p, comp gradeLabel::b:p::p}}, space :::p, comp question:::p:33:p, space :::p, par b {comp aAnswer::b:p:33:p, comp radioButton1::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, par l {seq {space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space :p:50:p}, seq t {space :::p, comp save:::p::p, space :p:24:p}}}}"
+			"$horizontalGroup": "par l {seq l {space :p:37:p, par l {seq {par l {seq {space ::560:x, comp save:::p::p}, seq t {comp label1:::p:15:p, space :::p, comp point:::p:78:p, space ::426:x, comp gradeLabel:::p::p, space u:::p, comp gradeField:::p:59:p}}, space :p:18:p}, seq {par l {par l:l {seq l {comp radioButton1:::p::p, space u:::p, comp aAnswer:::p:481:p}, seq t {par t {comp radioButton3:::p::p, comp radioButton2:::p::p}, space :p:14:p, par l {comp bAnswer::l:p:481:p, comp cAnswer::l:p:481:p}}}, comp question:::p:593:p}, space :::x}}}}"
+			"$verticalGroup": "par l {seq l {space :::x, par l {par b:t {comp gradeField::b:p::p, comp gradeLabel::b:p::p}, par b:t {comp label1::b:p:16:p, comp point::b:p::p}}, space u:::p, comp question:::p:33:p, space :::p, par b {comp radioButton1::b:p::p, comp aAnswer::b:p:33:p}, space :::p, par b {comp radioButton2::b:p::p, comp bAnswer::b:p:33:p}, space :p:3:p, par b {comp radioButton3::b:p::p, comp cAnswer::b:p:33:p}, space :::p, comp save:::p::p, space :p:19:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -14,42 +14,55 @@ new FormModel {
 				name: "question"
 				"text": "question"
 				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"foreground": &Color0 new java.awt.Color( 51, 51, 51, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "aAnswer"
 				"text": "answer"
+				"foreground": #Color0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "bAnswer"
 				"text": "answer"
+				"foreground": #Color0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "cAnswer"
 				"text": "answer"
+				"foreground": #Color0
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton1"
 				"text": "a."
-				"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+				"background": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+				"foreground": &Color2 new java.awt.Color( 51, 51, 51, 255 )
+				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton2"
 				"text": "b."
-				"background": #Color0
+				"background": #Color1
+				"foreground": #Color2
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton3"
 				"text": "c."
-				"background": #Color0
+				"background": #Color1
+				"foreground": #Color2
+				"font": #SwingDerivedFont1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "1"
 				"font": #SwingDerivedFont0
+				"foreground": new java.awt.Color( 103, 137, 171, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "save"
 				"text": "Save"
+				"background": sfield java.awt.Color white
+				"foreground": new java.awt.Color( 103, 137, 171, 255 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -58,6 +71,8 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "gradeField"
+				"background": sfield java.awt.Color white
+				"foreground": sfield java.awt.Color red
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "point"
@@ -66,7 +81,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 695, 260 )
+			"size": new java.awt.Dimension( 695, 250 )
 		} )
 	}
 }

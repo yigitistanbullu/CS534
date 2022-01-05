@@ -57,7 +57,7 @@ public class LoginView extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         loginText = new JLabel();
         emailField = new JTextField();
@@ -77,13 +77,12 @@ public class LoginView extends JFrame {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setMinimumSize(new Dimension(893, 576));
             panel1.setPreferredSize(new Dimension(893, 576));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax
-            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-            . awt .Font ( "Dialo\u0067", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
-            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "borde\u0072" .
-            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+            border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
+            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
+            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
+            .equals(e.getPropertyName()))throw new RuntimeException();}});
 
             //---- loginText ----
             loginText.setText("Login");
@@ -95,7 +94,9 @@ public class LoginView extends JFrame {
 
             //---- loginButton ----
             loginButton.setText("Login");
-            loginButton.setFont(new Font("Roboto Light", Font.PLAIN, 14));
+            loginButton.setFont(new Font("Roboto Light", Font.BOLD, 14));
+            loginButton.setBackground(new Color(103, 137, 171));
+            loginButton.setForeground(Color.darkGray);
             loginButton.addActionListener(e -> login(e));
 
             //---- emailLabel ----
@@ -116,6 +117,8 @@ public class LoginView extends JFrame {
             //---- registerButton ----
             registerButton.setText("Register");
             registerButton.setFont(new Font("Roboto Light", Font.PLAIN, 14));
+            registerButton.setBackground(new Color(103, 137, 171));
+            registerButton.setForeground(Color.darkGray);
             registerButton.addActionListener(e -> register(e));
 
             //---- ozuIconLabel ----
@@ -126,25 +129,32 @@ public class LoginView extends JFrame {
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(label2)
-                        .addContainerGap(829, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addContainerGap(390, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(label2))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(352, 352, 352)
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(emailLabel)
-                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(emailField)
-                                        .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(registerButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(passLabel))
-                                .addGap(373, 373, 373))
+                                    .addComponent(passLabel)
+                                    .addComponent(emailLabel)))
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                    .addGap(352, 352, 352)
+                                    .addComponent(emailField, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(346, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(0, 425, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(registerButton, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(loginButton, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                        .addGap(0, 421, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap(415, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addComponent(loginText)
                                 .addGap(414, 414, 414))
@@ -152,7 +162,6 @@ public class LoginView extends JFrame {
                                 .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
                                 .addGap(408, 408, 408))))
             );
-            panel1Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {loginButton, registerButton});
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
@@ -165,18 +174,17 @@ public class LoginView extends JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(passLabel)
+                        .addComponent(passLabel, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registerButton)
-                        .addGap(52, 52, 52)
+                        .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(ozuIconLabel, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(56, Short.MAX_VALUE))
+                        .addGap(38, 38, 38))
             );
-            panel1Layout.linkSize(SwingConstants.VERTICAL, new Component[] {loginButton, registerButton});
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
@@ -195,7 +203,7 @@ public class LoginView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JLabel loginText;
     private JTextField emailField;

@@ -4,9 +4,11 @@
 
 package View.EditQuestion;
 
+import java.awt.*;
 import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
 import Model.QuestionModel;
+import View.EditQuestions.EditQuestionCommand;
 
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import javax.swing.GroupLayout;
 /**
  * @author Zeliha Aydın
  */
-public class EditMultipleSelectionQuestionFrame extends JFrame {
+public class EditMultipleSelectionQuestionFrame extends JFrame implements EditQuestionCommand {
     public int examId;
     public String question;
     public int questionId;
@@ -30,15 +32,13 @@ public class EditMultipleSelectionQuestionFrame extends JFrame {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
-        if(questionId!=0){
-            editQuestion();
-        }
     }
     public int getQuestionId() {
         return questionId;
     }
 
-    public void editQuestion(){
+    @Override
+    public void edit() {
         QuestionModel questionModel = new QuestionModel();
         ArrayList<String> availableAnswers = questionModel.getQuestionAnswers(getQuestionId());
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
@@ -47,7 +47,6 @@ public class EditMultipleSelectionQuestionFrame extends JFrame {
         answer1.setText(availableAnswers.get(0));
         answer2.setText(availableAnswers.get(1));
         answer3.setText(availableAnswers.get(2));
-
     }
 
     public void updateQuestion(){
@@ -152,51 +151,87 @@ public class EditMultipleSelectionQuestionFrame extends JFrame {
 
         //======== panel1 ========
         {
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
-            EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
-            . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
-            java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
-            { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
-            throw new RuntimeException( ) ;} } );
+            panel1.setBackground(new Color(103, 137, 171));
+            panel1.setForeground(Color.white);
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+            0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+            . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+            red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+            beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- label1 ----
             label1.setText("Multiple Selection Question");
+            label1.setForeground(Color.white);
+            label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD));
 
             //---- pointsLabel ----
             pointsLabel.setText("Points");
+            pointsLabel.setBackground(Color.white);
+            pointsLabel.setForeground(Color.red);
 
             //---- keyAnswerLabel ----
             keyAnswerLabel.setText("Key Answer");
+            keyAnswerLabel.setForeground(Color.darkGray);
+            keyAnswerLabel.setBackground(Color.white);
 
             //---- addButton ----
             addButton.setText("Add");
+            addButton.setBackground(new Color(103, 137, 171));
+            addButton.setForeground(Color.darkGray);
             addButton.addActionListener(e -> addQuestion(e));
 
             //---- cancelButton ----
             cancelButton.setText("Cancel");
+            cancelButton.setBackground(new Color(103, 137, 171));
+            cancelButton.setForeground(Color.darkGray);
             cancelButton.addActionListener(e -> cancel(e));
+
+            //---- questionLabel ----
+            questionLabel.setBackground(Color.white);
+            questionLabel.setForeground(new Color(51, 51, 51));
+
+            //---- answer1 ----
+            answer1.setBackground(Color.white);
+            answer1.setForeground(new Color(51, 51, 51));
+
+            //---- answer2 ----
+            answer2.setBackground(Color.white);
+            answer2.setForeground(new Color(51, 51, 51));
+
+            //---- answer3 ----
+            answer3.setBackground(Color.white);
+            answer3.setForeground(new Color(51, 51, 51));
 
             //---- label2 ----
             label2.setText("A.");
+            label2.setForeground(Color.white);
+            label2.setFont(label2.getFont().deriveFont(label2.getFont().getStyle() | Font.BOLD));
 
             //---- label3 ----
             label3.setText("C.");
+            label3.setForeground(Color.white);
+            label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD));
 
             //---- label4 ----
             label4.setText("B.");
+            label4.setForeground(Color.white);
+            label4.setFont(label4.getFont().deriveFont(label4.getFont().getStyle() | Font.BOLD));
 
             //---- label5 ----
             label5.setText("Enter question here:");
+            label5.setForeground(Color.white);
 
             //---- addButton2 ----
             addButton2.setText("Save");
+            addButton2.setBackground(new Color(103, 137, 171));
+            addButton2.setForeground(Color.darkGray);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGap(33, 33, Short.MAX_VALUE)
+                        .addContainerGap(33, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, 452, GroupLayout.PREFERRED_SIZE)
@@ -218,17 +253,18 @@ public class EditMultipleSelectionQuestionFrame extends JFrame {
                                             .addComponent(answer3, GroupLayout.Alignment.TRAILING)
                                             .addComponent(answer2)
                                             .addComponent(answer1, GroupLayout.PREFERRED_SIZE, 527, GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label5, GroupLayout.Alignment.LEADING)
+                                    .addComponent(questionLabel)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(addButton2)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label5, GroupLayout.Alignment.LEADING)))
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pointsLabel, GroupLayout.Alignment.TRAILING)
+                                            .addComponent(addButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(231, 231, 231)
                                 .addComponent(label1)))
-                        .addContainerGap(42, Short.MAX_VALUE))
+                        .addContainerGap(40, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()

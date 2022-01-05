@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.12" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,7 +9,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :23:23:p, par l {seq {comp examNameLabel:::p:179:p, space ::764:x}, seq t {par t {seq {comp submitButton4:::p::p, space ::629:x, comp questionTypeBox:::p:151:p, space :::p, comp addQuestionButton:::p:38:p}, comp scrollPane1::l::906:x, seq t {space :p:1:p, comp submitButton2:::p::p, space u:::p, comp submitButton3:::p::p, space :p:232:p, comp ozuIconLabel:::p:118:p, space ::309:x, comp returnButton:::p::p}}, space :p:37:p}}}}"
+				"$horizontalGroup": "par l {seq l {space :23:23:p, par l {seq {comp examNameLabel:::p:179:p, space ::764:x}, seq t {par t {seq {comp submitButton4:::p::p, space ::627:x, comp questionTypeBox:::p:151:p, space :::p, comp addQuestionButton:::p:38:p}, comp scrollPane1::l::906:x, seq t {space :p:1:p, comp submitButton2:::p::p, space u:::p, comp submitButton3:::p::p, space :p:232:p, comp ozuIconLabel:::p:118:p, space ::309:x, comp returnButton:::p::p}}, space :p:37:p}}}}"
 				"$verticalGroup": "par l {seq l {space :p:15:p, comp examNameLabel:::p::p, space u:::p, par b {comp submitButton4::b:p::p, comp addQuestionButton::b:p::p, comp questionTypeBox::b:p::p}, space :p:15:p, comp scrollPane1:::p:405:p, space s:::p, par b {comp returnButton::b:p::p, comp submitButton3::b:p::p, comp submitButton2::b:p::p, comp ozuIconLabel::b:p:40:p}, space ::25:x}}"
 			} ) {
 				name: "panel1"
@@ -49,7 +49,9 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "addQuestionButton"
 					"text": "+"
-					"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"background": &Color0 new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addQuestion", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -72,24 +74,28 @@ new FormModel {
 					name: "returnButton"
 					"text": "Return"
 					"background": #Color0
+					"foreground": sfield java.awt.Color darkGray
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returnButton", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "submitButton2"
 					"text": "Edit"
-					"background": #Color0
+					"background": &Color1 new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "edit", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "submitButton3"
 					"text": "Delete"
-					"background": #Color0
+					"background": #Color1
+					"foreground": sfield java.awt.Color darkGray
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "delete", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "submitButton4"
 					"text": "Refresh"
-					"background": #Color0
+					"background": #Color1
+					"foreground": sfield java.awt.Color darkGray
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refresh", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

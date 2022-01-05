@@ -115,6 +115,7 @@ public class GradingPage extends JFrame {
             }
 
         }
+
         String[] columnNames = {"Student Name","Attendance","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
         tableModel.setDataVector(data,columnNames);
@@ -132,7 +133,7 @@ public class GradingPage extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
@@ -148,12 +149,13 @@ public class GradingPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-            border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
-            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
-            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
-            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
-            .equals(e.getPropertyName()))throw new RuntimeException();}});
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+            ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+            ;
 
             //======== scrollPane1 ========
             {
@@ -174,10 +176,14 @@ public class GradingPage extends JFrame {
 
             //---- gradeButton ----
             gradeButton.setText("Grade Student");
+            gradeButton.setBackground(new Color(103, 137, 171));
+            gradeButton.setForeground(Color.darkGray);
             gradeButton.addActionListener(e -> grade(e));
 
             //---- backButton ----
             backButton.setText("Back");
+            backButton.setBackground(new Color(103, 137, 171));
+            backButton.setForeground(Color.darkGray);
             backButton.addActionListener(e -> back(e));
 
             //---- ozuIconLabel ----
@@ -185,7 +191,8 @@ public class GradingPage extends JFrame {
 
             //---- refreshButton ----
             refreshButton.setText("Refresh");
-            refreshButton.setBackground(Color.white);
+            refreshButton.setBackground(new Color(103, 137, 171));
+            refreshButton.setForeground(Color.darkGray);
             refreshButton.addActionListener(e -> refresh(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
@@ -243,7 +250,7 @@ public class GradingPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable table1;
