@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * @author yasemin
  */
-public class EditTrueFalseQuestionFrame extends JFrame {
+public class EditTrueFalseQuestionFrame extends JFrame implements EditQuestionCommand {
     public int examId;
     public int questionId;
     public String question;
@@ -31,9 +31,6 @@ public class EditTrueFalseQuestionFrame extends JFrame {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
-        if(questionId!=0){
-            editQuestion();
-        }
     }
 
     public int getQuestionId() {
@@ -88,10 +85,6 @@ public class EditTrueFalseQuestionFrame extends JFrame {
         return factory;
     }
 
-    public void setFactory(QuestionFactory factory) {
-        this.factory = factory;
-    }
-
     public void createQuestion(){
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
@@ -104,7 +97,7 @@ public class EditTrueFalseQuestionFrame extends JFrame {
         getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
-    public void editQuestion(){
+    public void edit(){
         QuestionModel questionModel = new QuestionModel();
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
         keyAnswerBox.setSelectedItem(questionModel.getKeyAnswer(getQuestionId()));

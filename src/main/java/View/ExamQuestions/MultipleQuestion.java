@@ -64,7 +64,6 @@ public class MultipleQuestion extends JPanel {
         cAnswer.setText(answers.get(2));
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
         label1.setText(getQuestionNumber());
-
     }
 
     public void setAnswerForReview(int questionId, int userId){
@@ -130,12 +129,10 @@ public class MultipleQuestion extends JPanel {
         public int userId;
         public String questionNumber;
 
-
         public Builder(int id, int examId, int userId) {
             this.questionId =id;
             this.examId =examId;
             this.userId = userId;
-
         }
 
         public Builder withUserType(int userType) {
@@ -153,7 +150,6 @@ public class MultipleQuestion extends JPanel {
             return new MultipleQuestion(this);
         }
     }
-
 
     private void initComponents() {
         setVisible(true);

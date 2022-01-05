@@ -17,7 +17,7 @@ import javax.swing.GroupLayout;
 /**
  * @author yasemin
  */
-public class EditTextQuestionFrame extends JFrame {
+public class EditTextQuestionFrame extends JFrame implements EditQuestionCommand {
     public int examId;
     public int questionId;
     public String question;
@@ -30,9 +30,6 @@ public class EditTextQuestionFrame extends JFrame {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
-        if(questionId!=0){
-            editQuestion();
-        }
     }
 
     public int getQuestionId() {
@@ -85,7 +82,7 @@ public class EditTextQuestionFrame extends JFrame {
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);
     }
 
-    public void editQuestion(){
+    public void edit(){
         QuestionModel questionModel = new QuestionModel();
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
         keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));

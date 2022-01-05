@@ -13,7 +13,6 @@ public class ExamModel {
     public static Examination examination;
 
     public static void addExam(String examName, double examGrade, Time startTime, Time endTime, Date date) {
-
         String Query = "INSERT into Exam(exam_name, exam_grade, exam_start_time, exam_end_time, exam_date) VALUES (" + "'"  + examName + "'" + " ," + "'" + examGrade+ "'"+ " ," + "'" + startTime+ " '," + "'" + endTime + " '," + "'" + date + "') ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
@@ -122,7 +121,7 @@ public class ExamModel {
         }
     }
 
-    public Examination getExam(int examId){
+    public static Examination getExam(int examId){
         ResultSet result;
         ArrayList<String> exam = new ArrayList<>();
 
@@ -131,10 +130,7 @@ public class ExamModel {
 
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             int sira = result.getMetaData().getColumnCount();
-            /*
-            if(!result.next()){
-                return new NullExam(0,"",0,new Date(),new Time(System.currentTimeMillis()),new Time(System.currentTimeMillis()));
-            }*/
+
             while (result.next()) {
                 for (int i = 1; i <= sira; i++) {
                     exam.add(result.getString(i));
@@ -262,6 +258,31 @@ public class ExamModel {
             e.printStackTrace();
         }
         return hasGraded ;
+    }
+
+    public static Exam getSelectedExam(int examId){
+        ResultSet result;
+        ArrayList<String> exam = new ArrayList<>();
+
+        String Query = "SELECT  exam_id , exam_name , exam_grade , exam_start_time, exam_end_time, exam_date FROM Exam Where exam_id ='" + examId + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            int sira = result.getMetaData().getColumnCount();
+
+            while (result.next()) {
+                for (int i = 1; i <= sira; i++) {
+                    exam.add(result.getString(i));
+                }
+            }
+        }
+
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Examination examination = new Examination(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
+        return examination;
     }
 
 }

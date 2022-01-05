@@ -276,8 +276,9 @@ public class QuestionModel {
         try {
 
             result =  DBConnection.connection.createStatement().executeQuery(Query);
-            result.next();
-            userAnswer = result.getString(1);
+            while(result.next()){
+                userAnswer = result.getString(1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -327,8 +328,9 @@ public class QuestionModel {
         try {
 
             result =  DBConnection.connection.createStatement().executeQuery(Query);
-            result.next();
-            keyAnswer = result.getString(1);
+            while(result.next()){
+                keyAnswer = result.getString(1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

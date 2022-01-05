@@ -4,10 +4,14 @@ import javax.swing.border.*;
 
 import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
-import Controller.QuestionController.Factory.*;
+import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
+import Controller.QuestionController.Factory.QuestionFactory;
+import Controller.QuestionController.Factory.TextQuestionFactory;
+import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.ExamModel;
 import Model.QuestionModel;
 import View.EditQuestions.EditMultipleChoiceQuestionFrame;
+import View.EditQuestions.EditQuestionCommand;
 import View.EditQuestions.EditTextQuestionFrame;
 import View.EditQuestions.EditTrueFalseQuestionFrame;
 
@@ -39,31 +43,24 @@ public class EditExamFrame extends JFrame {
         setIcon();
     }
 
-    private void addQuestion(ActionEvent e) {
-        if(questionTypeBox.getSelectedItem().equals("Text")){
-            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
-            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("True False")){
-            EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("Multiple Selection")){
-            View.EditQuestion.EditMultipleSelectionQuestionFrame frame =  new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("Gap Filling")){
-            View.EditQuestions.EditGapFillingQuestionFrame frame =  new View.EditQuestions.EditGapFillingQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getExamId() {
+        return examId;
     }
 
     public QuestionModel getQuestionModel() {
         return questionModel;
+    }
+
+    public void setExamId(int examId) {
+        this.examId = examId;
     }
 
     public void editTableAndFrame(){
@@ -85,17 +82,17 @@ public class EditExamFrame extends JFrame {
 
     private void delete(ActionEvent e) {
         QuestionFactory factory;
-        ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
+        ArrayList<Integer> questionID = getQuestionModel().getQuestionIds(getExamId());
         int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
-        if(questionModel.getQuestionType(SelectedQuestionId).equals("text")){
+        if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("text")){
             factory = new TextQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
-       else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_choice")){
+       else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("multiple_choice")){
             factory = new MultipleChoiceQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
-        else if(questionModel.getQuestionType(SelectedQuestionId).equals("true_false")){
+        else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("true_false")){
             factory = new TrueFalseQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
@@ -109,20 +106,19 @@ public class EditExamFrame extends JFrame {
         }
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public int getExamId() {
-        return examId;
-    }
-
-    public void setExamId(int examId) {
-        this.examId = examId;
+    private void addQuestion(ActionEvent e) {
+        if(questionTypeBox.getSelectedItem().equals("Text")){
+            EditQuestionCommand frame =  new EditTextQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
+            EditQuestionCommand frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("True False")){
+            EditQuestionCommand frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
     }
 
     private void returnButton(ActionEvent e) {
@@ -138,18 +134,17 @@ public class EditExamFrame extends JFrame {
     }
 
     private void edit(ActionEvent e) {
-        QuestionModel questionModel = new QuestionModel();
         ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
         int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
-        if(questionModel.getQuestionType(SelectedQuestionId).equals("text")){
+        if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("text")){
             EditTextQuestionFrame frame = new EditTextQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
-        else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_choice")){
+        else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("multiple_choice")){
             EditMultipleChoiceQuestionFrame frame = new EditMultipleChoiceQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
-        else if(questionModel.getQuestionType(SelectedQuestionId).equals("true_false")){
+        else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("true_false")){
             EditTrueFalseQuestionFrame frame = new EditTrueFalseQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
