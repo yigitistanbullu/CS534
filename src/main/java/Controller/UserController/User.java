@@ -19,22 +19,17 @@ public abstract class User {
         this.userType = userType;
     }
 
-    public User(Mediator mediator, String name, String lastName, String e_mail, Password password, int id, int userType) {
+    public User(Mediator mediator, String name, String lastName, String e_mail, Password password, int id) {
         this.mediator = mediator;
         this.name = name;
         this.lastName = lastName;
         this.e_mail = e_mail;
         this.password = password;
         this.id = id;
-        this.userType = userType;
     }
 
     public int getUserType() {
         return userType;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
     }
 
     public int getId() {
@@ -85,5 +80,7 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract String writeName(String name, String surname);
+    public abstract void addUser(User user);
+    public abstract void setUserType();
+
 }

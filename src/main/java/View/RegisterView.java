@@ -1,6 +1,5 @@
 package View;
-import Controller.UserController.Password;
-import Controller.UserController.User;
+import Controller.UserController.*;
 import Model.AuthorizationModel;
 
 import java.awt.*;
@@ -28,21 +27,16 @@ public class RegisterView extends JFrame {
     }
 
     private void register(ActionEvent e) {
-        int usertype = 0;
-        if(teacherCheckbox.isSelected()){
-            usertype = 1;
+        MediatorImp mediator = new MediatorImp();
+        Password password = new Password(passwordField.getText());
+        if(studentCheckbox.isSelected()){
+            User user = new Student(mediator,nameField.getText(), surnameFiled.getText(), emailFiled.getText(),password,Integer.parseInt(studentIDField.getText()));
+            user.addUser(user);
         }
         else{
-            usertype = 0;
+            User user = new Instructor(mediator,nameField.getText(), surnameFiled.getText(), emailFiled.getText(),password,Integer.parseInt(studentIDField.getText()));
+            user.addUser(user);
         }
-        Password password = new Password(passwordField.getText());
-        User user = new User(nameField.getText(), surnameFiled.getText(), emailFiled.getText(),password,Integer.parseInt(studentIDField.getText()), usertype) {
-            @Override
-            public String writeName(String name, String surname) {
-                return name + surname;
-            }
-        };
-        AuthorizationModel.addUser(user);
         JOptionPane.showMessageDialog(new JFrame(),"User Created Successfully","Dialog",JOptionPane.WARNING_MESSAGE);
         LoginView loginView = new LoginView();
         loginView.setLocationRelativeTo(this);

@@ -1,4 +1,5 @@
 import Model.DBConnection;
+import Model.ExamModel;
 import Model.QuestionModel;
 import View.LoginView;
 
@@ -40,12 +41,6 @@ public class Main {
         //factory.setPointsEarnedInstructor(5,2,3);*/
         LoginView app = new LoginView();
         app.setVisible(true);
-
-        //QuestionModel model = new QuestionModel();
-       // model.addUserAnswer("True", 1, 1,1);
-        //model.setPointsBySystem(1,3);
-        //GradingPage page = new GradingPage(1,"",1);
-       // page.setVisible(true);
 
     }
 }

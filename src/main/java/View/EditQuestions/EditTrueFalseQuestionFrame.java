@@ -106,7 +106,6 @@ public class EditTrueFalseQuestionFrame extends JFrame {
 
     public void editQuestion(){
         QuestionModel questionModel = new QuestionModel();
-        System.out.println(questionModel.getQuestion(getQuestionId()));
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
         keyAnswerBox.setSelectedItem(questionModel.getKeyAnswer(getQuestionId()));
         pointsLabel.setText(questionModel.getAvailablePoints(getQuestionId()));

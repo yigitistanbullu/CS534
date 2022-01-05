@@ -238,9 +238,7 @@ public class QuestionModel {
     public static void setPointsBySystem(int user_id, int question_id){
 
         String key_answer = getKeyAnswer(question_id);
-        System.out.println(key_answer);
         String selected_answer = getUserAnswer(user_id,question_id);
-        System.out.println(selected_answer);
         double available_points = 0;
 
         if(key_answer.equals(selected_answer)){

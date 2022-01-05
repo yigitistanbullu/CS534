@@ -70,7 +70,6 @@ public class MultipleQuestion extends JPanel {
     public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
         String answer =  model.getUserAnswer(userId,questionId);
-        System.out.println(answer);
         radioButton1.setEnabled(false);
         radioButton2.setEnabled(false);
         radioButton3.setEnabled(false);
@@ -104,7 +103,6 @@ public class MultipleQuestion extends JPanel {
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
     }
-
 
     private void save(ActionEvent e) {
         QuestionModel model = new QuestionModel();

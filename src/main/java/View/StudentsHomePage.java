@@ -18,6 +18,7 @@ import javax.swing.GroupLayout;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.ExamModel;
 import View.ExamQuestions.QuestionsPage;

@@ -5,6 +5,8 @@
 package View;
 
 import javax.swing.border.*;
+
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;

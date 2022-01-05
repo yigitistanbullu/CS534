@@ -1,6 +1,8 @@
 package View.ExamQuestions;
 
 import java.awt.event.*;
+
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;
@@ -29,7 +31,6 @@ public class QuestionsPage extends JFrame {
 
     public QuestionsPage(int examId, String name, int userType) {
         this.userName = name;
-        System.out.println(name);
         this.examId=examId;
         this.userType = userType;
         initComponents();

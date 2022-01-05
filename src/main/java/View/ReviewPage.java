@@ -4,6 +4,7 @@
 
 package View;
 
+import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.ExamModel;
 import Model.QuestionModel;

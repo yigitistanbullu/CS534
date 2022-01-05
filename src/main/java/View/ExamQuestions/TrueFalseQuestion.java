@@ -83,7 +83,6 @@ public class TrueFalseQuestion extends JPanel {
     public void setAnswerForReview(int questionId, int userId){
         QuestionModel model = new QuestionModel();
         String answer =  model.getUserAnswer(userId, questionId);
-        System.out.println(answer);
         trueCheck.setEnabled(false);
         falseCheck.setEnabled(false);
         if(answer.equals(trueCheck.getText())){
