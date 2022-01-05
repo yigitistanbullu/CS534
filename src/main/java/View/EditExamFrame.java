@@ -2,15 +2,10 @@ package View;
 
 import javax.swing.border.*;
 import Controller.ExamController.Examination;
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
-import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
-import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
+import Controller.QuestionController.Factory.*;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.EditQuestion.EditMultipleChoiceQuestionFrame;
-import View.EditQuestion.EditTextQuestionFrame;
-import View.EditQuestion.EditTrueFalseQuestionFrame;
+import View.EditQuestion.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.table.*;
@@ -51,6 +46,14 @@ public class EditExamFrame extends JFrame {
             EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
+        else if(questionTypeBox.getSelectedItem().equals("Multiple Selection")){
+            EditMultipleSelectionQuestionFrame frame =  new EditMultipleSelectionQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("Gap Filling")){
+            EditGapFillingQuestionFrame frame =  new EditGapFillingQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
     }
 
     public void editTableAndFrame(){
@@ -86,6 +89,14 @@ public class EditExamFrame extends JFrame {
         }
         else if(questionModel.getQuestionType(SelectedQuestionId).equals("true_false")){
             factory = new TrueFalseQuestionFactory();
+            factory.deleteQuestion(SelectedQuestionId);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_selection")){
+            factory = new MultipleSelectionQuestionFactory();
+            factory.deleteQuestion(SelectedQuestionId);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("gap_filling")){
+            factory = new GapFillingQuestionFactory();
             factory.deleteQuestion(SelectedQuestionId);
         }
     }
@@ -134,6 +145,14 @@ public class EditExamFrame extends JFrame {
             EditTrueFalseQuestionFrame frame = new EditTrueFalseQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_selection")){
+            EditMultipleSelectionQuestionFrame frame = new EditMultipleSelectionQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.setVisible(true);
+        }
+        else if(questionModel.getQuestionType(SelectedQuestionId).equals("gap_filling")){
+            EditGapFillingQuestionFrame frame = new EditGapFillingQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.setVisible(true);
+        }
     }
 
     public void setIcon(){
@@ -151,7 +170,7 @@ public class EditExamFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+        // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         questionsTable = new JTable();
@@ -171,13 +190,12 @@ public class EditExamFrame extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(991, 561));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax
-            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans .
-            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .
-            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+            border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER
+            ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
+            .BOLD,12),java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(
+            new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r"
+            .equals(e.getPropertyName()))throw new RuntimeException();}});
 
             //======== scrollPane1 ========
             {
@@ -212,7 +230,9 @@ public class EditExamFrame extends JFrame {
             questionTypeBox.setModel(new DefaultComboBoxModel<>(new String[] {
                 "Text",
                 "True False",
-                "Multiple Choice"
+                "Multiple Choice",
+                "Multiple Selection",
+                "Gap Filling"
             }));
 
             //---- returnButton ----
@@ -310,7 +330,7 @@ public class EditExamFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
+    // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JTable questionsTable;

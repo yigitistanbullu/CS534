@@ -41,7 +41,32 @@ public class QuestionModel {
 
     }
 
+    public static void addGapFillingQuestion(Question question) {
+
+        String Query = "INSERT into Question(question, points, exam_id, question_type, key_answer) VALUES ('"+ question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
     public static void updateTextQuestion(Question question) {
+        String Query = "UPDATE Question SET question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateGapFillingQuestion(Question question) {
         String Query = "UPDATE Question SET question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
         try {
             DBConnection.connection.createStatement().execute(Query);
@@ -64,8 +89,33 @@ public class QuestionModel {
         }
 
     }
+    public static void addMultipleSelectionQuestion(Question question) {
+
+        String Query = "INSERT into Question(user_answer1, user_answer2, user_answer3, question, points, exam_id, question_type, key_answer) VALUES ('" + question.getAvailableAnswers().get(0) +"','" + question.getAvailableAnswers().get(1) +"','" + question.getAvailableAnswers().get(2) +"','" + question.getQuestion()+"','" + question.getPoints()+"','" + question.getExamId()+"' ,'" + question.getType()+"','" + question.getKeyAnswer()+"') ;";
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
     public static void updateMultipleChoiceQuestion(Question question) {
+        String Query = "UPDATE Question SET user_answer1 = '" + question.getAvailableAnswers().get(0)+"',user_answer2 = '" + question.getAvailableAnswers().get(1)+"',user_answer3 = '" + question.getAvailableAnswers().get(2)+"',question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
+
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateMultipleSelectionQuestion(Question question) {
         String Query = "UPDATE Question SET user_answer1 = '" + question.getAvailableAnswers().get(0)+"',user_answer2 = '" + question.getAvailableAnswers().get(1)+"',user_answer3 = '" + question.getAvailableAnswers().get(2)+"',question = '" + question.getQuestion()+"', points = '" + question.getPoints()+"', key_answer ='" + question.getKeyAnswer()+"' WHERE question_id = " + question.getId() + ";";
 
         try {

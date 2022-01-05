@@ -30,5 +30,19 @@ class MultipleChoiceQuestionBehavior implements QuestionTypeBehavior {
         return type;
     }
 }
+class MultipleSelectionQuestionBehavior implements QuestionTypeBehavior {
 
+    public String setQuestionType(){
+        String type = "multiple_selection";
+        return type;
+    }
+}
+
+class GapFillingQuestionBehavior implements QuestionTypeBehavior {
+
+    public String setQuestionType(){
+        String type = "gap_filling";
+        return type;
+    }
+}
 

@@ -1,0 +1,58 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {seq l {comp panel1:::p:261:p, space :0:0:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:249:p, comp label1:::p::p}, seq l {space :p:34:p, par t:::p {seq {comp button2:::p::p, space :p:396:p, comp button1:::p:78:p}, seq t {par l {comp label6:::p::p, comp questionLabel2:::p:164:p}, space :::x, comp pointsLabel:::p:70:p}, comp label5::l:p::p, comp questionLabel::l:p:164:p, comp keyAnswerLabel::t:p:237:p}}}, space ::37:x}}"
+				"$verticalGroup": "par l {seq l {space :p:13:p, comp label1:::p::p, space s:::p, comp label5:::p::p, space :::p, comp questionLabel:::p::p, space :::p, comp keyAnswerLabel:::p::p, space :p:14:p, par t {comp pointsLabel:::p::p, seq {comp label6:::p::p, space :6:6:p, comp questionLabel2:::p::p}}, space :p:30:p, par b {comp button1::b:p:30:p, comp button2::b:p::p}, space :::x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": " Gap Filling Question"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "pointsLabel"
+					"text": "Points"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "keyAnswerLabel"
+					"text": "Key Answer"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addQuestion", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "Cancel"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "questionLabel"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "First part"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "questionLabel2"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Second Part"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 625, 285 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}

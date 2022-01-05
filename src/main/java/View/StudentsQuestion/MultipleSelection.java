@@ -1,34 +1,33 @@
+/*
+ * Created by JFormDesigner on Wed Jan 05 14:02:06 EET 2022
+ */
+
 package View.StudentsQuestion;
 
-import java.awt.event.*;
 import Model.QuestionModel;
 
 import java.awt.*;
-import java.lang.reflect.Array;
+import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
-/*
- * Created by JFormDesigner on Wed Dec 15 20:23:44 EET 2021
+
+/**
+ * @author Zeliha Aydın
  */
-
-
-public class MultipleQuestion extends JPanel {
-
+public class MultipleSelection extends JPanel {
     public int questionId;
     public int examId;
     public int userType;
     public int userId;
 
-    public MultipleQuestion (int id, int examId, int userType, int userId) {
+    public MultipleSelection(int id, int examId, int userType, int userId) {
         this.questionId =id;
         this.examId =examId;
         this.userType = userType;
         this.userId = userId;
         initComponents();
-        setQuestion(id);
-        setAnswerOptions(id);
     }
 
     public int getQuestionId() {
@@ -69,17 +68,17 @@ public class MultipleQuestion extends JPanel {
         QuestionModel model = new QuestionModel();
         String answer =  model.getUserAnswer(userId,questionId);
         System.out.println(answer);
-        radioButton1.setEnabled(false);
-        radioButton2.setEnabled(false);
-        radioButton3.setEnabled(false);
+        checkBox1.setEnabled(false);
+        checkBox2.setEnabled(false);
+        checkBox3.setEnabled(false);
         if(answer.equals(aAnswer.getText())){
-            radioButton1.setSelected(true);
+            checkBox1.setSelected(true);
         }
-        else if(answer.equals(bAnswer.getText())){
-            radioButton2.setSelected(true);
+        if(answer.equals(bAnswer.getText())){
+            checkBox2.setSelected(true);
         }
-        else if(answer.equals(cAnswer.getText())){
-            radioButton3.setSelected(true);
+        if(answer.equals(cAnswer.getText())){
+            checkBox3.setSelected(true);
         }
 
         gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
@@ -107,13 +106,15 @@ public class MultipleQuestion extends JPanel {
         QuestionModel model = new QuestionModel();
 
         if(userType == 0) {
-            if (radioButton1.isSelected()) {
-                model.addUserAnswer(aAnswer.getText(), getUserId(), getQuestionId(),getExamId());
-            } else if (radioButton2.isSelected()) {
-                model.addUserAnswer(bAnswer.getText(), getUserId(), getQuestionId(),getExamId());
-            } else if (radioButton3.isSelected()) {
-                model.addUserAnswer(cAnswer.getText(), getUserId(), getQuestionId(),getExamId());
+            String answer = "";
+            if (checkBox1.isSelected()) {
+                answer += aAnswer.getText();
+            }else if (checkBox2.isSelected()) {
+                answer += bAnswer.getText();
+            }else if (checkBox3.isSelected()) {
+                answer+= cAnswer.getText();
             }
+            model.addUserAnswer(answer, getUserId(), getQuestionId(),getExamId());
         }
         else{
             double grade = Double.parseDouble(gradeField.getText());
@@ -130,26 +131,25 @@ public class MultipleQuestion extends JPanel {
         aAnswer = new JLabel();
         bAnswer = new JLabel();
         cAnswer = new JLabel();
-        radioButton1 = new JRadioButton();
-        radioButton2 = new JRadioButton();
-        radioButton3 = new JRadioButton();
         label1 = new JLabel();
         save = new JButton();
         gradeLabel = new JLabel();
         gradeField = new JTextField();
         point = new JLabel();
+        checkBox1 = new JCheckBox();
+        checkBox2 = new JCheckBox();
+        checkBox3 = new JCheckBox();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
         //---- question ----
         question.setText("question");
@@ -162,18 +162,6 @@ public class MultipleQuestion extends JPanel {
 
         //---- cAnswer ----
         cAnswer.setText("answer");
-
-        //---- radioButton1 ----
-        radioButton1.setText("a.");
-        radioButton1.setBackground(Color.white);
-
-        //---- radioButton2 ----
-        radioButton2.setText("b.");
-        radioButton2.setBackground(Color.white);
-
-        //---- radioButton3 ----
-        radioButton3.setText("c.");
-        radioButton3.setBackground(Color.white);
 
         //---- label1 ----
         label1.setText("1");
@@ -189,6 +177,15 @@ public class MultipleQuestion extends JPanel {
         point.setText("Points");
         point.setFont(point.getFont().deriveFont(point.getFont().getStyle() | Font.BOLD, point.getFont().getSize() - 3f));
 
+        //---- checkBox1 ----
+        checkBox1.setText("1");
+
+        //---- checkBox2 ----
+        checkBox2.setText("2");
+
+        //---- checkBox3 ----
+        checkBox3.setText("3");
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,32 +194,31 @@ public class MultipleQuestion extends JPanel {
                     .addGap(37, 37, 37)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(radioButton3)
-                                    .addComponent(radioButton2))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(gradeLabel)))
+                            .addGap(1, 1, 1)
+                            .addComponent(gradeLabel)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(cAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
-                                    .addComponent(save))))
+                            .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
+                            .addComponent(save))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(label1)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(question, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(radioButton1)
+                                    .addComponent(checkBox1)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
-                                .addComponent(question, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(checkBox2)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(bAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(checkBox3)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)))
                             .addGap(0, 126, Short.MAX_VALUE)))
                     .addGap(22, 22, 22))
         );
@@ -238,14 +234,14 @@ public class MultipleQuestion extends JPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(radioButton1))
+                        .addComponent(checkBox1))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(radioButton2)
+                        .addComponent(checkBox2)
                         .addComponent(bAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
                     .addGap(3, 3, 3)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(radioButton3)
+                        .addComponent(checkBox3)
                         .addComponent(cAnswer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
@@ -268,13 +264,13 @@ public class MultipleQuestion extends JPanel {
     private JLabel aAnswer;
     private JLabel bAnswer;
     private JLabel cAnswer;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
-    private JRadioButton radioButton3;
     private JLabel label1;
     private JButton save;
     private JLabel gradeLabel;
     private JTextField gradeField;
     private JLabel point;
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
