@@ -47,7 +47,5 @@ public class Main {
         //GradingPage page = new GradingPage(1,"",1);
        // page.setVisible(true);
 
-
-
     }
 }

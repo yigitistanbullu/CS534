@@ -106,15 +106,12 @@ public class MultipleQuestion extends JPanel {
         QuestionModel model = new QuestionModel();
 
         if(userType == 0) {
-            if (aAnswer.isEnabled()) {
+            if (radioButton1.isSelected()) {
                 model.addUserAnswer(aAnswer.getText(), getUserId(), getQuestionId(),getExamId());
-                System.out.println(aAnswer.getText());
-            } else if (bAnswer.isEnabled()) {
+            } else if (radioButton2.isSelected()) {
                 model.addUserAnswer(bAnswer.getText(), getUserId(), getQuestionId(),getExamId());
-                System.out.println(bAnswer.getText());
-            } else if (cAnswer.isEnabled()) {
+            } else if (radioButton3.isSelected()) {
                 model.addUserAnswer(cAnswer.getText(), getUserId(), getQuestionId(),getExamId());
-                System.out.println(cAnswer.getText());
             }
         }
         else{
