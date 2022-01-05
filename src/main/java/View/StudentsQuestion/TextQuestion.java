@@ -54,6 +54,7 @@ public class TextQuestion extends JPanel {
     public void setQuestion(int qId){
         QuestionModel model = new QuestionModel();
         questionLabel.setText(model.getQuestion(qId));
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
     }
 
     public void removeGrade(){
@@ -102,16 +103,17 @@ public class TextQuestion extends JPanel {
         save = new JButton();
         gradeLabel = new JLabel();
         gradeField = new JTextField();
+        point = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
         setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
+        swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border
+        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
         ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
         ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
+        .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
         ( ); }} );
 
         //---- questionLabel ----
@@ -133,6 +135,10 @@ public class TextQuestion extends JPanel {
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
 
+        //---- point ----
+        point.setText("Points");
+        point.setFont(point.getFont().deriveFont(point.getFont().getStyle() | Font.BOLD, point.getFont().getSize() - 3f));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,7 +148,10 @@ public class TextQuestion extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(label1, GroupLayout.Alignment.LEADING)
+                                .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(label1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
                                 .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(enterAnswer, GroupLayout.Alignment.LEADING))
                             .addContainerGap(38, Short.MAX_VALUE))
@@ -161,7 +170,9 @@ public class TextQuestion extends JPanel {
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(14, 14, 14)
-                    .addComponent(label1)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(point))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -187,6 +198,7 @@ public class TextQuestion extends JPanel {
     private JButton save;
     private JLabel gradeLabel;
     private JTextField gradeField;
+    private JLabel point;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

@@ -62,6 +62,7 @@ public class MultipleQuestion extends JPanel {
         aAnswer.setText(answers.get(0));
         bAnswer.setText(answers.get(1));
         cAnswer.setText(answers.get(2));
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
     }
 
     public void setAnswerForReview(int questionId, int userId){
@@ -136,15 +137,17 @@ public class MultipleQuestion extends JPanel {
         save = new JButton();
         gradeLabel = new JLabel();
         gradeField = new JTextField();
+        point = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
-        ,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-        ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red),
-         getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
 
         //---- question ----
         question.setText("question");
@@ -180,6 +183,10 @@ public class MultipleQuestion extends JPanel {
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
 
+        //---- point ----
+        point.setText("Points");
+        point.setFont(point.getFont().deriveFont(point.getFont().getStyle() | Font.BOLD, point.getFont().getSize() - 3f));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,12 +194,6 @@ public class MultipleQuestion extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(37, 37, 37)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(label1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(radioButton1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(question, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
@@ -208,14 +209,28 @@ public class MultipleQuestion extends JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
-                                    .addComponent(save)))))
+                                    .addComponent(save))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label1)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(radioButton1)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(aAnswer, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(question, GroupLayout.PREFERRED_SIZE, 593, GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 126, Short.MAX_VALUE)))
                     .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
-                    .addComponent(label1)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(point))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(question, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -258,5 +273,6 @@ public class MultipleQuestion extends JPanel {
     private JButton save;
     private JLabel gradeLabel;
     private JTextField gradeField;
+    private JLabel point;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

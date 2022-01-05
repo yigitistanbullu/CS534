@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:41:p, par l {comp label1:::p::p, par t:l::p {seq {par l {par t {comp falseCheck:::p:73:p, comp trueCheck:::p:73:p}, seq {comp gradeLabel:::p::p, space :6:6:p, comp gradeField:::p:59:p}}, space :::x, comp save:::p::p}, comp questionLabel:::p:589:p}}, space ::53:x}}"
-			"$verticalGroup": "par l {seq l {space :p:19:p, comp label1:::p::p, space :::p, comp questionLabel:::p::p, space s:::p, comp trueCheck:::p::p, par l {seq {space :::p, comp falseCheck:::p::p, space s:::p, par l {seq l {space :7:7:p, comp gradeLabel:::p::p}, comp gradeField:::p::p}, space ::17:x}, seq t {space ::45:x, comp save:::p::p, space :p:17:p}}}}"
+			"$horizontalGroup": "par l {seq l {space :p:41:p, par l:::p {seq {comp label1:::p::p, space u:::p, comp point:::p:78:p}, seq t {par l {par t {comp falseCheck:::p:73:p, comp trueCheck:::p:73:p}, seq {comp gradeLabel:::p::p, space :6:6:p, comp gradeField:::p:59:p}}, space :::x, comp save:::p::p}, comp questionLabel::t:p:589:p}, space ::53:x}}"
+			"$verticalGroup": "par l {seq l {space :p:17:p, par b {comp label1::b:p::p, comp point::b:p::p}, space :::p, comp questionLabel:::p::p, space s:::p, comp trueCheck:::p::p, par l {seq {space :::p, comp falseCheck:::p::p, space s:::p, par l {seq l {space :7:7:p, comp gradeLabel:::p::p}, comp gradeField:::p::p}, space ::19:x}, seq t {space ::47:x, comp save:::p::p, space :p:17:p}}}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -39,6 +39,11 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "gradeField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "point"
+				"text": "Points"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, -3, false )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

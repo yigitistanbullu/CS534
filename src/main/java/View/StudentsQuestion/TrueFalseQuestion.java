@@ -53,6 +53,7 @@ public class TrueFalseQuestion extends JPanel {
     public void setQuestion(int qId ){
         QuestionModel model = new QuestionModel();
         questionLabel.setText(model.getQuestion(qId));
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
     }
     
     public void setNumber(String number){
@@ -118,17 +119,17 @@ public class TrueFalseQuestion extends JPanel {
         save = new JButton();
         gradeLabel = new JLabel();
         gradeField = new JTextField();
+        point = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing
-        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-        Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red
-        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-        public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName(
-        )))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
 
         //---- trueCheck ----
         trueCheck.setText("True");
@@ -151,34 +152,42 @@ public class TrueFalseQuestion extends JPanel {
         //---- gradeLabel ----
         gradeLabel.setText("Grade:");
 
+        //---- point ----
+        point.setText("Points");
+        point.setFont(point.getFont().deriveFont(point.getFont().getStyle() | Font.BOLD, point.getFont().getSize() - 3f));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(41, 41, 41)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(label1)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup()
-                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(falseCheck, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(trueCheck, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(gradeLabel)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(save))
-                            .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(label1)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(point, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(falseCheck, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(trueCheck, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(gradeLabel)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(save))
+                        .addComponent(questionLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(19, 19, 19)
-                    .addComponent(label1)
+                    .addGap(17, 17, 17)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(point))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(questionLabel)
                     .addGap(18, 18, 18)
@@ -193,9 +202,9 @@ public class TrueFalseQuestion extends JPanel {
                                     .addGap(7, 7, 7)
                                     .addComponent(gradeLabel))
                                 .addComponent(gradeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(17, Short.MAX_VALUE))
+                            .addContainerGap(19, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                             .addComponent(save)
                             .addGap(17, 17, 17))))
         );
@@ -211,5 +220,6 @@ public class TrueFalseQuestion extends JPanel {
     private JButton save;
     private JLabel gradeLabel;
     private JTextField gradeField;
+    private JLabel point;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
