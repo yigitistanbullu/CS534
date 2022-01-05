@@ -11,6 +11,10 @@ import View.EditQuestions.EditMultipleChoiceQuestionFrame;
 import View.EditQuestions.EditQuestionCommand;
 import View.EditQuestions.EditTextQuestionFrame;
 import View.EditQuestions.EditTrueFalseQuestionFrame;
+import View.EditQuestions.EditGapFillingQuestionFrame;
+import View.EditQuestions.EditMultipleSelectionQuestionFrame;
+
+
 
 import javax.imageio.ImageIO;
 import javax.swing.table.*;
@@ -117,9 +121,14 @@ public class EditExamFrame extends JFrame {
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("Multiple Selection")){
-            EditQuestionCommand frame =  new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),0);
+            EditQuestionCommand frame =  new EditMultipleSelectionQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
+        else if(questionTypeBox.getSelectedItem().equals("Gap Filling")){
+            EditQuestionCommand frame =  new EditGapFillingQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+
     }
 
     private void returnButton(ActionEvent e) {
@@ -150,11 +159,11 @@ public class EditExamFrame extends JFrame {
             frame.setVisible(true);
         }
         else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_selection")){
-            View.EditQuestion.EditMultipleSelectionQuestionFrame frame = new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),SelectedQuestionId);
+            EditMultipleSelectionQuestionFrame frame = new EditMultipleSelectionQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
         else if(questionModel.getQuestionType(SelectedQuestionId).equals("gap_filling")){
-            View.EditQuestions.EditGapFillingQuestionFrame frame = new View.EditQuestions.EditGapFillingQuestionFrame(getExamId(),SelectedQuestionId);
+            EditGapFillingQuestionFrame frame = new EditGapFillingQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
     }
@@ -194,14 +203,12 @@ public class EditExamFrame extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(991, 561));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-            , java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+            EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing
+            .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
+            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))
+            throw new RuntimeException();}});
 
             //======== scrollPane1 ========
             {
@@ -239,8 +246,8 @@ public class EditExamFrame extends JFrame {
                 "Text",
                 "True False",
                 "Multiple Choice",
-                "Gap Filling",
-                "Multiple Selection"
+                "Multiple Selection",
+                "Gap Filling"
             }));
 
             //---- returnButton ----

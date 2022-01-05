@@ -2,10 +2,10 @@
  * Created by JFormDesigner on Wed Jan 05 14:08:29 EET 2022
  */
 
-package View.EditQuestion;
+package View.EditQuestions;
 
 import java.awt.*;
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
+import Controller.QuestionController.Factory.MultipleSelectionQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
 import Model.QuestionModel;
 import View.EditQuestions.EditQuestionCommand;
@@ -25,7 +25,7 @@ public class EditMultipleSelectionQuestionFrame extends JFrame implements EditQu
     public String keyAnswer;
     public double points;
     public ArrayList<String> availableAnswers = new ArrayList<>();
-    public QuestionFactory factory = new MultipleChoiceQuestionFactory();
+    public QuestionFactory factory = new MultipleSelectionQuestionFactory();
     public String type;
     public EditMultipleSelectionQuestionFrame(int examId, int questionId) {
 

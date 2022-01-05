@@ -68,6 +68,8 @@ new FormModel {
 						addElement( "Text" )
 						addElement( "True False" )
 						addElement( "Multiple Choice" )
+						addElement( "Multiple Selection" )
+						addElement( "Gap Filling" )
 					}
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {

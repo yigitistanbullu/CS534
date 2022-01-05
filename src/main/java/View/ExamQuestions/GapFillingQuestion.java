@@ -91,10 +91,20 @@ public class GapFillingQuestion extends JPanel implements Question {
     public void setAnswerForReview(int questionId, int userId) {
         QuestionModel model = new QuestionModel();
         String answer =  model.getUserAnswer(userId,questionId);
-        System.out.println(answer);
-        answerField.setEnabled(false);
-        answerField.setText(answer);
+        if(answer.equalsIgnoreCase(model.getKeyAnswer(questionId))){
+            answerField.setEnabled(false);
+            answerField.setText(model.getUserAnswer(userId,questionId) + " (Correct)");
+        }else{
+            answerField.setText(model.getUserAnswer(userId,questionId) + " (False)");
+        }
+
         gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
+
+        if(userType == 1) {
+            save.setText("Save Grade");
+            model.setPointsBySystem(getUserId(), getQuestionId());
+            gradeField.setText(model.getPointsEarned(getUserId(), getQuestionId()));
+        }
     }
 
     public void save(ActionEvent e) {
@@ -165,13 +175,11 @@ public class GapFillingQuestion extends JPanel implements Question {
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
-        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-        Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
-        ) ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
+        , 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+         getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
         //---- answerField ----
         answerField.setBackground(Color.white);

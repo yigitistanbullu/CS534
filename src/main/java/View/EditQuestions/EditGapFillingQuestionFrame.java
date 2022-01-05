@@ -6,7 +6,7 @@ package View.EditQuestions;
 
 import java.awt.*;
 import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
+import Controller.QuestionController.Factory.GapFillingQuestionFactory;
 import Model.QuestionModel;
 
 import java.awt.event.*;
@@ -24,7 +24,7 @@ public class EditGapFillingQuestionFrame extends JFrame implements EditQuestionC
     public String partTwo;
     public String keyAnswer;
     public double points;
-    public QuestionFactory factory = new TextQuestionFactory();
+    public QuestionFactory factory = new GapFillingQuestionFactory();
     public String type;
 
     public EditGapFillingQuestionFrame(int examId, int questionId)
@@ -91,7 +91,7 @@ public class EditGapFillingQuestionFrame extends JFrame implements EditQuestionC
     @Override
     public void edit() {
         QuestionModel questionModel = new QuestionModel();
-        questionLabel.setText(questionModel.getQuestion(getQuestionId()));
+        setQuestion(questionLabel.getText(), questionLabel2.getText());
         keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));
         pointsLabel.setText(questionModel.getAvailablePoints(getQuestionId()));
     }

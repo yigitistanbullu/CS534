@@ -8,9 +8,7 @@ import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.ExamQuestions.MultipleQuestion;
-import View.ExamQuestions.TextQuestion;
-import View.ExamQuestions.TrueFalseQuestion;
+import View.ExamQuestions.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -101,6 +99,22 @@ public class ReviewPage extends JFrame {
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeGradeFieldForStudent();
+                }
+                panel2.add(question);
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_selection")) {
+                MultipleSelection question = new MultipleSelection.Builder(questionID.get(i), examId,getStudentId()).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
+                question.setAnswerForReview(questionID.get(i),getStudentId());
+                if(userType == 0){
+                    question.disableGradeFieldForStudent();
+                }
+                panel2.add(question);
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("gap_filling")) {
+                GapFillingQuestion question = new GapFillingQuestion.Builder(questionID.get(i), examId,getStudentId()).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
+                question.setAnswerForReview(questionID.get(i),getStudentId());
+                if(userType == 0){
+                    question.disableGradeFieldForStudent();
                 }
                 panel2.add(question);
             }

@@ -85,22 +85,24 @@ public class MultipleSelection extends JPanel implements Question{
         checkBox1.setEnabled(false);
         checkBox2.setEnabled(false);
         checkBox3.setEnabled(false);
-        if(answer.equals(aAnswer.getText())){
+        if(answer.contains(aAnswer.getText())){
             checkBox1.setSelected(true);
         }
-        if(answer.equals(bAnswer.getText())){
+        if(answer.contains(bAnswer.getText())){
             checkBox2.setSelected(true);
         }
-        if(answer.equals(cAnswer.getText())){
+        if(answer.contains(cAnswer.getText())){
             checkBox3.setSelected(true);
         }
 
         gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
 
         if(userType == 1) {
+            save.setText("Save Grade");
             model.setPointsBySystem(getUserId(), getQuestionId());
             gradeField.setText(model.getPointsEarned(getUserId(), getQuestionId()));
         }
+
     }
 
     public void disableGradeFieldForStudent(){
@@ -108,6 +110,10 @@ public class MultipleSelection extends JPanel implements Question{
     }
 
     public void removeGradeForExamination(){
+        gradeField.setVisible(false);
+        gradeLabel.setVisible(false);
+    }
+    public void removeGrade(){
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
     }
@@ -126,9 +132,9 @@ public class MultipleSelection extends JPanel implements Question{
             String answer = "";
             if (checkBox1.isSelected()) {
                 answer += aAnswer.getText();
-            }else if (checkBox2.isSelected()) {
+            }if (checkBox2.isSelected()) {
                 answer += bAnswer.getText();
-            }else if (checkBox3.isSelected()) {
+            }if (checkBox3.isSelected()) {
                 answer+= cAnswer.getText();
             }
             model.addUserAnswer(answer, getUserId(), getQuestionId(),getExamId());

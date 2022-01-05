@@ -94,6 +94,16 @@ public class QuestionsPage extends JFrame {
                 question.removeGrade();
                 panel2.add(question);
             }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_selection")){
+                MultipleSelection question = new MultipleSelection.Builder(questionID.get(i), examId, model.getUserId(name[0])).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
+                question.removeGrade();
+                panel2.add(question);
+            }
+            else if(questionModel.getQuestionType(questionID.get(i)).equals("gap_filling")){
+                GapFillingQuestion question = new GapFillingQuestion.Builder(questionID.get(i), examId, model.getUserId(name[0])).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
+                question.removeGrade();
+                panel2.add(question);
+            }
         }
     }
 
