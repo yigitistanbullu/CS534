@@ -1,4 +1,4 @@
-package View.StudentsQuestion;
+package View.ExamQuestions;
 
 import java.awt.event.*;
 import Controller.ExamController.Examination;
@@ -78,21 +78,18 @@ public class QuestionsPage extends JFrame {
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
-                TextQuestion question = new TextQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
-                question.setNumber(String.valueOf(i+1));
+                TextQuestion question = new TextQuestion.Builder(questionID.get(i), examId, model.getUserId(name[0])).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.removeGrade();
                 panel2.add(question);
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
-                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
-                question.setNumber(String.valueOf(i+1));
+                MultipleQuestion question = new MultipleQuestion.Builder(questionID.get(i), examId, model.getUserId(name[0])).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.removeGradeForExamination();
                 panel2.add(question);
 
             }
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
-                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
-                question.setNumber(String.valueOf(i+1));
+                TrueFalseQuestion question = new TrueFalseQuestion.Builder(questionID.get(i), examId, model.getUserId(name[0])).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.removeGrade();
                 panel2.add(question);
             }
@@ -126,7 +123,7 @@ public class QuestionsPage extends JFrame {
         setVisible(true);
         time();
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         userNameLabel = new JLabel();
         examNameLabel = new JLabel();
@@ -142,13 +139,13 @@ public class QuestionsPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(Color.white);
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
 
             //---- userNameLabel ----
             userNameLabel.setText("Student Name");
@@ -209,7 +206,10 @@ public class QuestionsPage extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
                                 .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                                 .addGap(9, 9, 9))
-                            .addComponent(questionScrollPane, GroupLayout.Alignment.TRAILING))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 816, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 20, Short.MAX_VALUE)))
                         .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
@@ -221,8 +221,8 @@ public class QuestionsPage extends JFrame {
                             .addComponent(time)
                             .addComponent(userNameLabel))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionScrollPane, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton)
                             .addComponent(ozuLogoLabel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
@@ -246,7 +246,7 @@ public class QuestionsPage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JLabel userNameLabel;
     private JLabel examNameLabel;

@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :0:369:x, comp ozuLogoLabel:::p:114:p, space :p:290:p, comp submitButton:::p::p}, seq t {comp userNameLabel:::p:167:p, space :p:162:p, comp examNameLabel:::p:162:p, space ::189:x, comp time:::p:162:p, space :p:9:p}, comp questionScrollPane::t:::x}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space ::19:x, par b {comp examNameLabel::b:p::p, comp time::b:p::p, comp userNameLabel::b:p::p}, space :::p, comp questionScrollPane::::534:x, space :::p, par b {comp submitButton::b:p::p, comp ozuLogoLabel::b::35:x}, space :p:9:p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :0:369:x, comp ozuLogoLabel:::p:114:p, space :p:290:p, comp submitButton:::p::p}, seq t {comp userNameLabel:::p:167:p, space :p:162:p, comp examNameLabel:::p:162:p, space ::189:x, comp time:::p:162:p, space :p:9:p}, seq l {space :p:15:p, comp questionScrollPane:::p:816:p, space :0:20:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space ::19:x, par b {comp examNameLabel::b:p::p, comp time::b:p::p, comp userNameLabel::b:p::p}, space :::p, comp questionScrollPane:::p:528:p, space u:::p, par b {comp submitButton::b:p::p, comp ozuLogoLabel::b::35:x}, space :p:9:p}}"
 			} ) {
 				name: "panel1"
 				"background": sfield java.awt.Color white

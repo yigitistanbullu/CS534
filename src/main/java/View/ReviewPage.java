@@ -7,9 +7,9 @@ package View;
 import Controller.ExamController.Examination;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.StudentsQuestion.MultipleQuestion;
-import View.StudentsQuestion.TextQuestion;
-import View.StudentsQuestion.TrueFalseQuestion;
+import View.ExamQuestions.MultipleQuestion;
+import View.ExamQuestions.TextQuestion;
+import View.ExamQuestions.TrueFalseQuestion;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -18,13 +18,13 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 
 
-public class StudentsReviewPage extends JFrame {
+public class ReviewPage extends JFrame {
     public String studentName;
     public int examId;
     public int studentId;
     public int userType;
 
-    public StudentsReviewPage(int studentId, String studentName, int examId, int userType) {
+    public ReviewPage(int studentId, String studentName, int examId, int userType) {
         this.studentName = studentName;
         this.examId = examId;
         this.studentId = studentId;
@@ -79,8 +79,7 @@ public class StudentsReviewPage extends JFrame {
         panel2.setLayout(new GridLayout(questionID.size(), 1));
         for(int i = 0; i< questionID.size();i++){
             if(questionModel.getQuestionType(questionID.get(i)).equals( "text")){
-                TextQuestion question = new TextQuestion(questionID.get(i), examId,getUserType(),getStudentId());
-                question.setNumber(String.valueOf(i+1));
+                TextQuestion question = new TextQuestion.Builder(questionID.get(i), examId,getStudentId()).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeGradeFieldForStudent();
@@ -88,8 +87,7 @@ public class StudentsReviewPage extends JFrame {
             }
 
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
-                MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId,getUserType(),getStudentId());
-                question.setNumber(String.valueOf(i+1));
+                MultipleQuestion question = new MultipleQuestion.Builder(questionID.get(i), examId,getStudentId()).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.disableGradeFieldForStudent();
@@ -98,15 +96,13 @@ public class StudentsReviewPage extends JFrame {
             }
 
             else if(questionModel.getQuestionType(questionID.get(i)).equals("true_false")){
-                TrueFalseQuestion question = new TrueFalseQuestion(questionID.get(i), examId,getUserType(),getStudentId());
-                question.setNumber(String.valueOf(i+1));
+                TrueFalseQuestion question = new TrueFalseQuestion.Builder(questionID.get(i), examId,getStudentId()).withQuestionNumber(String.valueOf(i+1)).withUserType(getUserType()).build();
                 question.setAnswerForReview(questionID.get(i),getStudentId());
                 if(userType == 0){
                     question.removeGradeFieldForStudent();
                 }
                 panel2.add(question);
             }
-
         }
     }
 
@@ -127,13 +123,13 @@ public class StudentsReviewPage extends JFrame {
         {
             panel1.setBackground(new Color(103, 137, 171));
             panel1.setPreferredSize(new Dimension(863, 576));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+            .border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.
+            awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
+            ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ;
 
             //---- nameLabel ----
             nameLabel.setText("Student Name");
@@ -179,9 +175,9 @@ public class StudentsReviewPage extends JFrame {
                                 .addGap(147, 147, 147)
                                 .addComponent(nameLabel2, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(369, Short.MAX_VALUE))
-                            .addGroup(panel1Layout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(scrollPane1)
+                                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(doneButton)))

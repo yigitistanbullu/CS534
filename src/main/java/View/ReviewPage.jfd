@@ -9,7 +9,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:18:p, par l {seq {comp nameLabel:::p:167:p, space :p:147:p, comp nameLabel2:::p:162:p, space ::369:x}, seq {par t {comp scrollPane1:::::x, seq {space :0:0:x, comp doneButton:::p::p}}, space :p:29:p}}}}"
+				"$horizontalGroup": "par l {seq l {space :p:18:p, par l {seq {comp nameLabel:::p:167:p, space :p:147:p, comp nameLabel2:::p:162:p, space ::369:x}, seq t {par t {comp scrollPane1::t::816:x, seq {space :0:0:x, comp doneButton:::p::p}}, space :p:29:p}}}}"
 				"$verticalGroup": "par l {seq l {space ::37:x, par b {comp nameLabel::b:p::p, comp nameLabel2::b:p::p}, space s:::p, comp scrollPane1:::p:436:p, space :::p, comp doneButton:::p::p, space :p:27:p}}"
 			} ) {
 				name: "panel1"

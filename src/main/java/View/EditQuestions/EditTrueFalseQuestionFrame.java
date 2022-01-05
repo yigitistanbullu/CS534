@@ -1,33 +1,33 @@
 /*
- * Created by JFormDesigner on Tue Dec 21 15:02:25 TRT 2021
+ * Created by JFormDesigner on Tue Dec 21 15:03:58 TRT 2021
  */
 
-package View.EditQuestion;
+package View.EditQuestions;
 
 import java.awt.event.*;
-import java.util.ArrayList;
 
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
+import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.QuestionModel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import java.util.ArrayList;
 
 /**
  * @author yasemin
  */
-public class EditTextQuestionFrame extends JFrame {
+public class EditTrueFalseQuestionFrame extends JFrame {
     public int examId;
     public int questionId;
     public String question;
     public String keyAnswer;
     public double points;
-    public QuestionFactory factory = new TextQuestionFactory();
+    public ArrayList<String> availableAnswers = new ArrayList<>();
+    public QuestionFactory factory = new TrueFalseQuestionFactory();
     public String type;
-    
-    public EditTextQuestionFrame(int examId, int questionId) {
+
+    public EditTrueFalseQuestionFrame(int examId, int questionId) {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
@@ -38,6 +38,10 @@ public class EditTextQuestionFrame extends JFrame {
 
     public int getQuestionId() {
         return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public int getExamId() {
@@ -72,6 +76,14 @@ public class EditTextQuestionFrame extends JFrame {
         this.points = points;
     }
 
+    public ArrayList<String> getAvailableAnswers() {
+        return availableAnswers;
+    }
+
+    public void setAvailableAnswers(ArrayList<String> availableAnswers) {
+        this.availableAnswers = availableAnswers;
+    }
+
     public QuestionFactory getFactory() {
         return factory;
     }
@@ -81,28 +93,33 @@ public class EditTextQuestionFrame extends JFrame {
     }
 
     public void createQuestion(){
-        ArrayList<String> availableAnswers = new ArrayList<>();
-        availableAnswers.add("This is a text question.");
-        getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);
+        getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
+    }
+
+    private void cancel(ActionEvent e) {
+        dispose();
+    }
+
+    public void updateQuestion(){
+        getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
     public void editQuestion(){
         QuestionModel questionModel = new QuestionModel();
+        System.out.println(questionModel.getQuestion(getQuestionId()));
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));
-        keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));
+        keyAnswerBox.setSelectedItem(questionModel.getKeyAnswer(getQuestionId()));
         pointsLabel.setText(questionModel.getAvailablePoints(getQuestionId()));
     }
 
-    public void updateQuestion(){
-        ArrayList<String> availableAnswers = new ArrayList<>();
-        availableAnswers.add("This is a text question.");
-        getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);
-    }
-    
     private void addQuestion(ActionEvent e) {
         setQuestion(questionLabel.getText());
-        setKeyAnswer(keyAnswerLabel.getText());
+        setKeyAnswer(keyAnswerBox.getSelectedItem().toString());
         setPoints(Double.parseDouble(pointsLabel.getText()));
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add("True");
+        answers.add("False");
+        setAvailableAnswers(answers);
         if(questionId==0){
             createQuestion();
         }
@@ -112,21 +129,17 @@ public class EditTextQuestionFrame extends JFrame {
         this.dispose();
     }
 
-    private void cancel(ActionEvent e) {
-        dispose();
-    }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         label1 = new JLabel();
         pointsLabel = new JTextField();
-        keyAnswerLabel = new JTextField();
         button1 = new JButton();
         button2 = new JButton();
         questionLabel = new JTextField();
         label5 = new JLabel();
+        keyAnswerBox = new JComboBox<>();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -134,19 +147,16 @@ public class EditTextQuestionFrame extends JFrame {
         //======== panel1 ========
         {
             panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
-            , 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+            , 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
             panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- label1 ----
-            label1.setText(" Text Question");
+            label1.setText("True False Question");
 
             //---- pointsLabel ----
             pointsLabel.setText("Points");
-
-            //---- keyAnswerLabel ----
-            keyAnswerLabel.setText("Key Answer");
 
             //---- button1 ----
             button1.setText("Add");
@@ -156,8 +166,17 @@ public class EditTextQuestionFrame extends JFrame {
             button2.setText("Cancel");
             button2.addActionListener(e -> cancel(e));
 
+            //---- questionLabel ----
+            questionLabel.setText("Question");
+
             //---- label5 ----
             label5.setText("Enter question here:");
+
+            //---- keyAnswerBox ----
+            keyAnswerBox.setModel(new DefaultComboBoxModel<>(new String[] {
+                "True",
+                "False"
+            }));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -166,42 +185,41 @@ public class EditTextQuestionFrame extends JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(249, 249, 249)
+                                .addGap(231, 231, 231)
                                 .addComponent(label1))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(panel1Layout.createSequentialGroup()
+                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
                                         .addComponent(button2)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                        .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, 452, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(keyAnswerBox, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label5, GroupLayout.Alignment.LEADING)))))
-                        .addContainerGap(37, Short.MAX_VALUE))
+                                    .addComponent(questionLabel, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label5, GroupLayout.Alignment.LEADING))))
+                        .addContainerGap(42, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(label1)
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
                         .addComponent(label5)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(keyAnswerLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                            .addComponent(pointsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(keyAnswerBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button2))
-                        .addContainerGap(45, Short.MAX_VALUE))
+                            .addComponent(button2)
+                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(21, Short.MAX_VALUE))
             );
         }
 
@@ -215,7 +233,7 @@ public class EditTextQuestionFrame extends JFrame {
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                    .addGap(0, 6, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -227,10 +245,10 @@ public class EditTextQuestionFrame extends JFrame {
     private JPanel panel1;
     private JLabel label1;
     private JTextField pointsLabel;
-    private JTextField keyAnswerLabel;
     private JButton button1;
     private JButton button2;
     private JTextField questionLabel;
     private JLabel label5;
+    private JComboBox<String> keyAnswerBox;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

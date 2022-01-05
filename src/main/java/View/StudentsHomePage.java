@@ -20,7 +20,7 @@ import javax.swing.table.*;
 
 import Controller.ExamController.Examination;
 import Model.ExamModel;
-import View.StudentsQuestion.QuestionsPage;
+import View.ExamQuestions.QuestionsPage;
 
 public class StudentsHomePage extends JFrame {
     public int userId;
@@ -162,7 +162,7 @@ public class StudentsHomePage extends JFrame {
                     JOptionPane.showMessageDialog(new JFrame(),"You have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    StudentsReviewPage reviewPage = new StudentsReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
+                    ReviewPage reviewPage = new ReviewPage(getUserId(), getUserName(),examIds.get(table1.getSelectedRow()),0);
                     reviewPage.setVisible(true);
                 }
 

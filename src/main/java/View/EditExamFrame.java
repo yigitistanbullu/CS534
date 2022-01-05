@@ -8,9 +8,9 @@ import Controller.QuestionController.Factory.TextQuestionFactory;
 import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.EditQuestion.EditMultipleChoiceQuestionFrame;
-import View.EditQuestion.EditTextQuestionFrame;
-import View.EditQuestion.EditTrueFalseQuestionFrame;
+import View.EditQuestions.EditMultipleChoiceQuestionFrame;
+import View.EditQuestions.EditTextQuestionFrame;
+import View.EditQuestions.EditTrueFalseQuestionFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.table.*;
@@ -38,19 +38,20 @@ public class EditExamFrame extends JFrame {
         setIcon();
     }
 
-    private void addQuestion(ActionEvent e) {
-        if(questionTypeBox.getSelectedItem().equals("Text")){
-            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
-            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
-        else if(questionTypeBox.getSelectedItem().equals("True False")){
-            EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
-            frame.setVisible(true);
-        }
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getExamId() {
+        return examId;
+    }
+
+    public void setExamId(int examId) {
+        this.examId = examId;
     }
 
     public void editTableAndFrame(){
@@ -90,20 +91,19 @@ public class EditExamFrame extends JFrame {
         }
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public int getExamId() {
-        return examId;
-    }
-
-    public void setExamId(int examId) {
-        this.examId = examId;
+    private void addQuestion(ActionEvent e) {
+        if(questionTypeBox.getSelectedItem().equals("Text")){
+            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
+            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
+        else if(questionTypeBox.getSelectedItem().equals("True False")){
+            EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
+            frame.setVisible(true);
+        }
     }
 
     private void returnButton(ActionEvent e) {

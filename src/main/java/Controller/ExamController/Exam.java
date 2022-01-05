@@ -1,9 +1,7 @@
 package Controller.ExamController;
 
-import Controller.QuestionController.Question;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 
 public interface Exam {
