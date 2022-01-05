@@ -1,7 +1,7 @@
 package View.StudentsQuestion;
 
 import java.awt.event.*;
-import Controller.ExamController.Exam;
+import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;
 import Model.QuestionModel;
@@ -58,16 +58,12 @@ public class QuestionsPage extends JFrame {
 
     public void setExamName(){
         ExamModel model = new ExamModel();
-        Exam exam1 = model.getExam(getExamId());
-        examNameLabel.setText(exam1.getName());
+        Examination examination1 = model.getExam(getExamId());
+        examNameLabel.setText(examination1.getName());
     }
 
     public int getUserType() {
         return userType;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
     }
 
     public void setUserName(){
@@ -90,7 +86,7 @@ public class QuestionsPage extends JFrame {
             else if(questionModel.getQuestionType(questionID.get(i)).equals("multiple_choice")) {
                 MultipleQuestion question = new MultipleQuestion(questionID.get(i), examId,getUserType(),model.getUserId(name[0]));
                 question.setNumber(String.valueOf(i+1));
-                question.removeGrade();
+                question.removeGradeForExamination();
                 panel2.add(question);
 
             }
@@ -115,7 +111,6 @@ public class QuestionsPage extends JFrame {
             e.printStackTrace();
         }
     }
-
 
     private void submit(ActionEvent e) {
         AuthorizationModel model = new AuthorizationModel();

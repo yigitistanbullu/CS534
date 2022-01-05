@@ -93,7 +93,6 @@ public class EditTrueFalseQuestionFrame extends JFrame {
     }
 
     public void createQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
@@ -102,7 +101,6 @@ public class EditTrueFalseQuestionFrame extends JFrame {
     }
 
     public void updateQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 

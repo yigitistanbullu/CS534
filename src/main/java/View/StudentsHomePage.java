@@ -5,12 +5,9 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,13 +18,9 @@ import javax.swing.GroupLayout;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
-import Controller.ExamController.Exam;
+import Controller.ExamController.Examination;
 import Model.ExamModel;
-import Model.QuestionModel;
 import View.StudentsQuestion.QuestionsPage;
-/*
- * Created by JFormDesigner on Wed Dec 15 19:07:28 EET 2021
- */
 
 public class StudentsHomePage extends JFrame {
     public int userId;
@@ -56,20 +49,8 @@ public class StudentsHomePage extends JFrame {
         return userName;
     }
 
-    public ArrayList<Integer> getExamIds() {
-        return examIds;
-    }
-
-    public void setExamIds(ArrayList<Integer> examIds) {
-        this.examIds = examIds;
-    }
-
     public ExamModel getExamModel() {
         return examModel;
-    }
-
-    public void setExamModel(ExamModel examModel) {
-        this.examModel = examModel;
     }
 
     public void setUserNameLabel( ){
@@ -110,14 +91,20 @@ public class StudentsHomePage extends JFrame {
 
     public void setExamData(){
         String[][] data = new String[examIds.size()][6];
+        ExamModel model = new ExamModel();
         for(int i=0; i<examIds.size();i++)  {
-            Exam exam = getExamModel().getExam(examIds.get(i));
-            data[i][0] = exam.getName();
-            data[i][1] = exam.getDate().toString();
-            data[i][2] = exam.getStartTime().toString() + "-" + exam.getEndTime().toString();
+            Examination examination = getExamModel().getExam(examIds.get(i));
+            data[i][0] = examination.getName();
+            data[i][1] = examination.getDate().toString();
+            data[i][2] = examination.getStartTime().toString() + "-" + examination.getEndTime().toString();
             data[i][3] = "Attend";
             data[i][4] = "Review";
-            data[i][5] = Double.toString(exam.getGrade());
+            if(model.hasGradedExam(getUserId(),examIds.get(i))){
+                data[i][5] = String.valueOf(model.getGrade(getUserId(),examIds.get(i)));
+            }
+            else{
+                data[i][5] = "Not Graded";
+            }
         }
         String[] columnNames = {"Exam Name","Date","Time","Status","Review","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
@@ -131,7 +118,7 @@ public class StudentsHomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ExamModel examModel = new ExamModel();
-                Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
+                Examination newExamination =  examModel.getExam(examIds.get(table1.getSelectedRow()));
                 LocalDateTime currentDate = LocalDateTime.now();
                 DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -144,23 +131,23 @@ public class StudentsHomePage extends JFrame {
                     ex.printStackTrace();
                 }
 
-                long startTime = newExam.getStartTime().getTime();
-                long endTime = newExam.getEndTime().getTime();
+                long startTime = newExamination.getStartTime().getTime();
+                long endTime = newExamination.getEndTime().getTime();
                 long currentTime = timeNow.getTime();
 
-                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())
-                        && newExam.getDate().toString().equals(date.format(currentDate))
-                        && startTime <= currentTime && endTime >= currentTime
-                ){
+                if(!examModel.hasAttendedExam(getUserId(), newExamination.getId())
+                        && newExamination.getDate().toString().equals(date.format(currentDate))
+                        && startTime <= currentTime && endTime >= currentTime)
+                {
                     QuestionsPage examPage = new QuestionsPage(examIds.get(table1.getSelectedRow()), getUserName(),0);
                     examPage.setVisible(true);
                     dispose();
                 }
-                else if(!newExam.getDate().toString().equals(date.format(currentDate))
+                else if(!newExamination.getDate().toString().equals(date.format(currentDate))
                         || startTime > currentTime || endTime < currentTime){
                         JOptionPane.showMessageDialog(new JFrame(),"The exam has not started / has ended.","Dialog",JOptionPane.ERROR_MESSAGE);
                 }
-                else if(examModel.hasAttendedExam(getUserId(),newExam.getId())){
+                else if(examModel.hasAttendedExam(getUserId(), newExamination.getId())){
                     JOptionPane.showMessageDialog(new JFrame(),"You have already attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -170,8 +157,8 @@ public class StudentsHomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ExamModel examModel = new ExamModel();
-                Exam newExam =  examModel.getExam(examIds.get(table1.getSelectedRow()));
-                if(!examModel.hasAttendedExam(getUserId(),newExam.getId())){
+                Examination newExamination =  examModel.getExam(examIds.get(table1.getSelectedRow()));
+                if(!examModel.hasAttendedExam(getUserId(), newExamination.getId())){
                     JOptionPane.showMessageDialog(new JFrame(),"You have not attended the exam.","Dialog",JOptionPane.ERROR_MESSAGE);
                 }
                 else{
@@ -189,7 +176,6 @@ public class StudentsHomePage extends JFrame {
         view.setVisible(true);
         this.dispose();
     }
-
 
     private void initComponents() {
         setVisible(true);

@@ -1,15 +1,7 @@
-import Controller.ExamController.Exam;
-import Controller.UserController.MediatorImp;
-import Controller.UserController.Password;
-import Controller.UserController.User;
-import Model.AuthorizationModel;
 import Model.DBConnection;
-import Model.ExamModel;
 import Model.QuestionModel;
-import View.GradingPage;
 import View.LoginView;
 
-import java.sql.Time;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
@@ -49,8 +41,13 @@ public class Main {
         LoginView app = new LoginView();
         app.setVisible(true);
 
+        //QuestionModel model = new QuestionModel();
+       // model.addUserAnswer("True", 1, 1,1);
+        //model.setPointsBySystem(1,3);
         //GradingPage page = new GradingPage(1,"",1);
        // page.setVisible(true);
+
+
 
     }
 }

@@ -5,20 +5,14 @@
 package View;
 
 import java.awt.event.*;
-import Controller.ExamController.Exam;
+import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;
-import View.EditExamFrame;
-import View.TeachersHomePage;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.DefaultFormatterFactory;
 import java.awt.*;
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,14 +20,8 @@ import java.util.Date;
  * @author yasemin
  */
 public class CreateExamFrame extends JFrame {
-    public String examName;
-    public String courseCode;
-    public Date dateOfExam;
-    public Time startTime;
-    public Time endTime;
     public String userName_instructor;
     public int userId_instructor;
-    public int examId_instructor;
 
     public CreateExamFrame(String userName, int userId) {
         this.userName_instructor = userName;
@@ -43,17 +31,14 @@ public class CreateExamFrame extends JFrame {
 
     private void create(ActionEvent e) {
         ExamModel examModel = new ExamModel();
-        System.out.println(startTimeLabel.getText());
-        System.out.println(endTimeLabel.getText());
-        System.out.println(dateLabel.getText());
         examModel.addExam(examNameLabel.getText(),100,Time.valueOf(startTimeLabel.getText()), Time.valueOf(endTimeLabel.getText()), java.sql.Date.valueOf(dateLabel.getText()));
-        Exam exam = examModel.getExam(examModel.getExamIdFromName(examNameLabel.getText()));
+        Examination examination = examModel.getExam(examModel.getExamIdFromName(examNameLabel.getText()));
         AuthorizationModel model = new AuthorizationModel();
         ArrayList<Integer> ids = model.getUserIds();
         for(Integer id : ids){
-            examModel.addUserExam(exam,id);
+            examModel.addUserExam(examination,id);
         }
-        examModel.addUserExam(exam,getUserId_instructor());
+        examModel.addUserExam(examination,getUserId_instructor());
         TeachersHomePage frame = new TeachersHomePage(getUserId_instructor(),getUserName_instructor());
         frame.setVisible(true);
         dispose();
@@ -73,37 +58,6 @@ public class CreateExamFrame extends JFrame {
         return userId_instructor;
     }
 
-    public int getExamId_instructor() {
-        return examId_instructor;
-    }
-
-    public Date getDateOfExam() {
-        return dateOfExam;
-    }
-
-    public void setDateOfExam(Date dateOfExam) {
-        this.dateOfExam = dateOfExam;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
-
-    private void createUIComponents() {
-        // TODO: add custom component creation code here
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

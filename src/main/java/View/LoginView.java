@@ -11,11 +11,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
-/*
- * Created by JFormDesigner on Wed Dec 15 18:57:59 EET 2021
- */
-
-
 public class LoginView extends JFrame {
     public LoginView() {
         initComponents();

@@ -2,12 +2,11 @@ package View.StudentsQuestion;
 
 import java.awt.event.*;
 import javax.swing.border.*;
-import Controller.ExamController.Exam;
+
 import Model.ExamModel;
 import Model.QuestionModel;
 
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -52,12 +51,6 @@ public class TextQuestion extends JPanel {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public ExamModel examModel = new ExamModel();
-
     public void setQuestion(int qId){
         QuestionModel model = new QuestionModel();
         questionLabel.setText(model.getQuestion(qId));
@@ -71,14 +64,16 @@ public class TextQuestion extends JPanel {
     public void setNumber(String number){
         label1.setText(number);
     }
+    QuestionModel model = new QuestionModel();
 
     private void save(ActionEvent e) {
         if(userType == 0){
-        QuestionModel model = new QuestionModel();
-        model.addUserAnswer(answerField.getText(), getUserId(), getQuestionId());
+        model.addUserAnswer(answerField.getText(), getUserId(), getQuestionId(),getExamId());
         }
         else{
-        getGradeForQuestion();
+            double grade = Double.parseDouble(gradeField.getText());
+            model.setPointsByInstructor(getUserId(),getQuestionId(),grade);
+            gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
         }
     }
 
@@ -88,15 +83,13 @@ public class TextQuestion extends JPanel {
         System.out.println(answer);
         answerField.setEnabled(false);
         answerField.setText(answer);
+        gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
     }
 
     public void removeGradeFieldForStudent(){
         gradeField.setEnabled(false);
     }
 
-    public double getGradeForQuestion(){
-        return Double.parseDouble(gradeField.getText());
-    }
 
     private void initComponents() {
         setVisible(true);

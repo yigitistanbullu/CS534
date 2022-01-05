@@ -1,8 +1,5 @@
 package Controller.ExamController;
 
-import Controller.ExamController.Exam;
-import Controller.UserController.*;
-
 public class User_Exam {
     public User_Exam(int id, int user_id, int exam_id){
         this.id = id;

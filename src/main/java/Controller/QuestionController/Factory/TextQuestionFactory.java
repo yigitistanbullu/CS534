@@ -35,10 +35,5 @@ public class TextQuestionFactory extends QuestionFactory {
     }
 
 
-    protected void setPoints(int examId,int question_id, double points){
-        QuestionModel Model = new QuestionModel();
-        Model.setPointsByInstructor(examId,question_id,points);
-
-    };
 
 }

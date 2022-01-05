@@ -1,6 +1,4 @@
 package Model;
-
-import Controller.ExamController.Exam;
 import Controller.QuestionController.Question;
 
 import java.sql.ResultSet;
@@ -93,43 +91,6 @@ public class QuestionModel {
 
     }
 
-    public static void setSelectedAnswer(int examId, int question_id, String str){
-
-        String Query = "UPDATE Question SET selected_answer = '" + str + "' WHERE exam_id = " + examId + " AND question_id = "  + question_id + ";";
-        try {
-            DBConnection.connection.createStatement().execute(Query);
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    public static void setPointsBySystem(int examId){
-
-        String Query = "UPDATE Question SET points_earned = points WHERE selected_answer = key_answer AND exam_id = " + examId + ";";
-
-        try {
-            DBConnection.connection.createStatement().execute(Query);
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    public static void setPointsByInstructor(int examId, int question_id, double points){
-
-        String Query = "UPDATE Question SET points_earned = '" + points + "' WHERE exam_id = " + examId + " AND question_id = "  + question_id + ";";
-
-        try {
-            DBConnection.connection.createStatement().execute(Query);
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-
     public String getQuestionType(int questionId){
         String type = "";
         ResultSet result;
@@ -213,23 +174,7 @@ public class QuestionModel {
         return questions;
     }
 
-    public String getSelectedAnswer(int questionId){
-        String selectedAnswer = "";
-        ResultSet result;
-        String Query = "SELECT selected_answer FROM Question WHERE question_id ='" + questionId + "';";
-        try {
-
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            result.next();
-            selectedAnswer = result.getString(1);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return selectedAnswer;
-    }
-
-    public String getKeyAnswer(int questionId){
+    public static String getKeyAnswer(int questionId){
         String keyAnswer = "";
         ResultSet result;
         String Query = "SELECT key_answer FROM Question WHERE question_id ='" + questionId + "';";
@@ -244,7 +189,7 @@ public class QuestionModel {
         }
         return keyAnswer;
     }
-    public String getAvailablePoints(int questionId){
+    public static String getAvailablePoints(int questionId){
         String points = "";
         ResultSet result;
         String Query = "SELECT points FROM Question WHERE question_id ='" + questionId + "';";
@@ -262,9 +207,9 @@ public class QuestionModel {
 
 
     //create User_Answer
-    public static void addUserAnswer(String answer, int userId, int questionId){
+    public static void addUserAnswer(String answer, int userId, int questionId, int examId){
 
-        String Query = "INSERT into User_Answer(user_id, question_id, selected_answer) VALUES (" + userId+"," + questionId+",'" + answer+"') ;";
+        String Query = "INSERT into User_Answer(user_id, question_id, selected_answer, exam_id) VALUES (" + userId+"," + questionId+",'" + answer+"','" + examId+"') ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
         } catch (SQLException e) {
@@ -274,7 +219,7 @@ public class QuestionModel {
     }
 
     //create User_Answer
-    public String getUserAnswer(int userId, int questionId){
+    public static String getUserAnswer(int userId, int questionId){
         String userAnswer = "";
         ResultSet result;
         String Query = "SELECT selected_answer FROM User_Answer WHERE user_id ='" + userId + "' AND question_id ='" + questionId + "';";
@@ -290,7 +235,57 @@ public class QuestionModel {
         return userAnswer;
     }
 
+    public static void setPointsBySystem(int user_id, int question_id){
 
+        String key_answer = getKeyAnswer(question_id);
+        System.out.println(key_answer);
+        String selected_answer = getUserAnswer(user_id,question_id);
+        System.out.println(selected_answer);
+        double available_points = 0;
 
+        if(key_answer.equals(selected_answer)){
+            available_points = Double.parseDouble(getAvailablePoints(question_id));
+        }
+
+        String Query = "UPDATE User_Answer SET points_earned =" + available_points + "WHERE user_id = " + user_id + " AND question_id = "  + question_id + ";";
+
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void setPointsByInstructor(int user_id, int question_id, double points){
+
+        String Query = "UPDATE User_Answer SET points_earned = '" + points + "' WHERE user_id = " + user_id + " AND question_id = "  + question_id + ";";
+
+        try {
+            DBConnection.connection.createStatement().execute(Query);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static String getPointsEarned(int user_id, int question_id){
+        String keyAnswer = "";
+        ResultSet result;
+        String Query = "SELECT points_earned FROM User_Answer WHERE user_id ='" + user_id + "' AND question_id ='" + question_id + "';";
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            keyAnswer = result.getString(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return keyAnswer;
+    }
 
 }

@@ -34,8 +34,4 @@ public class TrueFalseQuestionFactory extends QuestionFactory {
         model.updateTrueFalseQuestion(newQuestion);
     }
 
-    protected void setPoints(int examId,int question_id, double points){
-        QuestionModel Model = new QuestionModel();
-        Model.setPointsBySystem( examId);
-    };
 }

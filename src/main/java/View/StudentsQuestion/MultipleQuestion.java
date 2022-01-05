@@ -21,7 +21,7 @@ public class MultipleQuestion extends JPanel {
     public int userType;
     public int userId;
 
-    public MultipleQuestion(int id, int examId, int userType, int userId) {
+    public MultipleQuestion (int id, int examId, int userType, int userId) {
         this.questionId =id;
         this.examId =examId;
         this.userType = userType;
@@ -49,10 +49,6 @@ public class MultipleQuestion extends JPanel {
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public void setQuestion(int qId ){
@@ -84,13 +80,20 @@ public class MultipleQuestion extends JPanel {
         else if(answer.equals(cAnswer.getText())){
             radioButton3.setSelected(true);
         }
+
+        gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
+
+        if(userType == 1) {
+            model.setPointsBySystem(getUserId(), getQuestionId());
+            gradeField.setText(model.getPointsEarned(getUserId(), getQuestionId()));
+        }
     }
 
     public void disableGradeFieldForStudent(){
         gradeField.setEnabled(false);
     }
 
-    public void removeGrade(){
+    public void removeGradeForExamination(){
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
     }
@@ -100,23 +103,25 @@ public class MultipleQuestion extends JPanel {
     }
 
     private void save(ActionEvent e) {
+        QuestionModel model = new QuestionModel();
+
         if(userType == 0) {
-            QuestionModel model = new QuestionModel();
             if (aAnswer.isEnabled()) {
-                model.addUserAnswer(aAnswer.getText(), getUserId(), getQuestionId());
+                model.addUserAnswer(aAnswer.getText(), getUserId(), getQuestionId(),getExamId());
+                System.out.println(aAnswer.getText());
             } else if (bAnswer.isEnabled()) {
-                model.addUserAnswer(bAnswer.getText(), getUserId(), getQuestionId());
+                model.addUserAnswer(bAnswer.getText(), getUserId(), getQuestionId(),getExamId());
+                System.out.println(bAnswer.getText());
             } else if (cAnswer.isEnabled()) {
-                model.addUserAnswer(cAnswer.getText(), getUserId(), getQuestionId());
+                model.addUserAnswer(cAnswer.getText(), getUserId(), getQuestionId(),getExamId());
+                System.out.println(cAnswer.getText());
             }
         }
         else{
-            getGradeForQuestion();
+            double grade = Double.parseDouble(gradeField.getText());
+            model.setPointsByInstructor(getUserId(),getQuestionId(),grade);
+            gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
         }
-    }
-
-    public double getGradeForQuestion(){
-        return Double.parseDouble(gradeField.getText());
     }
 
     private void initComponents() {

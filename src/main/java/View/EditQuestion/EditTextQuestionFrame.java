@@ -81,7 +81,6 @@ public class EditTextQuestionFrame extends JFrame {
     }
 
     public void createQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         ArrayList<String> availableAnswers = new ArrayList<>();
         availableAnswers.add("This is a text question.");
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);
@@ -95,7 +94,6 @@ public class EditTextQuestionFrame extends JFrame {
     }
 
     public void updateQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         ArrayList<String> availableAnswers = new ArrayList<>();
         availableAnswers.add("This is a text question.");
         getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),availableAnswers);

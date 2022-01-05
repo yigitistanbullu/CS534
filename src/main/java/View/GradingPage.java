@@ -5,7 +5,7 @@
 package View;
 
 import javax.swing.border.*;
-import Controller.ExamController.Exam;
+import Controller.ExamController.Examination;
 import Model.AuthorizationModel;
 import Model.ExamModel;
 
@@ -53,32 +53,12 @@ public class GradingPage extends JFrame {
         return instructorName;
     }
 
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
-    }
-
     public int getInstructorId() {
         return instructorId;
     }
 
-    public void setInstructorId(int instructorId) {
-        this.instructorId = instructorId;
-    }
-
-    public ArrayList<Integer> getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(ArrayList<Integer> userIds) {
-        this.userIds = userIds;
-    }
-
     public AuthorizationModel getAuthorizationModel() {
         return authorizationModel;
-    }
-
-    public void setAuthorizationModel(AuthorizationModel authorizationModel) {
-        this.authorizationModel = authorizationModel;
     }
 
     private void back(ActionEvent e) {
@@ -95,7 +75,6 @@ public class GradingPage extends JFrame {
             ImageIcon imageIcon = new ImageIcon(ozuLogo);
             ozuIconLabel.setIcon(imageIcon);
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,8 +88,8 @@ public class GradingPage extends JFrame {
 
     public void setUserTable(){
         ExamModel model = new ExamModel();
-        Exam newExam = model.getExam(getExamId());
-        instructorNameLabel.setText(newExam.getName());
+        Examination newExamination = model.getExam(getExamId());
+        instructorNameLabel.setText(newExamination.getName());
         String[][] data = new String[userIds.size()][3];
         for(int i=0; i<userIds.size(); i++)  {
             data[i][0] = getAuthorizationModel().getName(userIds.get(i));
@@ -120,7 +99,13 @@ public class GradingPage extends JFrame {
             else{
                 data[i][1] = "Has Not Attended";
             }
-            data[i][2] = "Not Graded";
+            if(model.hasGradedExam(userIds.get(i),getExamId())){
+                data[i][2] = String.valueOf(model.getGrade(userIds.get(i),getExamId()));
+            }
+            else{
+                data[i][2] = "Not Graded";
+            }
+
         }
         String[] columnNames = {"Student Name","Attendance","Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
@@ -129,6 +114,12 @@ public class GradingPage extends JFrame {
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) table1.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
         table1.getTableHeader().setFont( new Font( "Roboto" , Font.PLAIN, 13 ));
+    }
+
+    private void refresh(ActionEvent e) {
+        GradingPage frame = new GradingPage(getExamId(),getInstructorName(),getInstructorId());
+        frame.setVisible(true);
+        this.dispose();
     }
 
     private void initComponents() {
@@ -141,6 +132,7 @@ public class GradingPage extends JFrame {
         gradeButton = new JButton();
         backButton = new JButton();
         ozuIconLabel = new JLabel();
+        refreshButton = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -148,12 +140,12 @@ public class GradingPage extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-            . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder
-            . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
-            awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) )
-            ; panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-            ) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+            ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
             ;
 
             //======== scrollPane1 ========
@@ -184,6 +176,11 @@ public class GradingPage extends JFrame {
             //---- ozuIconLabel ----
             ozuIconLabel.setText("text");
 
+            //---- refreshButton ----
+            refreshButton.setText("Refresh");
+            refreshButton.setBackground(Color.white);
+            refreshButton.addActionListener(e -> refresh(e));
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -199,6 +196,8 @@ public class GradingPage extends JFrame {
                                 .addGroup(panel1Layout.createSequentialGroup()
                                     .addComponent(instructorNameLabel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(refreshButton)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(backButton))
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 940, GroupLayout.PREFERRED_SIZE)))
                         .addGap(37, 37, 37))
@@ -209,7 +208,8 @@ public class GradingPage extends JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(instructorNameLabel)
-                            .addComponent(backButton))
+                            .addComponent(backButton)
+                            .addComponent(refreshButton))
                         .addGap(18, 18, 18)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -244,5 +244,6 @@ public class GradingPage extends JFrame {
     private JButton gradeButton;
     private JButton backButton;
     private JLabel ozuIconLabel;
+    private JButton refreshButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

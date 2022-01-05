@@ -1,18 +1,16 @@
 package Model;
 
-import Controller.ExamController.Exam;
-import Controller.ExamController.User_Exam;
+import Controller.ExamController.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ExamModel {
 
-    public static Exam exam;
+    public static Examination examination;
 
     public static void addExam(String examName, double examGrade, Time startTime, Time endTime, Date date) {
 
@@ -27,9 +25,9 @@ public class ExamModel {
 
     }
 
-    public static void addUserExam(Exam exam, int user_id) {
+    public static void addUserExam(Examination examination, int user_id) {
 
-        String Query = "INSERT into User_Exam(user_id, exam_id) VALUES (" +  "'" + user_id + "'" + " ," + "'" + exam.getId() + "'" + ") ;";
+        String Query = "INSERT into User_Exam(user_id, exam_id) VALUES (" +  "'" + user_id + "'" + " ," + "'" + examination.getId() + "'" + ") ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -40,14 +38,12 @@ public class ExamModel {
 
     }
 
-    public static void setGrade(double grade, int examId, int userId) {
+    public static void setGraded(int examId, int userId) {
 
-        String Query = "UPDATE User_Exam SET exam_grade = '" + grade + "' WHERE exam_id = '" + examId + "' AND user_id = '"+ userId + "';";
-        String Query2 = "UPDATE User_Exam SET has_graded = 1 WHERE exam_id = '" + examId + "' AND user_id = '"+ userId + "';";
+        String Query = "UPDATE User_Exam SET has_graded = 1 WHERE exam_id = '" + examId + "' AND user_id = '"+ userId + "';";
 
         try {
             DBConnection.connection.createStatement().execute(Query);
-            DBConnection.connection.createStatement().execute(Query2);
 
 
         } catch (SQLException e) {
@@ -95,36 +91,8 @@ public class ExamModel {
         return grade ;
     }
 
-
-    public ArrayList<String> listQuestions(int exam){
-        ResultSet result;
-        ArrayList<String> questions = new ArrayList<>();
-
-        String Query = "SELECT  question_id , user_answer1 , user_answer2 , user_answer3 , question FROM Question Where exam_id ='" + exam + "';";
-        try {
-
-
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            int sira = result.getMetaData().getColumnCount();
-
-            while(result.next()){
-                for(int i = 1 ; i<= sira; i++){
-                    questions.add(result.getString(i));
-                }
-            }
-
-
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-
-        return questions;
-    }
-
-    public void removeExam(Exam exam){
-        String Query = "DELETE FROM Exam WHERE exam_id =' " + exam.getId() +"' ;";
+    public void removeExam(Examination examination){
+        String Query = "DELETE FROM Exam WHERE exam_id =' " + examination.getId() +"' ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -145,8 +113,8 @@ public class ExamModel {
         }
     }
 
-    public void setExamGrade(int examId){
-        String Query = "UPDATE User_Exam SET exam_grade =(SELECT SUM(points_earned) FROM Question WHERE exam_id = " +examId + " ) WHERE exam_id =" + exam.getId() + " ;";
+    public void setExamGrade(int exam_id, int user_id){
+        String Query = "UPDATE User_Exam SET exam_grade =(SELECT SUM(points_earned) FROM User_Answer WHERE exam_id = " +exam_id + " AND user_id = "+ user_id +") WHERE exam_id = " +exam_id + " AND user_id = "+ user_id + " ;";
         try {
             DBConnection.connection.createStatement().execute(Query);
 
@@ -156,13 +124,12 @@ public class ExamModel {
         }
     }
 
-    public Exam getExam(int examId){
+    public Examination getExam(int examId){
         ResultSet result;
         ArrayList<String> exam = new ArrayList<>();
 
         String Query = "SELECT  exam_id , exam_name , exam_grade , exam_start_time, exam_end_time, exam_date FROM Exam Where exam_id ='" + examId + "';";
         try {
-
 
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             int sira = result.getMetaData().getColumnCount();
@@ -174,36 +141,15 @@ public class ExamModel {
             }
 
         } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-        Exam newExam = new Exam(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
-        return newExam;
-    }
-
-    public ArrayList<Integer> getExamIds(int user_Id){
-        ResultSet result;
-        ArrayList<Integer> exams = new ArrayList<>();
-        int sira;
-
-        String Query = "SELECT  user_exam_id  FROM User Where user_id =" + user_Id + ";";
-        try {
-
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            sira = result.getMetaData().getColumnCount();
-
-            while(result.next()){
-                for(int i = 1 ; i<= sira; i++){
-                    exams.add(i);
-                }
-            }
-
-        } catch (SQLException e) {
-
             e.printStackTrace();
         }
 
-        return exams;
+        /*ExamFactory factory = new ExamFactory();
+        Exam exam1 = factory.createExam(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
+        */
+
+        Examination examination = new Examination(examId, exam.get(1),Double.parseDouble(exam.get(2)),java.sql.Date.valueOf(exam.get(5)),Time.valueOf(exam.get(3)),Time.valueOf(exam.get(4)));
+        return examination;
     }
 
     public int getExamIdFromName(String name){
@@ -300,6 +246,24 @@ public class ExamModel {
 
             e.printStackTrace();
         }
+    }
+
+    public boolean hasGradedExam(int userId, int examId){
+        ResultSet result;
+        boolean hasGraded = false;
+        String Query = "SELECT has_graded FROM User_Exam Where exam_id ='" +examId + "' AND user_id = '"+ userId + "';";
+
+        try {
+
+            result =  DBConnection.connection.createStatement().executeQuery(Query);
+            result.next();
+            hasGraded = result.getBoolean(1);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return hasGraded ;
     }
 
 }

@@ -50,10 +50,6 @@ public class TrueFalseQuestion extends JPanel {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public void setQuestion(int qId ){
         QuestionModel model = new QuestionModel();
         questionLabel.setText(model.getQuestion(qId));
@@ -64,18 +60,21 @@ public class TrueFalseQuestion extends JPanel {
     }
 
     private void save(ActionEvent e) {
+        QuestionModel model = new QuestionModel();
+
         if(userType == 0) {
-            QuestionModel model = new QuestionModel();
             if (trueCheck.isEnabled()) {
-                model.addUserAnswer("True", getUserId(), getQuestionId());
+                model.addUserAnswer("True", getUserId(), getQuestionId(),getExamId());
 
             } else if (falseCheck.isEnabled()) {
-                model.addUserAnswer("False", getUserId(), getQuestionId());
+                model.addUserAnswer("False", getUserId(), getQuestionId(),getExamId());
 
             }
         }
         else{
-            getGradeForQuestion();
+            double grade = Double.parseDouble(gradeField.getText());
+            model.setPointsByInstructor(getUserId(),getQuestionId(),grade);
+            gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
         }
     }
 
@@ -91,6 +90,13 @@ public class TrueFalseQuestion extends JPanel {
         else if(answer.equals(falseCheck.getText())) {
             falseCheck.setSelected(true);
         }
+
+        gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
+
+        if(userType == 1) {
+            model.setPointsBySystem(getUserId(), getQuestionId());
+            gradeField.setText(model.getPointsEarned(getUserId(), getQuestionId()));
+        }
     }
     public void removeGradeFieldForStudent(){
         gradeField.setEnabled(false);
@@ -99,10 +105,6 @@ public class TrueFalseQuestion extends JPanel {
     public void removeGrade(){
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
-    }
-
-    public double getGradeForQuestion(){
-        return Double.parseDouble(gradeField.getText());
     }
 
     private void initComponents() {

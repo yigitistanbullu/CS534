@@ -59,12 +59,10 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
     }
 
     public void updateQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         getFactory().updateQuestion(getQuestionId(),getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
     public void createQuestion(){
-        QuestionModel questionModel =  new QuestionModel();
         getFactory().addQuestion(getQuestion(),getPoints(),getExamId(),getKeyAnswer(),getAvailableAnswers());
     }
 
@@ -137,7 +135,6 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
     private void cancel(ActionEvent e) {
         dispose();
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

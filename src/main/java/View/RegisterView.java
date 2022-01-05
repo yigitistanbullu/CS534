@@ -10,11 +10,9 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-/*
- * Created by JFormDesigner on Wed Dec 15 18:36:24 EET 2021
- */
 
 public class RegisterView extends JFrame {
+
     public RegisterView() {
         initComponents();
         BufferedImage img = null;
@@ -28,6 +26,7 @@ public class RegisterView extends JFrame {
             e.printStackTrace();
         }
     }
+
     private void register(ActionEvent e) {
         int usertype = 0;
         if(teacherCheckbox.isSelected()){
@@ -58,13 +57,11 @@ public class RegisterView extends JFrame {
         view.setVisible(true);
     }
 
-
     private void teacher(ActionEvent e) {
         if (teacherCheckbox.isSelected()){
             studentCheckbox.setSelected(false);
         }
     }
-
 
     private void chkstudent(ActionEvent e) {
         if (studentCheckbox.isSelected()){
@@ -72,15 +69,9 @@ public class RegisterView extends JFrame {
         }
     }
 
-    private void student(ActionEvent e) {
-        // TODO add your code here
-    }
-
-
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - yasemin
+        // Generated using JFormDesigner Evaluation license - Yasemin Orhun
         panel1 = new JPanel();
         label2 = new JLabel();
         label3 = new JLabel();
@@ -108,12 +99,12 @@ public class RegisterView extends JFrame {
         //======== panel1 ========
         {
             panel1.setBackground(new Color(103, 137, 171));
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
-            . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax
-            . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,
-            12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans
-            . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .
-            getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+            EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
+            . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+            java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
+            throw new RuntimeException( ); }} );
 
             //---- label2 ----
             label2.setText("Name");
@@ -161,10 +152,7 @@ public class RegisterView extends JFrame {
             studentCheckbox.setText("Student");
             studentCheckbox.setForeground(Color.white);
             studentCheckbox.setFont(new Font("Roboto", Font.PLAIN, 14));
-            studentCheckbox.addActionListener(e -> {
-			chkstudent(e);
-			student(e);
-		});
+            studentCheckbox.addActionListener(e -> chkstudent(e));
 
             //---- registerButton2 ----
             registerButton2.setText("Cancel");
@@ -292,7 +280,7 @@ public class RegisterView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - yasemin
+    // Generated using JFormDesigner Evaluation license - Yasemin Orhun
     private JPanel panel1;
     private JLabel label2;
     private JLabel label3;

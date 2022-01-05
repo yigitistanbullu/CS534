@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Controller.ExamController.Exam;
 import Controller.UserController.User;
 
 public class AuthorizationModel {
@@ -112,8 +111,6 @@ public class AuthorizationModel {
             result =  DBConnection.connection.createStatement().executeQuery(Query);
             if(result.next()) {
                 b = result.getInt("user_type");
-
-
             }
 
         } catch (SQLException e) {
@@ -165,27 +162,6 @@ public class AuthorizationModel {
         return  examId;
     }
 
-
-    public static int getUserExamId(String email, String password){
-        int examId = 0;
-        ResultSet result;
-        String Query = "SELECT user_exam_id FROM User WHERE user_email ='" + email +"' && user_password ='" + password + "';";
-        try {
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            result.next();
-            examId = Integer.parseInt(result.getString(1));
-
-            if(result.next()){
-                examId = result.getInt("user_exam_id");
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return examId;
-    }
-
     public static int getUserId(String name){
         int userId = 0;
         ResultSet result;
@@ -223,38 +199,12 @@ public class AuthorizationModel {
                 }
             }
 
-
-
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
 
         return userIds;
-    }
-
-    public static int getUserTypeFromId(int id){
-
-        ResultSet result;
-        String a = "";
-        int b =0;
-
-        String Query = "SELECT user_type FROM User WHERE  user_id ='" + id + "';";
-        try {
-
-            result =  DBConnection.connection.createStatement().executeQuery(Query);
-            if(result.next()) {
-                b = result.getInt("user_type");
-
-
-            }
-
-        } catch (SQLException e) {
-
-
-            e.printStackTrace();
-        }
-        return b;
     }
 
 }
