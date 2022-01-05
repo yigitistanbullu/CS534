@@ -4,15 +4,12 @@ import javax.swing.border.*;
 
 import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
-import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
-import Controller.QuestionController.Factory.QuestionFactory;
-import Controller.QuestionController.Factory.TextQuestionFactory;
-import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
+import Controller.QuestionController.Factory.*;
 import Model.ExamModel;
 import Model.QuestionModel;
-import View.EditQuestion.EditMultipleChoiceQuestionFrame;
-import View.EditQuestion.EditTextQuestionFrame;
-import View.EditQuestion.EditTrueFalseQuestionFrame;
+import View.EditQuestions.EditMultipleChoiceQuestionFrame;
+import View.EditQuestions.EditTextQuestionFrame;
+import View.EditQuestions.EditTrueFalseQuestionFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.table.*;
@@ -56,17 +53,17 @@ public class EditExamFrame extends JFrame {
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("Multiple Selection")){
-            EditMultipleSelectionQuestionFrame frame =  new EditMultipleSelectionQuestionFrame(getExamId(),0);
+            View.EditQuestion.EditMultipleSelectionQuestionFrame frame =  new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("Gap Filling")){
-            EditGapFillingQuestionFrame frame =  new EditGapFillingQuestionFrame(getExamId(),0);
+            View.EditQuestions.EditGapFillingQuestionFrame frame =  new View.EditQuestions.EditGapFillingQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
     }
 
-    public void setExamId(int examId) {
-        this.examId = examId;
+    public QuestionModel getQuestionModel() {
+        return questionModel;
     }
 
     public void editTableAndFrame(){
@@ -157,11 +154,11 @@ public class EditExamFrame extends JFrame {
             frame.setVisible(true);
         }
         else if(questionModel.getQuestionType(SelectedQuestionId).equals("multiple_selection")){
-            EditMultipleSelectionQuestionFrame frame = new EditMultipleSelectionQuestionFrame(getExamId(),SelectedQuestionId);
+            View.EditQuestion.EditMultipleSelectionQuestionFrame frame = new View.EditQuestion.EditMultipleSelectionQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
         else if(questionModel.getQuestionType(SelectedQuestionId).equals("gap_filling")){
-            EditGapFillingQuestionFrame frame = new EditGapFillingQuestionFrame(getExamId(),SelectedQuestionId);
+            View.EditQuestions.EditGapFillingQuestionFrame frame = new View.EditQuestions.EditGapFillingQuestionFrame(getExamId(),SelectedQuestionId);
             frame.setVisible(true);
         }
     }
@@ -242,7 +239,9 @@ public class EditExamFrame extends JFrame {
             questionTypeBox.setModel(new DefaultComboBoxModel<>(new String[] {
                 "Text",
                 "True False",
-                "Multiple Choice"
+                "Multiple Choice",
+                "Multiple Selection",
+                "Gap Filling"
             }));
 
             //---- returnButton ----

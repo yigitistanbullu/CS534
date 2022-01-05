@@ -115,18 +115,12 @@ public abstract class Question {
             questionType = new MultipleSelectionQuestionBehavior();
             this.type = questionType.setQuestionType();
         }
-        @Override
-        public void display() {
-        }
     }
 
     public static class GapFillingQuestion extends Question {
         public GapFillingQuestion(){
             questionType = new GapFillingQuestionBehavior();
             this.type = questionType.setQuestionType();
-        }
-        @Override
-        public void display() {
         }
     }
 

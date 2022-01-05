@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jan 05 14:13:43 EET 2022
  */
 
-package View.StudentsQuestion;
+package View.ExamQuestions;
 
 import Controller.QuestionController.Question;
 import Model.QuestionModel;
@@ -21,13 +21,16 @@ public class GapFillingQuestion extends JPanel {
     public int examId;
     public int userType;
     public int userId;
+    public String questionNumber;
 
-    public GapFillingQuestion(int id, int examId, int userType ,int userId) {
-        this.questionId =id;
-        this.examId =examId;
-        this.userType = userType;
-        this.userId = userId;
+    public GapFillingQuestion(GapFillingQuestion.Builder builder) {
+        this.questionId =builder.questionId;
+        this.examId =builder.examId;
+        this.userType = builder.userType;
+        this.userId = builder.userId;
+        this.questionNumber = builder.questionNumber;
         initComponents();
+        setComponents(builder.questionId);
     }
 
     public int getQuestionId() {
@@ -52,10 +55,28 @@ public class GapFillingQuestion extends JPanel {
 
     public void setQuestion(int qId){
         QuestionModel model = new QuestionModel();
-        questionLabel.setText(model.getQuestion(qId));
+        String string = model.getQuestion(questionId);
+        String partOne = string.substring(0,string.indexOf(" "));
+        String partTwo = string.substring(string.indexOf(" ") + 1);
+        partOneLabel.setText(partOne);
+        partTwoLabel.setText(partTwo);
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
     }
 
+    public void setComponents(int qId){
+        QuestionModel model = new QuestionModel();
+        String string = model.getQuestion(questionId);
+        String partOne = string.substring(0,string.indexOf(" "));
+        String partTwo = string.substring(string.indexOf(" ") + 1);
+        partOneLabel.setText(partOne);
+        partTwoLabel.setText(partTwo);
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
+        label1.setText(getQuestionNumber());
+
+    }
+    public String getQuestionNumber() {
+        return questionNumber;
+    }
     public void removeGrade(){
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
@@ -89,36 +110,65 @@ public class GapFillingQuestion extends JPanel {
     public void removeGradeFieldForStudent(){
         gradeField.setEnabled(false);
     }
+    public static class Builder{
+        public int questionId;
+        public int examId;
+        public int userType;
+        public int userId;
+        public String questionNumber;
+
+
+        public Builder(int id, int examId, int userId) {
+            this.questionId =id;
+            this.examId =examId;
+            this.userId = userId;
+
+        }
+
+        public GapFillingQuestion.Builder withUserType(int userType) {
+            this.userType = userType;
+            return this;
+        }
+
+        public GapFillingQuestion.Builder withQuestionNumber(String questionNumber) {
+            this.questionNumber = questionNumber;
+            return this;
+        }
+
+
+        public GapFillingQuestion build() {
+            return new GapFillingQuestion(this);
+        }
+    }
 
     private void initComponents() {
         setVisible(true);
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         answerField = new JTextField();
-        first = new JLabel();
+        partOneLabel = new JLabel();
         label1 = new JLabel();
         save = new JButton();
         gradeLabel = new JLabel();
         gradeField = new JTextField();
         point = new JLabel();
-        second = new JLabel();
-        questionLabel = new JLabel();
+        partTwoLabel = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
         setBorder(LineBorder.createBlackLineBorder());
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
+        .EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax
+        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
+        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
+        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.
+        getPropertyName()))throw new RuntimeException();}});
 
         //---- answerField ----
         answerField.setBackground(Color.white);
 
-        //---- first ----
-        first.setText("First part ");
+        //---- partOneLabel ----
+        partOneLabel.setText("First part ");
 
         //---- label1 ----
         label1.setText("1");
@@ -134,11 +184,8 @@ public class GapFillingQuestion extends JPanel {
         point.setText("Points");
         point.setFont(point.getFont().deriveFont(point.getFont().getStyle() | Font.BOLD, point.getFont().getSize() - 3f));
 
-        //---- second ----
-        second.setText("Second part");
-
-        //---- questionLabel ----
-        questionLabel.setText("question");
+        //---- partTwoLabel ----
+        partTwoLabel.setText("Second part");
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -154,13 +201,10 @@ public class GapFillingQuestion extends JPanel {
                             .addContainerGap(538, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(questionLabel))
-                                .addComponent(second)
+                                .addComponent(partTwoLabel)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(first)
+                                        .addComponent(partOneLabel)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(answerField, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -178,14 +222,12 @@ public class GapFillingQuestion extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label1)
                         .addComponent(point))
-                    .addGap(13, 13, 13)
-                    .addComponent(questionLabel)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(41, 41, 41)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(first)
+                        .addComponent(partOneLabel)
                         .addComponent(answerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(second)
+                    .addComponent(partTwoLabel)
                     .addGap(33, 33, 33)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(save)
@@ -199,13 +241,12 @@ public class GapFillingQuestion extends JPanel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Zeliha Aydın
     private JTextField answerField;
-    private JLabel first;
+    private JLabel partOneLabel;
     private JLabel label1;
     private JButton save;
     private JLabel gradeLabel;
     private JTextField gradeField;
     private JLabel point;
-    private JLabel second;
-    private JLabel questionLabel;
+    private JLabel partTwoLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

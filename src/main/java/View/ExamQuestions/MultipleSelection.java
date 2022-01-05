@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jan 05 14:02:06 EET 2022
  */
 
-package View.StudentsQuestion;
+package View.ExamQuestions;
 
 import Model.QuestionModel;
 
@@ -21,13 +21,16 @@ public class MultipleSelection extends JPanel {
     public int examId;
     public int userType;
     public int userId;
+    public String questionNumber;
 
-    public MultipleSelection(int id, int examId, int userType, int userId) {
-        this.questionId =id;
-        this.examId =examId;
-        this.userType = userType;
-        this.userId = userId;
+    public MultipleSelection(MultipleSelection.Builder builder) {
+        this.questionId =builder.questionId;
+        this.examId =builder.examId;
+        this.userType = builder.userType;
+        this.userId = builder.userId;
+        this.questionNumber = builder.questionNumber;
         initComponents();
+        setComponents(builder.questionId);
     }
 
     public int getQuestionId() {
@@ -53,6 +56,17 @@ public class MultipleSelection extends JPanel {
     public void setQuestion(int qId ){
         QuestionModel model = new QuestionModel();
         question.setText(model.getQuestion(qId));
+    }
+    public void setComponents(int qId){
+        QuestionModel model = new QuestionModel();
+        question.setText(model.getQuestion(qId));
+        ArrayList<String> answers = model.getQuestionAnswers(qId);
+        aAnswer.setText(answers.get(0));
+        bAnswer.setText(answers.get(1));
+        cAnswer.setText(answers.get(2));
+        point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
+        label1.setText(getQuestionNumber());
+
     }
 
     public void setAnswerOptions(int qId){
@@ -97,6 +111,9 @@ public class MultipleSelection extends JPanel {
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
     }
+    public String getQuestionNumber() {
+        return questionNumber;
+    }
 
     public void setNumber(String number){
         label1.setText(number);
@@ -122,9 +139,38 @@ public class MultipleSelection extends JPanel {
             gradeField.setText(model.getPointsEarned(getUserId(),getQuestionId()));
         }
     }
+    public static class Builder{
+        public int questionId;
+        public int examId;
+        public int userType;
+        public int userId;
+        public String questionNumber;
 
-    private void initComponents() {
-        setVisible(true);
+
+        public Builder(int id, int examId, int userId) {
+            this.questionId =id;
+            this.examId =examId;
+            this.userId = userId;
+
+        }
+
+        public MultipleSelection.Builder withUserType(int userType) {
+            this.userType = userType;
+            return this;
+        }
+
+        public MultipleSelection.Builder withQuestionNumber(String questionNumber) {
+            this.questionNumber = questionNumber;
+            return this;
+        }
+
+        public MultipleSelection build() {
+            return new MultipleSelection(this);
+        }
+    }
+
+
+        private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Zeliha Aydın
         question = new JLabel();

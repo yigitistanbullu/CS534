@@ -141,12 +141,12 @@ public class QuestionsPage extends JFrame {
         {
             panel1.setBackground(Color.white);
             panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+                    . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
+                    . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+                    Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
             ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
+        ) )) throw new RuntimeException( ); }} );
 
             //---- userNameLabel ----
             userNameLabel.setText("Student Name");
@@ -191,55 +191,55 @@ public class QuestionsPage extends JFrame {
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGap(0, 369, Short.MAX_VALUE)
-                                .addComponent(ozuLogoLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-                                .addGap(290, 290, 290)
-                                .addComponent(submitButton))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(userNameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                .addGap(162, 162, 162)
-                                .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
-                                .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9))
+                    panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 816, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 20, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                    .addContainerGap()
+                                    .addGroup(panel1Layout.createParallelGroup()
+                                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                                    .addGap(0, 369, Short.MAX_VALUE)
+                                                    .addComponent(ozuLogoLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(290, 290, 290)
+                                                    .addComponent(submitButton))
+                                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                                    .addComponent(userNameLabel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(162, 162, 162)
+                                                    .addComponent(examNameLabel, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                                                    .addComponent(time, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(9, 9, 9))
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addGap(15, 15, 15)
+                                                    .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 816, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 20, Short.MAX_VALUE)))
+                                    .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap(19, Short.MAX_VALUE)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(examNameLabel)
-                            .addComponent(time)
-                            .addComponent(userNameLabel))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(submitButton)
-                            .addComponent(ozuLogoLabel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                        .addGap(9, 9, 9))
+                    panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                    .addContainerGap(19, Short.MAX_VALUE)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(examNameLabel)
+                                            .addComponent(time)
+                                            .addComponent(userNameLabel))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(questionScrollPane, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(submitButton)
+                                            .addComponent(ozuLogoLabel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                                    .addGap(9, 9, 9))
             );
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                contentPaneLayout.createParallelGroup()
+                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                contentPaneLayout.createParallelGroup()
+                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());

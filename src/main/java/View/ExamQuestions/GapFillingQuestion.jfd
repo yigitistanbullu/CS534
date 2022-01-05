@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {seq l {comp label1:::p::p, space s:::p, comp point:::p:78:p, space ::538:x}, seq {par l {seq {space :6:6:p, comp questionLabel:::p::p}, comp second:::p::p, par t:l::p {seq {comp first:::p::p, space :::x, comp answerField:::p:260:p}, seq l {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p, space :p:423:p, comp save:::p::p}}}, space :0:32:x}}}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp label1::b:p::p, comp point::b:p::p}, space :p:13:p, comp questionLabel:::p::p, space u:::p, par b {comp first::b:p::p, comp answerField::b:p::p}, space s:::p, comp second:::p::p, space :p:33:p, par b {comp save::b:p::p, comp gradeField::b:p::p, comp gradeLabel::b:p::p}, space ::25:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {seq l {comp label1:::p::p, space s:::p, comp point:::p:78:p, space ::538:x}, seq {par l {comp partTwoLabel:::p::p, par t:l::p {seq {comp partOneLabel:::p::p, space :::x, comp answerField:::p:260:p}, seq l {comp gradeLabel:::p::p, space :::p, comp gradeField:::p:59:p, space :p:423:p, comp save:::p::p}}}, space :0:32:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp label1::b:p::p, comp point::b:p::p}, space :p:41:p, par b {comp partOneLabel::b:p::p, comp answerField::b:p::p}, space s:::p, comp partTwoLabel:::p::p, space :p:33:p, par b {comp save::b:p::p, comp gradeField::b:p::p, comp gradeLabel::b:p::p}, space ::25:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -15,7 +15,7 @@ new FormModel {
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "first"
+				name: "partOneLabel"
 				"text": "First part "
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -40,12 +40,8 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, -3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "second"
+				name: "partTwoLabel"
 				"text": "Second part"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "questionLabel"
-				"text": "question"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
