@@ -16,7 +16,7 @@ import javax.swing.GroupLayout;
 /**
  * @author yasemin
  */
-public class EditMultipleChoiceQuestionFrame extends JFrame {
+public class EditMultipleChoiceQuestionFrame extends JFrame implements EditQuestionCommand {
     public int examId;
     public String question;
     public int questionId;
@@ -30,12 +30,9 @@ public class EditMultipleChoiceQuestionFrame extends JFrame {
         this.questionId = questionId;
         this.examId = examId;
         initComponents();
-        if(questionId!=0){
-            editQuestion();
-        }
     }
 
-    public void editQuestion(){
+    public void edit(){
         QuestionModel questionModel = new QuestionModel();
         ArrayList<String> availableAnswers = questionModel.getQuestionAnswers(getQuestionId());
         questionLabel.setText(questionModel.getQuestion(getQuestionId()));

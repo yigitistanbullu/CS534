@@ -32,7 +32,7 @@ public class GradingPage extends JFrame {
     public int instructorId;
     public ArrayList<Integer> userIds = new ArrayList<>();
     AuthorizationModel authorizationModel = new AuthorizationModel();
-    
+
     public GradingPage(int examId, String instructorName, int instructorId) {
         this.instructorId = instructorId;
         this.instructorName = instructorName;
@@ -64,9 +64,9 @@ public class GradingPage extends JFrame {
     }
 
     private void back(ActionEvent e) {
-       TeachersHomePage frame = new TeachersHomePage(getInstructorId(),getInstructorName());
-       frame.setVisible(true);
-       this.dispose();
+        TeachersHomePage frame = new TeachersHomePage(getInstructorId(),getInstructorName());
+        frame.setVisible(true);
+        this.dispose();
     }
 
     public void setIcon(){

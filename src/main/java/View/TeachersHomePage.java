@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
+import Controller.ExamController.NullExam;
 import Model.AuthorizationModel;
 import Model.ExamModel;
 
@@ -25,6 +26,7 @@ public class TeachersHomePage extends JFrame {
     public ArrayList<Integer> examIds;
     public ExamModel examModel = new ExamModel();
     public String userName;
+    public Exam exam;
 
 
     public TeachersHomePage(int userId, String userName) {
@@ -64,6 +66,9 @@ public class TeachersHomePage extends JFrame {
         String[][] data = new String[examIds.size()][3];
         for(int i=0; i<examIds.size();i++)  {
             Examination examination = getExamModel().getExam(examIds.get(i));
+            if(examination.getId()==0){
+                declareNullExam(exam);
+            }
             data[i][0] = examination.getName();
             data[i][1] = examination.getDate().toString();
             data[i][2] = examination.getStartTime().toString() + "-" + examination.getEndTime().toString();
@@ -90,6 +95,10 @@ public class TeachersHomePage extends JFrame {
     
     public void date(){
         dateLabel.setText("Date : " + new SimpleDateFormat("dd/MM/yyyy",new Locale("tr")).format(new Date()));
+    }
+
+    private void declareNullExam(Exam exam){
+        exam = new NullExam();
     }
 
     private void Logout(ActionEvent e) {

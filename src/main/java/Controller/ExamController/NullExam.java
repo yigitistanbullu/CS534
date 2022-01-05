@@ -14,16 +14,6 @@ public class NullExam implements Exam{
     public Time endTime;
     public Date date;
 
-    public NullExam(int id, String name, double grade, Date date, Time startTime, Time endTime)  {
-        this.id = id;;
-        this.name = name;
-        this.grade = grade;
-        this.startTime =startTime;
-        this.endTime =endTime;
-        this.date = date;
-        //this.questions = questions;
-    }
-
     @Override
     public Time getStartTime() {
         long now = System.currentTimeMillis();
@@ -50,7 +40,7 @@ public class NullExam implements Exam{
 
     @Override
     public String getName() {
-        return " ";
+        return "Null";
     }
 
     @Override
@@ -84,7 +74,8 @@ public class NullExam implements Exam{
 
     @Override
     public ArrayList<Question> getQuestions() {
-        return new ArrayList<>();
+        ArrayList<Question> test = new ArrayList<>();
+        return test;
     }
 
     @Override

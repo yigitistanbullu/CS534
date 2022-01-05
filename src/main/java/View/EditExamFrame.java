@@ -2,7 +2,6 @@ package View;
 
 import javax.swing.border.*;
 
-import Controller.ExamController.Exam;
 import Controller.ExamController.Examination;
 import Controller.QuestionController.Factory.MultipleChoiceQuestionFactory;
 import Controller.QuestionController.Factory.QuestionFactory;
@@ -11,6 +10,7 @@ import Controller.QuestionController.Factory.TrueFalseQuestionFactory;
 import Model.ExamModel;
 import Model.QuestionModel;
 import View.EditQuestions.EditMultipleChoiceQuestionFrame;
+import View.EditQuestions.EditQuestionCommand;
 import View.EditQuestions.EditTextQuestionFrame;
 import View.EditQuestions.EditTrueFalseQuestionFrame;
 
@@ -99,15 +99,15 @@ public class EditExamFrame extends JFrame {
 
     private void addQuestion(ActionEvent e) {
         if(questionTypeBox.getSelectedItem().equals("Text")){
-            EditTextQuestionFrame frame =  new EditTextQuestionFrame(getExamId(),0);
+            EditQuestionCommand frame =  new EditTextQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("Multiple Choice")){
-            EditMultipleChoiceQuestionFrame frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
+            EditQuestionCommand frame =  new EditMultipleChoiceQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
         else if(questionTypeBox.getSelectedItem().equals("True False")){
-            EditTrueFalseQuestionFrame frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
+            EditQuestionCommand frame =  new EditTrueFalseQuestionFrame(getExamId(),0);
             frame.setVisible(true);
         }
     }
@@ -128,15 +128,18 @@ public class EditExamFrame extends JFrame {
         ArrayList<Integer> questionID = questionModel.getQuestionIds(getExamId());
         int SelectedQuestionId = questionID.get(questionsTable.getSelectedRow());
         if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("text")){
-            EditTextQuestionFrame frame = new EditTextQuestionFrame(getExamId(),SelectedQuestionId);
+            EditQuestionCommand frame = new EditTextQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.edit();
             frame.setVisible(true);
         }
         else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("multiple_choice")){
-            EditMultipleChoiceQuestionFrame frame = new EditMultipleChoiceQuestionFrame(getExamId(),SelectedQuestionId);
+            EditQuestionCommand frame = new EditMultipleChoiceQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.edit();
             frame.setVisible(true);
         }
         else if(getQuestionModel().getQuestionType(SelectedQuestionId).equals("true_false")){
-            EditTrueFalseQuestionFrame frame = new EditTrueFalseQuestionFrame(getExamId(),SelectedQuestionId);
+            EditQuestionCommand frame = new EditTrueFalseQuestionFrame(getExamId(),SelectedQuestionId);
+            frame.edit();
             frame.setVisible(true);
         }
     }
