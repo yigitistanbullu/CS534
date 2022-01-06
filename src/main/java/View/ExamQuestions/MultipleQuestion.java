@@ -64,6 +64,10 @@ public class MultipleQuestion extends JPanel implements Question{
         cAnswer.setText(answers.get(2));
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
         label1.setText(getQuestionNumber());
+        ButtonGroup group = new ButtonGroup();
+        group.add(radioButton1);
+        group.add(radioButton2);
+        group.add(radioButton3);
     }
 
     public void setAnswerForReview(int questionId, int userId){

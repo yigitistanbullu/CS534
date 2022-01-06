@@ -60,6 +60,9 @@ public class TrueFalseQuestion extends JPanel implements Question{
         questionLabel.setText(model.getQuestion(qId));
         point.setText("(" + String.valueOf(model.getAvailablePoints(getQuestionId())) + ")");
         label1.setText(getQuestionNumber());
+        ButtonGroup group = new ButtonGroup();
+        group.add(trueCheck);
+        group.add(falseCheck);
     }
 
     private void save(ActionEvent e) {
