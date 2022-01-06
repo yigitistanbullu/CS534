@@ -130,6 +130,8 @@ public class QuestionsPage extends JFrame {
         dispose();
     }
 
+
+
     private void initComponents() {
         setVisible(true);
         time();

@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
 
-public class GapFillingQuestion extends JPanel implements Question {
+public class GapFillingQuestion extends JPanel implements Question{
     public int questionId;
     public int examId;
     public int userType;
@@ -66,6 +66,7 @@ public class GapFillingQuestion extends JPanel implements Question {
         gradeField.setVisible(false);
         gradeLabel.setVisible(false);
     }
+
 
     public void setNumber(String number){
         label1.setText(number);
