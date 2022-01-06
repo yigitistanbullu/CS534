@@ -1,0 +1,76 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:249:p, comp label1:::p::p}, seq l {space :p:34:p, par t {comp label5::l:p::p, comp label6::l:p::p, par l:l::p {seq {comp button2:::p::p, space :::x, comp button1:::p:78:p}, seq {par t:::p {comp questionLabel2::l::256:x, comp questionLabel::l::256:x}, par l:::p {seq {space :p:59:p, comp keyAnswerLabel:::p:237:p}, seq {space :p:218:p, comp pointsLabel:::::x}}}}}}}, space ::37:x}}"
+				"$verticalGroup": "par l {seq l {space :p:13:p, comp label1:::p::p, space s:::p, comp label5:::p::p, space :::p, par b {comp questionLabel::b:p::p, comp keyAnswerLabel::b:p::p}, space s:::p, comp label6:::p::p, space u:::p, par b {comp questionLabel2::b:p::p, comp pointsLabel::b:p::p}, space :p:28:p, par b {comp button1::b:p:30:p, comp button2::b:p::p}, space ::18:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				"foreground": sfield java.awt.Color white
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": " Gap Filling Question"
+					"foreground": sfield java.awt.Color white
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "pointsLabel"
+					"text": "Points"
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color red
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "keyAnswerLabel"
+					"text": "Key Answer"
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color darkGray
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+					"background": &Color0 new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addQuestion", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "Cancel"
+					"background": #Color0
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "questionLabel"
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color darkGray
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "First part"
+					"foreground": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "questionLabel2"
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color darkGray
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Second Part"
+					"foreground": sfield java.awt.Color white
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 625, 275 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}

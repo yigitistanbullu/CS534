@@ -1,0 +1,71 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp panel1:::p:991:p, space :0:0:x}}"
+			"$verticalGroup": "par l {comp panel1::l::641:x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:22:p, par l {seq {par l {comp scrollPane2:::p:940:p, seq {comp Logout:::p::p, space :p:342:p, comp ozuIconLabel:::p:118:p}}, space ::29:x}, seq {space :p:6:p, comp profileIcon:::p:42:p, space u:::p, comp nameLabel:::p:179:p, space ::623:x, par l {comp dateLabel:::p::p, comp timeLabel:::p::p}, space ::35:x}}}}"
+				"$verticalGroup": "par l {seq l {par l {seq {space ::40:x, par b {comp nameLabel::b:p::p, comp profileIcon::b:p:41:p}, space :p:23:p}, seq l {space :p:18:p, comp dateLabel:::p::p, space u:::p, comp timeLabel:::p::p, space ::42:x}}, comp scrollPane2:::p:474:p, space u:::p, par l {comp ozuIconLabel:::p:40:p, comp Logout:::p::p}, space :p:11:p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				"preferredSize": new java.awt.Dimension( 893, 576 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "nameLabel"
+					"text": "Name Surname"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"horizontalAlignment": 2
+					"font": new java.awt.Font( "Roboto", 0, 18 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "dateLabel"
+					"text": "15.12.2021"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "Logout"
+					"text": "Logout"
+					"background": new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Logout", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					"border": new javax.swing.border.EmptyBorder( 6, 6, 6, 6 )
+					"background": new java.awt.Color( 189, 204, 218, 255 )
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table1"
+						"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
+						"font": new java.awt.Font( "Roboto Thin", 0, 13 )
+						"rowHeight": 30
+						"selectionForeground": new java.awt.Color( 204, 204, 204, 255 )
+						"intercellSpacing": new java.awt.Dimension( 5, 5 )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "timeLabel"
+					"text": "Time"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Roboto", 0, 13 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "ozuIconLabel"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "profileIcon"
+					"text": "text"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 990, 665 )
+		} )
+	}
+}

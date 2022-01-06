@@ -1,0 +1,56 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp panel1:::p::p, space :0:0:x}}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:18:p, par l {seq {comp nameLabel:::p:167:p, space :p:147:p, comp nameLabel2:::p:162:p, space ::369:x}, seq t {par t {comp scrollPane1::t::816:x, seq {space :0:0:x, comp doneButton:::p::p}}, space :p:29:p}}}}"
+				"$verticalGroup": "par l {seq l {space ::37:x, par b {comp nameLabel::b:p::p, comp nameLabel2::b:p::p}, space s:::p, comp scrollPane1:::p:436:p, space :::p, comp doneButton:::p::p, space :p:27:p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 103, 137, 171, 255 )
+				"preferredSize": new java.awt.Dimension( 863, 576 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "nameLabel"
+					"text": "Student Name"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"horizontalAlignment": 2
+					"font": &Font0 new java.awt.Font( "Roboto", 0, 18 )
+					"background": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "nameLabel2"
+					"text": "CS434 Midterm 1"
+					"foreground": #Color0
+					"horizontalAlignment": 0
+					"font": #Font0
+					"horizontalTextPosition": 4
+					"background": #Color1
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+						name: "panel2"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "doneButton"
+					"text": "Done"
+					"background": new java.awt.Color( 103, 137, 171, 255 )
+					"foreground": sfield java.awt.Color darkGray
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "doneButtonOnClicked", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 865, 600 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}
