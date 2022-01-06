@@ -90,10 +90,14 @@ public class EditGapFillingQuestionFrame extends JFrame implements EditQuestionC
 
     @Override
     public void edit() {
-        QuestionModel questionModel = new QuestionModel();
-        setQuestion(questionLabel.getText(), questionLabel2.getText());
-        keyAnswerLabel.setText(questionModel.getKeyAnswer(getQuestionId()));
-        pointsLabel.setText(questionModel.getAvailablePoints(getQuestionId()));
+        QuestionModel model = new QuestionModel();
+        String string = model.getQuestion(questionId);
+        String partOne = string.substring(0,string.indexOf(" "));
+        String partTwo = string.substring(string.indexOf(" ") + 1);
+        questionLabel.setText(partOne);
+        questionLabel2.setText(partTwo);
+        keyAnswerLabel.setText(model.getKeyAnswer(getQuestionId()));
+        pointsLabel.setText(model.getAvailablePoints(getQuestionId()));
     }
 
     public void updateQuestion(){
